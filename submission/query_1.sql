@@ -13,16 +13,41 @@ with
         from
             bootcamp.nba_game_details
     )
-    -- 668339
 select
-    count(*)
+    game_id,
+    team_id,
+    team_abbreviation,
+    team_city,
+    player_id,
+    player_name,
+    nickname,
+    start_position,
+    comment,
+    min,
+    fgm,
+    fga,
+    fg_pct,
+    fg3m,
+    fg3a,
+    fg3_pct,
+    ftm,
+    fta,
+    ft_pct,
+    oreb,
+    dreb,
+    reb,
+    ast,
+    stl,
+    blk,
+    to,
+    pf,
+    pts,
+    plus_minus
 from
     cte
 where
     dup = 1
+    -- 668339
+    -- select count(*) from cte where dup = 1
     -- total records 668628
-select
-    count(*)
-from
-    bootcamp.nba_game_details
-
+    -- select count(*) from bootcamp.nba_game_details
