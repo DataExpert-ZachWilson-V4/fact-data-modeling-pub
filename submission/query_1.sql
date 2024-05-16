@@ -1,3 +1,4 @@
+---this query removes any possible duplicate row for a player in a game
 ---CREATE CTE WITH ROW NUMBER PARTITIONED BY game_id, player_id, team_id to find possible duplicates for a player in a game
 WITH cte AS (
   SELECT row_number() OVER(PARTITION BY game_id, player_id, team_id) AS rn, *
