@@ -28,7 +28,7 @@ WITH
   )
 SELECT
   *,
-  TO_BASE(history_int, 2) AS history_int_base_2
+  TO_BASE(history_int, 2) 
 FROM
   date_list_int -
   
