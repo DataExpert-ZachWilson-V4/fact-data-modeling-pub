@@ -9,12 +9,3 @@ CREATE OR REPLACE TABLE luiscoelho37431.host_activity_reduced (
     format = 'PARQUET', -- The file format for storing the table data
     partitioning = ARRAY['month_start'] -- The column used for partitioning the data
 )
-CREATE OR REPLACE TABLE luiscoelho37431.host_activity_reduced (
-    host VARCHAR,
-    metric_name VARCHAR,
-    metric_array ARRAY<INT64>,
-    month_start VARCHAR
-) WITH (
-    format = 'PARQUET',
-    partitioning = ARRAY['month_start']
-)
