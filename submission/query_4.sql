@@ -30,5 +30,5 @@ SELECT
   *,
   TO_BASE(history_int, 2)
 FROM
-  date_list_int
+  date_list_int -- 
   
