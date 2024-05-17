@@ -6,50 +6,43 @@ WITH partitioned_data AS (
     FROM
         bootcamp.nba_game_details
 ),
-deduped_data AS (
-    -- CTE to query all the data from partitioned table by filtering on row number
-    SELECT
-        game_id,
-        team_id,
-        team_abbreviation,
-        team_city,
-        player_id,
-        player_name,
-        nickname,
-        start_position,
-        comment,
-        min,
-        fgm,
-        fga,
-        fg_pct,
-        fg3m,
-        fg3a,
-        fg3_pct,
-        ftm,
-        fta,
-        ft_pct,
-        oreb,
-        dreb,
-        reb,
-        ast,
-        stl,
-        blk,
-        to,
-        pf,
-        pts,
-        plus_minus
-    FROM
-        partitioned_data
-    WHERE
-        rn = 1 -- Filtering to select only the 1st row in the window
-) -- Select all the data
 SELECT
-    *
+    -- Query all the data from partitioned table by filtering on row number
+    game_id,
+    team_id,
+    team_abbreviation,
+    team_city,
+    player_id,
+    player_name,
+    nickname,
+    start_position,
+    comment,
+    min,
+    fgm,
+    fga,
+    fg_pct,
+    fg3m,
+    fg3a,
+    fg3_pct,
+    ftm,
+    fta,
+    ft_pct,
+    oreb,
+    dreb,
+    reb,
+    ast,
+    stl,
+    blk,
+    to,
+    pf,
+    pts,
+    plus_minus
 FROM
-    deduped_data
-
-/** Stats to show number of rows between original and deduped table.
-source	    num_rows
-partitioned	668,628
-de-duped	668,339
-**/
+    partitioned_data
+WHERE
+    rn = 1 -- Filtering to select only the 1st row in the partition window
+    /** Stats to show number of rows between original and deduped table.
+     source	    num_rows
+     partitioned	668,628
+     de-duped	668,339
+     **/
