@@ -5,7 +5,7 @@ WITH partitioned_data AS (
         ROW_NUMBER() OVER(PARTITION BY game_id, team_id, player_id) as rn -- Generating a row number over the window for filtering
     FROM
         bootcamp.nba_game_details
-),
+) 
 SELECT
     -- Query all the data from partitioned table by filtering on row number
     game_id,

@@ -1,7 +1,7 @@
 CREATE OR REPLACE TABLE akshayjainytl54781.host_activity_reduced (
     host VARCHAR,
     metric_name VARCHAR,
-    metric_array ARRAY(INTEGER)
+    metric_array ARRAY(INTEGER),
     month_start VARCHAR
 ) WITH (
     format = 'PARQUET',
