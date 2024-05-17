@@ -6,7 +6,7 @@ WITH yesteday_t AS (
 ),
 today_t AS(
   SELECT *
-  FROM jsgomez14.daily_web_metrics
+  FROM jsgomez14.daily_web_metrics_hw2
   -- Lets assume that the table exists as the assignement suggests.
   WHERE date = DATE('2023-08-02')
 )
