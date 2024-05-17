@@ -15,6 +15,7 @@ WITH
                 CAST(
                     SUM(
                         CASE
+                            -- Using 31 as in the lab, but should it be 31 or 32?
                             WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 31 - DATE_DIFF('day', sequence_date, date))
                             ELSE 0
                         END
