@@ -4,3 +4,8 @@ CREATE OR REPLACE TABLE mposada.user_devices_cumulated (
     dates_active array(DATE),
     date DATE
 )
+WITH 
+(
+  format = 'parquet',
+  partitioning = array['date']
+)
