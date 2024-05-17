@@ -3,7 +3,7 @@ WITH
     SELECT
       *
     FROM
-      user_devices_cumulated
+      mposada.user_devices_cumulated
     WHERE
       DATE = DATE('2023-01-04')
   ),
