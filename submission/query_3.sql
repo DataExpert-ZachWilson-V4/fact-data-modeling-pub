@@ -36,4 +36,4 @@ SELECT
     DATE('2023-01-01') as date
 FROM
     yesterday y
-    FULL OUTER JOIN today t ON y.user_id = t.user_id
+    FULL OUTER JOIN today t ON y.user_id = t.user_id AND ON y.browser_type = t.browser_type
