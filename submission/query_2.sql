@@ -1,4 +1,4 @@
-CREATE TABLE farahakoum199912722.user_devices_cumulated
+CREATE TABLE user_devices_cumulated
 (
     user_id      BIGINT,
     browser_type VARCHAR,

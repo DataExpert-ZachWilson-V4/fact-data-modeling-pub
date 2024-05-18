@@ -1,9 +1,9 @@
 -- The dates_active array should be a datelist implementation that tracks how many times
 -- a user has been active with a given browser_type.
 
-INSERT INTO farahakoum199912722.user_devices_cumulated
+INSERT INTO user_devices_cumulated
 WITH yesterday AS (SELECT *
-                   FROM farahakoum199912722.user_devices_cumulated
+                   FROM user_devices_cumulated
                    WHERE date = DATE ('2022-12-31')
     ),
     today AS (

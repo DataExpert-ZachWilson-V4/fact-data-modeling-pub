@@ -1,6 +1,6 @@
 -- INSERT INTO farahakoum199912722.hosts_cumulated
 WITH yesterday AS (SELECT *
-                   FROM farahakoum199912722.hosts_cumulated
+                   FROM hosts_cumulated
                    WHERE date = DATE ('2022-12-31')
     ),
     today AS (

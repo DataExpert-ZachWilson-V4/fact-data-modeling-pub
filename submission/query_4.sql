@@ -1,6 +1,6 @@
 WITH today AS (
                 SELECT *
-                FROM farahakoum199912722.user_devices_cumulated
+                FROM user_devices_cumulated
                 WHERE DATE = DATE ('2023-01-03')
     ),
     date_list_int AS (

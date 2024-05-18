@@ -1,4 +1,4 @@
-CREATE TABLE farahakoum199912722.host_activity_reduced
+CREATE TABLE host_activity_reduced
 (
     host         VARCHAR,
     metric_name  VARCHAR,

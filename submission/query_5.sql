@@ -1,4 +1,4 @@
-CREATE TABLE farahakoum199912722.hosts_cumulated
+CREATE TABLE hosts_cumulated
 (
     host                   VARCHAR,
     host_activity_datelist ARRAY(DATE),
