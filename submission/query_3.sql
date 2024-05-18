@@ -1,4 +1,5 @@
-Insert into jrsarrat.user_devices_cumulated --updated query an additional 6x to insert 01-02, 01-03, 01-04, 01-05, 01-06, and 01-07.
+Insert into jrsarrat.user_devices_cumulated 
+--updated query an additional 6x to insert the following dates into CTE 'yesterday': 01-02, 01-03, 01-04, 01-05, 01-06, and 01-07.
 WITH
   yesterday AS (
     SELECT
