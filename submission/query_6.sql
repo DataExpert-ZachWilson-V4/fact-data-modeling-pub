@@ -17,6 +17,7 @@ WITH
     WHERE
       date_trunc('day', event_time) = DATE('2023-01-01')
     GROUP BY
+    -- Group by both columns
       1,
       2
   )
@@ -32,4 +33,4 @@ SELECT
   DATE('2023-01-01') AS date -- Hard coding to the 1st day of the month
 FROM
   yesterday y
-  FULL OUTER JOIN today t ON y.host = t.host
+  FULL OUTER JOIN today t ON y.host = t.host -- Full outer join to get both 'yesterday' and 'today' data

@@ -31,12 +31,13 @@ SELECT
     CASE
         -- Case 1 -- We have cumulated data from yesterday. In that case, today's data is at the first index, concatendated with the existing data
         -- This way, the array is in a reverse chronological order of days in the month. Very easy to analyze and deduce.
-        WHEN y.dates_active IS NOT NULL THEN event_date_array || y.dates_active -- Case 2 -- No prior data. This happens for the 1st day of the month
+        WHEN y.dates_active IS NOT NULL 
+        THEN event_date_array || y.dates_active -- Case 2 -- No prior data. This happens for the 1st day of the month
         ELSE event_date_array
     END AS dates_active,
     DATE ('2023-01-01') AS date
 FROM
-    yesterday y FULL OUTER JOIN today t ON (
+    yesterday y FULL OUTER JOIN today t ON ( -- Full outer join to get data from both yesterday and today's data
         y.user_id = t.user_id
         AND y.browser_type = t.browser_type
     )

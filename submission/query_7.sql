@@ -5,5 +5,7 @@ CREATE OR REPLACE TABLE akshayjainytl54781.host_activity_reduced ( -- CTE to hol
     month_start VARCHAR -- Will always be the 1st day of a month
 ) WITH (
     format = 'PARQUET',
-    partitioning = ARRAY['metric_name', 'month_start']
+    -- Partitioning on both metric name and month start helps store and query much better than just month_start
+    -- This is done for downstream analytical queries
+    partitioning = ARRAY['metric_name', 'month_start'] 
 )
