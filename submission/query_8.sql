@@ -8,7 +8,7 @@ WITH
         FROM
             jessicadesilva.host_activity_reduced
         WHERE
-            month_start = DATE('2023-08-01')
+            month_start = '2023-08-01'
     ),
     --new data
     today AS (
@@ -36,7 +36,7 @@ SELECT
         ),
         ARRAY[t.metric_value]
     ) AS metric_array,
-    DATE('2023-08-01') AS month_start
+    '2023-08-01' AS month_start
 FROM
     today t
     FULL OUTER JOIN yesterday y ON t.user_id = y.user_id
