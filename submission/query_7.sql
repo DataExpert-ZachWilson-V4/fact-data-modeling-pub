@@ -5,4 +5,4 @@ CREATE TABLE jrsarrat.host_activity_reduced (
   month_start VARCHAR
 )
 WITH
-  (FORMAT = 'PARQUET', partitioning = ARRAY['metric_array'])
+  (FORMAT = 'PARQUET', partitioning = ARRAY['metric_name', 'month_start'])
