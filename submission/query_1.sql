@@ -68,3 +68,4 @@ FROM
     deduplicated
 WHERE
     row_num = 1
+
