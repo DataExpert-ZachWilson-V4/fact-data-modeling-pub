@@ -33,5 +33,3 @@ FROM
     bootcamp.nba_game_details
 GROUP BY 
     game_id, team_id, player_id
-LIMIT 
-    100
