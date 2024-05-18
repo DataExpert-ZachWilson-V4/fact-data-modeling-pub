@@ -7,7 +7,7 @@ WITH yesterday AS (
 ),
 
 today AS (
-    SELECT * FROM daily_web_metrics
+    SELECT * FROM akshayjainytl54781.daily_web_metrics
     WHERE date = DATE '2023-01-02'
 )
 
