@@ -4,4 +4,4 @@ CREATE OR REPLACE TABLE user_devices_cumulated (
     dates_active array(date),
     date date
 )
-WITH (FORMAT = 'PARQUET', PARITIONING = ARRAY['date'])
+WITH (FORMAT = 'PARQUET', PARTITIONING = ARRAY['date'])
