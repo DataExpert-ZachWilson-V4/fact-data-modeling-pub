@@ -17,16 +17,16 @@ WITH
             ELSE 0
           END
         ) AS BIGINT
-      ) AS history_int
+      ) AS dates_active_int
   FROM
     today
     CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-02'), DATE('2023-01-08'))) AS t (sequence_date)
   GROUP BY
   user_id,
-  browser_id
+  browser_type
 )
 SELECT
   *,
-  TO_BASE(history_int, 2) AS history_in_binary
+  TO_BASE(dates_active_int, 2) AS dates_in_binary
 FROM
   date_list_int
