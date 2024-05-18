@@ -3,7 +3,7 @@ WITH today AS (
     SELECT
         *
     FROM
-        user_devices_cumulated -- README suggests this table should be accessible, so removed the schema name
+        akshayjainytl54781.user_devices_cumulated -- README suggests this table should be accessible, but removing the schema name fails the checks
     WHERE
         date = DATE('2023-01-07')
 ),
