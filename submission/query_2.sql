@@ -10,7 +10,7 @@ CREATE OR REPLACE TABLE videet.user_devices_cumulated (
     dates_active ARRAY(DATE),
     
     -- Date column used for partitioning
-    `date` DATE
+    date DATE
 )
 WITH (
     -- Specify the file format for the table as Parquet
