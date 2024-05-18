@@ -5,7 +5,4 @@ CREATE TABLE user_devices_cumulated (
     date date
 )
 WITH
-    (
-        FORMAT = 'PARQUET',
-        partitioning = ARRAY['date']
-    )
+    (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
