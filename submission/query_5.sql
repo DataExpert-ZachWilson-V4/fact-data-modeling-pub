@@ -16,4 +16,4 @@ WITH (
 
     -- Defining partitioning strategy for the table. The table is partitioned by the 'date' column.
     PARTITIONING = ARRAY['date']
-)
+);
