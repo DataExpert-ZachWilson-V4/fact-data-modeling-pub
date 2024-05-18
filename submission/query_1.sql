@@ -1,35 +1,6 @@
+-- Using row number to take the first row in case of duplicates
 SELECT 
-    game_id, 
-    team_id, 
-    player_id,
-    MIN(team_abbreviation),
-    MIN(team_city),
-    MIN(player_name),
-    MIN(nickname),
-    MIN(start_position),
-    MIN(comment),
-    MIN(min),
-    MIN(fgm),
-    MIN(fga),
-    MIN(fg_pct),
-    MIN(fg3m),
-    MIN(fg3a),
-    MIN(fg3_pct),
-    MIN(ftm),
-    MIN(fta),
-    MIN(ft_pct),
-    MIN(oreb),
-    MIN(dreb),
-    MIN(reb),
-    MIN(ast),
-    MIN(stl),
-    MIN(blk),
-    MIN(to),
-    MIN(pf),
-    MIN(pts),
-    MIN(plus_minus)
+    ROW_NUMBER() OVER PARTITION BY (game_id, team_id, player_id) AS r_number,
+    *
 FROM bootcamp.nba_game_details 
-GROUP BY 
-    game_id, 
-    team_id, 
-    player_id
+WHERE r_number = 1
