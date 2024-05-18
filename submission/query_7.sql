@@ -10,3 +10,4 @@ with
         FORMAT = 'PARQUET',
         partitioning = ARRAY['metric_name', 'month_start']
     )
+    -- tag for feedback

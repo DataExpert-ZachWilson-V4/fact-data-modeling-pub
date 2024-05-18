@@ -47,3 +47,5 @@ from
     nba_game_details_with_row_num
 where
     row_num = 1
+    -- no feedback first commit which obviously had changes! Quote from github actions below
+    -- No file changes were detected in the current push so no comments were generated. Please modify one or more of your submission files to receive LLM-generated feedback.

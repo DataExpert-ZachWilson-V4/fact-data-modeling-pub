@@ -41,3 +41,4 @@ from
     prev_day p
     full outer join curr_day c on p.user_id = c.user_id
     and p.browser_type = c.browser_type
+    -- tag for feedback

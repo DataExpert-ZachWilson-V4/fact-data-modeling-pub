@@ -35,3 +35,4 @@ from
     prev p
     full outer join curr c on p.host = c.host
     and p.date + interval '1' day = c.date
+    -- tag for feedback

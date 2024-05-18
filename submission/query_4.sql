@@ -37,3 +37,4 @@ from
 group by
     user_id,
     browser_type
+    -- tag for feedback

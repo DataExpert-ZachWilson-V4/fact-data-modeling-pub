@@ -6,3 +6,4 @@ or replace table sarneski44638.hosts_cumulated (
 )
 with
     (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+    -- tag for feedback

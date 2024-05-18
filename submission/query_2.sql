@@ -8,3 +8,4 @@ or replace table sarneski44638.user_devices_cumulated (
 )
 with
     (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+    -- tag for feedback
