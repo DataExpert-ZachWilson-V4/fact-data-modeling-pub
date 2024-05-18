@@ -1,10 +1,11 @@
+INSERT INTO user_devices_cumulated
 -- user_devices_cumulated and web_events
+WITH 
 yesterday AS (
     SELECT
         *
-    FROM carloslaguna21592.user_devices_cumulated
+    FROM user_devices_cumulated
     WHERE date = DATE('2023-01-01')
-
 ),
 today AS (
     SELECT
@@ -13,13 +14,13 @@ today AS (
         ARRAY_AGG(
             DISTINCT CAST(DATE_TRUNC('day', web.event_time) AS DATE)
         ) AS dates_active,
-        DATE('2023-01-02') AS date
+        CAST(DATE_TRUNC('day', web.event_time) AS DATE) AS date
     FROM bootcamp.devices dev
     LEFT JOIN bootcamp.web_events web
     ON dev.device_id = web.device_id
     WHERE 
         DATE_TRUNC('day', web.event_time) = DATE('2023-01-02')
-    GROUP BY user_id, browser_type
+    GROUP BY user_id, browser_type, DATE_TRUNC('day', web.event_time)
 )
 
 SELECT
