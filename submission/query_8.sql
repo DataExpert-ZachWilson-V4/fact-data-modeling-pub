@@ -4,16 +4,29 @@
 -- delete from monthly_array_web_metrics
 -- where cardinality(metric_array) < 2	--Here 2 is the number of days currently represented in the table (date_diff from start of month to last day entered)
 INSERT INTO host_activity_reduced
-WITH yesterday AS (
+--In practice, daily_web_metrics would be another table loaded by a statement similar to the one below
+WITH daily_web_metrics AS (
+SELECT host,
+  CASE WHEN url = '/' THEN 'visited_home_page'
+     WHEN url = '/signup' THEN 'visited_signup' END AS metric_name,
+  COUNT(CASE WHEN url IN ('/','/signup') THEN 1 END) AS metric_value,
+  CAST(event_time AS DATE) AS date
+FROM bootcamp.web_events
+GROUP BY host,
+  CASE WHEN url = '/' THEN 'visited_home_page'
+     WHEN url = '/signup' THEN 'visited_signup' END,
+  CAST(event_time AS DATE)
+),
+yesterday AS (
   SELECT *
   FROM host_activity_reduced
   WHERE month_start = '2023-08-01'
 ), 
 today AS (
-	--Assumed to contain daily web metrics grouped by host, metric_name, and date
   SELECT *
   FROM daily_web_metrics
   WHERE date = DATE('2023-08-02')
+	AND metric_name IS NOT NULL
 )
 SELECT COALESCE(t.host,y.host) AS host,
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
