@@ -24,7 +24,7 @@ SELECT
     REPEAT(
       NULL,
       CAST(
-        DATE_DIFF('day', DATE('2023-08-01'), t.date) AS INTEGER   -- gets metric array or if its NULL it create an array of NULLS with the number of NULLS equal to the amount of days since start of month until today for example if you use DATE_DIFF('day', DATE('2023-08-01'), DATE('2023-08-03')) it creates two nulls
+        DATE_DIFF('day', DATE('2023-08-01'), t.date) AS INTEGER   -- gets metric array or if its NULL it create an array of NULLS with the number of NULLS equal to the amount of days since start of month until today. For example if you use DATE_DIFF('day', DATE('2023-08-01'), DATE('2023-08-03')) it creates two nulls
       )
     )
   ) || ARRAY[t.metric_value] AS metric_array, -- adds the value corresponding to today to the array 
