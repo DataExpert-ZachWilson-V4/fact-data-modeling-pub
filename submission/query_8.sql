@@ -1,9 +1,9 @@
 --First, create daily_web_metrics table
 CREATE TABLE jrsarrat.daily_web_metrics (
-  user_id BIGINT,
+  host BIGINT,
   metric_name VARCHAR,
   metric_value BIGINT,
-  DATE DATE
+  date DATE
 )
 WITH
   (
