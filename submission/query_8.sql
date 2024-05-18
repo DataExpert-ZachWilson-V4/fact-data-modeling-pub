@@ -1,16 +1,3 @@
---First, create daily_web_metrics table
-CREATE TABLE jrsarrat.daily_web_metrics (
-  host VARCHAR,
-  metric_name VARCHAR,
-  metric_value BIGINT,
-  date DATE
-)
-WITH
-  (
-    FORMAT = 'PARQUET',
-    partitioning = ARRAY['metric_name', 'date']
-  )
----------------------------------------------------------------------------
 --Next, insert records into host_activity_reduced table
 INSERT INTO
   jrsarrat.host_activity_reduced
