@@ -1,12 +1,12 @@
 INSERT INTO
-    jessicadesilva.host_activity_reduced
+    host_activity_reduced
 WITH
     --previously loaded data
     yesterday AS (
         SELECT
             *
         FROM
-            jessicadesilva.host_activity_reduced
+            host_activity_reduced
         WHERE
             month_start = '2023-08-01'
     ),
@@ -15,7 +15,7 @@ WITH
         SELECT
             *
         FROM
-            bootcamp.daily_web_metrics
+            daily_web_metrics
         WHERE
             date = DATE('2023-08-03')
     )
