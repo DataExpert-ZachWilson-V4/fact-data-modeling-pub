@@ -21,6 +21,7 @@ today AS ( -- CTE to hold today's data
         (d.device_id = w.device_id)
     WHERE
         DATE_TRUNC('day', event_time) = DATE ('2023-01-01')
+        AND event_time IS NOT NULL -- make sure event time is not null
     GROUP BY 1,2
 )
 
