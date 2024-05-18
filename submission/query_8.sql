@@ -32,7 +32,7 @@ WITH
       DATE = DATE('2023-08-03')
   )
 SELECT
-  COALESCE(t.host, host) AS host,
+  COALESCE(t.host, y.host) AS host,
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
   COALESCE(
     y.metric_array,
