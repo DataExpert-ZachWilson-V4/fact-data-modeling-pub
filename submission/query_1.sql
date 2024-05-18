@@ -29,4 +29,7 @@ SELECT
     MIN(pts),
     MIN(plus_minus)
 FROM bootcamp.nba_game_details 
-GROUP BY game_id, team_id, player_id
+GROUP BY 
+    game_id, 
+    team_id, 
+    player_id
