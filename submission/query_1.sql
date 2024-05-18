@@ -1,4 +1,4 @@
-CREATE TABLE jrsarrat.fct_nba_game_details (
+CREATE OR REPLACE TABLE jrsarrat.fct_nba_game_details (
   game_id BIGINT,
   team_id BIGINT,
   player_id BIGINT,
