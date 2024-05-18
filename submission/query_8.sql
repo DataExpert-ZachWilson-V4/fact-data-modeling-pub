@@ -4,7 +4,7 @@ WITH
     SELECT
       *
     FROM
-      mposada.monthly_array_web_metrics
+      mposada.host_activity_reduced
     WHERE
       month_start = '2023-08-01'  -- grabs this month data
   ),
