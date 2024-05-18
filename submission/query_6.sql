@@ -24,7 +24,7 @@ SELECT
   COALESCE(y.host, t.host) AS host,
   CASE
     -- Case 1 -- We have cumulated data from yesterday. In that case, today's data is at the first index, concatendated with the existing data
-    -- This was, the array is similar to a chronological order of days in the month. Very easy to analyze and deduce.
+    -- This way, the array is in a reverse chronological order of days in the month. Very easy to analyze and deduce.
     WHEN y.host_activity_datelist IS NOT NULL THEN ARRAY[t.event_date] || y.host_activity_datelist
     -- Case 2 -- No prior data. This happens for the 1st day of the month
     ELSE ARRAY[t.event_date]

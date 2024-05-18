@@ -7,7 +7,7 @@ WITH yesterday AS (
 ),
 
 today AS (
-    SELECT * FROM akshayjainytl54781.daily_web_metrics
+    SELECT * FROM akshayjainytl54781.daily_web_metrics -- Which schema to use here? bootcamp is unavailable
     WHERE date = DATE '2023-01-02'
 )
 
