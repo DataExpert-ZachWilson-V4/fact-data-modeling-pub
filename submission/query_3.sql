@@ -1,5 +1,4 @@
---Insert into
---jrsarrat.user_devices_cumulated
+Insert into jrsarrat.user_devices_cumulated
 WITH
   yesterday AS (
     SELECT
