@@ -1,3 +1,4 @@
+--assigns numbers to repeat rows according to first occurrence
 WITH
     row_nums AS (
         SELECT
@@ -9,8 +10,9 @@ WITH
                     player_id
             ) AS row_number
         FROM
-            nba_game_details
+            bootcamp.nba_game_details
     )
+--select all columns except the row number
 SELECT
     game_id,
     team_id,
@@ -43,5 +45,6 @@ SELECT
     plus_minus
 FROM
     row_nums
+--keep only the first occurrence for duplicate records
 WHERE
     row_number = 1

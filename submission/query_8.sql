@@ -1,6 +1,7 @@
 INSERT INTO
     jessicadesilva.host_activity_reduced
 WITH
+    --previously loaded data
     yesterday AS (
         SELECT
             *
@@ -9,6 +10,7 @@ WITH
         WHERE
             month_start = DATE('2023-08-01')
     ),
+    --new data
     today AS (
         SELECT
             *
@@ -17,6 +19,8 @@ WITH
         WHERE
             date = DATE('2023-08-03')
     )
+    --append metric_value (possibly null) to metric_array if it exists, if not append
+    --nulls equal to the number of days that have passed, then append new metric_value
 SELECT
     COALESCE(t.host, y.host) AS host,
     COALESCE(t.metric_name, y.metric_name) AS metric_name,

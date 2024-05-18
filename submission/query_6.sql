@@ -1,6 +1,7 @@
 INSERT INTO
     hosts_cumulated
 WITH
+--previously loaded data
     yesterday AS (
         SELECT
             *
@@ -9,6 +10,7 @@ WITH
         WHERE
             date = DATE('2022-12-31')
     ),
+    --count the number of events for new data by host and date
     today AS (
         SELECT
             host,
@@ -22,6 +24,7 @@ WITH
             host,
             CAST(date_trunc('day', event_time) AS DATE)
     )
+--append host_activity_datelist if it exists, else create single-item array with date
 SELECT
     COALESCE(y.host, t.host) AS host,
     CASE

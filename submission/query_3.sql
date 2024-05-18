@@ -1,5 +1,6 @@
 INSERT INTO user_devices_cumulated
 WITH
+    --previously loaded daata
     yesterday AS (
         SELECT
             *
@@ -8,6 +9,7 @@ WITH
         WHERE
             date = DATE('2024-05-14')
     ),
+    --count number of web events for new data by user_id and browser_type
     today AS (
         SELECT
             we.user_id,
@@ -24,6 +26,7 @@ WITH
             d.browser_type,
             CAST(date_trunc('day', we.event_time) AS DATE)
     )
+--append date if dates_active exists, else create single-item array with date
 SELECT
     COALESCE(y.user_id, t.user_id) AS user_id,
     COALESCE(y.browser_type, t.browser_type) AS browser_type,
