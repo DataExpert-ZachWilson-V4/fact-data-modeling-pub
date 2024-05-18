@@ -39,5 +39,5 @@ SELECT
     '2023-08-01' AS month_start
 FROM
     today t
-    FULL OUTER JOIN yesterday y ON t.user_id = y.user_id
+    FULL OUTER JOIN yesterday y ON t.host = y.host
     AND t.metric_name = y.metric_name
