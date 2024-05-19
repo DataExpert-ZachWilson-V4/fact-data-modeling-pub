@@ -4,7 +4,7 @@ WITH
     FROM ovoxo.user_devices_cummulated
     WHERE date = DATE('2023-01-07')  
   )
-  
+
 SELECT user_id,
     browser_type,
     TO_BASE(
@@ -20,3 +20,4 @@ SELECT user_id,
 FROM current_date_records 
 CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07'))) AS c (sequence_date)
 GROUP BY user_id, browser_type
+

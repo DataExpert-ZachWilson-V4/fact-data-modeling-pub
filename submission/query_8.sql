@@ -8,7 +8,7 @@ WITH
   
   current_day AS (
     SELECT *
-    FROM ovoxo.daily_web_metrics_host
+    FROM ovoxo.daily_web_metrics
     WHERE date = DATE('2023-01-01')
   )
   
