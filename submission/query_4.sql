@@ -5,7 +5,7 @@
 WITH today AS (
     SELECT * 
     FROM alissabdeltoro.user_devices_cumulated
-    WHERE date = DATE '2023-01-07'
+    WHERE date = DATE '2023-01-02'
 ),
 
 -- Step 2: Calculate history integer representation
@@ -16,15 +16,15 @@ date_list_int AS (
         CAST(
             SUM(
                 CASE 
-                    WHEN sequence_date = ANY(dates_active) THEN 
-                        POW(2, 31 - DATE_DIFF('day', sequence_date, DATE '2023-01-07'))
+                    WHEN ARRAY_JOIN(dates_active, ',') LIKE '%' || CAST(sequence_date AS VARCHAR) || '%' THEN 
+                        POW(2, 30 - DATE_DIFF('day', sequence_date, DATE '2023-01-03'))
                     ELSE 0
                 END
             ) AS BIGINT
         ) AS history_int
     FROM today
-    -- Generate a sequence of dates from '2023-01-01' to '2023-01-07' and unnest them
-    CROSS JOIN UNNEST(SEQUENCE(DATE '2023-01-01', DATE '2023-01-07')) AS t(sequence_date)
+    -- Generate a sequence of dates from '2023-01-01' to '2023-01-02' and unnest them
+    CROSS JOIN UNNEST(SEQUENCE(DATE '2023-01-01', DATE '2023-01-02')) AS t(sequence_date)
     GROUP BY user_id
 ),
 
