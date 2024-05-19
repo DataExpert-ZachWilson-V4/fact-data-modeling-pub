@@ -14,12 +14,12 @@ WITH
     SELECT
       *
     FROM
-      bootcamp.daily_web_metrics -- assuming this table already exists
+      nancycast01.daily_web_metrics -- assuming this table already exists
     WHERE
       DATE = DATE('2023-08-02')
   )
 SELECT
-  COALESCE(t. host, y. host) AS host, 
+  COALESCE(t.host, y.host) AS host, 
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
   COALESCE(
     y.metric_array,
@@ -34,7 +34,7 @@ SELECT
   '2023-08-01' AS month_start
 FROM
   today t
-  FULL OUTER JOIN yesterday y ON t.user_id = y.user_id
+  FULL OUTER JOIN yesterday y ON t.user_id = y.user_idg
   AND t.metric_name = y.metric_name
 WHERE
   CARDINALITY(
