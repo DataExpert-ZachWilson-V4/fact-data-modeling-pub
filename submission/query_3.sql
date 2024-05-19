@@ -30,3 +30,5 @@ SELECT
 FROM
   yesterday y
   FULL OUTER JOIN today t ON y.user_id = t.user_id
+
+
