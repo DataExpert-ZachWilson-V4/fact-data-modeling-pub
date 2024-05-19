@@ -14,7 +14,7 @@ WITH
     SELECT
       *
     FROM
-      nancycast01.daily_web_metrics -- assuming this table already exists
+      nancycast01.daily_web_metrics -- this table already exists
     WHERE
       DATE = DATE('2023-08-02')
   )
