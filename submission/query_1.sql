@@ -7,3 +7,5 @@ with repeatedrows as (
 select *
 from repeatedrows
 where rownum=1
+
+
