@@ -24,3 +24,5 @@ SELECT
   TO_BASE(history_int, 2) AS history_in_binary
 FROM
   date_list_int
+
+
