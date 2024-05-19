@@ -1,5 +1,5 @@
 with
-    query_with_row_number as (
+    details_with_rownum as (
         SELECT
             *,
             row_number() over (
@@ -14,6 +14,6 @@ with
 select
     *
 from
-    query_with_row_number
+    details_with_rownum
 where
-    query_with_row_number.row_num = 1
+    details_with_rownum.row_num = 1
