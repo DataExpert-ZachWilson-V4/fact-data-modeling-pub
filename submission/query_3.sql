@@ -8,8 +8,6 @@ WITH yesterday AS (
   *
   FROM nancycast01.user_devices_comulated 
   WHERE date = DATE('2022-12-31')
-
-
 ),
 
 today AS (
