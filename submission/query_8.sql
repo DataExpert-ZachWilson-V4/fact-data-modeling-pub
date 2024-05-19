@@ -27,7 +27,7 @@ SELECT
         DATE_DIFF('day', DATE('2023-02-01'), t.date) AS INTEGER
       )
     )
-  ) || ARRAY[t.metric_value] AS metric_array,  -- Concatenating today's metric with the historical array, if any.
+  ) || ARRAY[t.metric_value] AS metric_array,  -- Concatenating today's metric with the historical array, if any is available.
   '2023-02-01' AS month_start  -- The aggregation period start date for the record.
 FROM
   today t
