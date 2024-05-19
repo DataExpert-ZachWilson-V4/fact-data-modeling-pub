@@ -6,7 +6,7 @@ WITH
             metric_array,
             month_start
         FROM
-            host_activity_reduced
+            xeno.host_activity_reduced
         WHERE
             month_start = '2023-01-01'
     ),
@@ -17,7 +17,7 @@ WITH
             metric_value,
             date
         FROM
-            daily_web_metrics
+            xeno.daily_web_metrics
         WHERE
             month_start = '2023-01-02'
     )
