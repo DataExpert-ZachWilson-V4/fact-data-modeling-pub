@@ -7,7 +7,6 @@ WITH unique_games AS (
     FROM
         bootcamp.nba_game_details
 )
-
 -- Select only the first occurrence of each combination of game_id, team_id, and player_id
 SELECT *
 FROM unique_games
