@@ -3,10 +3,10 @@ WITH yesterday AS (SELECT *
                    FROM host_activity_reduced
                    WHERE month_start = '2023-08-01'),
      today AS (SELECT *
-               FROM daily_web_metrics
+               FROM farahakoum199912722.daily_web_metrics
                WHERE DATE = DATE ('2023-08-02')
     )
-SELECT COALESCE(t.user_id, y.user_id)         AS user_id,
+SELECT COALESCE(t.host, y.host)         AS host,
        COALESCE(t.metric_name, y.metric_name) AS metric_name,
        COALESCE(
                y.metric_array,
@@ -17,5 +17,5 @@ SELECT COALESCE(t.user_id, y.user_id)         AS user_id,
                ) || ARRAY[t.metric_value]      AS metric_array,
        '2023-08-01'                            AS month_start
 FROM today t
-         FULL OUTER JOIN yesterday y ON t.user_id = y.user_id
+         FULL OUTER JOIN yesterday y ON t.host = y.host
     AND t.metric_name = y.metric_name
