@@ -6,3 +6,5 @@ create or replace table deeptianievarghese22866.user_devices_cumulated (
 )
 with
   (format = 'PARQUET', partitioning = array['date'])
+
+
