@@ -7,3 +7,4 @@ month_start varchar
 )with
 (format = 'PARQUET', 
 partitioning = array['month_start'])
+
