@@ -1,3 +1,4 @@
+-- insert into cumuluated table
 insert into fayiztk.user_devices_cumulated
 with
     today as (
