@@ -1,14 +1,14 @@
-INSERT INTO ovoxo.host_activity_reduced
+INSERT INTO host_activity_reduced
 WITH
   previous_day AS (
     SELECT *
-    FROM ovoxo.host_activity_reduced
+    FROM host_activity_reduced
     WHERE month_start = '2023-01-01'
   ),
   
   current_day AS (
     SELECT *
-    FROM ovoxo.daily_web_metrics
+    FROM daily_web_metrics
     WHERE date = DATE('2023-01-01')
   )
   

@@ -1,8 +1,8 @@
-INSERT INTO ovoxo.user_devices_cummulated
+INSERT INTO user_devices_cummulated
 WITH
   previous_date_records AS (
     SELECT *
-    FROM ovoxo.user_devices_cummulated
+    FROM user_devices_cummulated
     WHERE date = DATE('2023-01-06')  
   ),
   

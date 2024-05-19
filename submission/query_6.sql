@@ -1,8 +1,8 @@
-INSERT INTO ovoxo.hosts_cumulated
+INSERT INTO hosts_cumulated
 WITH
   previous_date_records AS (
     SELECT *
-    FROM ovoxo.hosts_cumulated
+    FROM hosts_cumulated
     WHERE date = DATE('2023-01-05')  
   ),
   
