@@ -23,9 +23,7 @@ WITH
       bootcamp.web_events
     WHERE
       date_trunc('day', event_time) = DATE('2023-02-03')  -- Today's date
-    GROUP BY
-      host,
-      event_date  -- Group by host and event date
+    GROUP BY 1,2 -- Group by host and event date
   )
 -- Combine data from yesterday and today
 SELECT
