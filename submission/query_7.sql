@@ -12,4 +12,4 @@ WITH (
     FORMAT = 'PARQUET',
     -- Partitioning the table by 'metric_name' & `month_start` for optimized queries and quick data retrieval
     partitioning = ARRAY['metric_name', 'month_start']
-);
+)
