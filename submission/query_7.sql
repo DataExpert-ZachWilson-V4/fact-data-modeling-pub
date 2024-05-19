@@ -20,8 +20,8 @@ WITH (
     -- which is optimized for performance in analytic queries, offering efficient compression and encoding schemes.
     FORMAT = 'PARQUET',
     
-    -- Configures the table to be partitioned by the 'month_start' column,
-    PARTITIONING = ARRAY['month_start']
+    -- Configures the table to be partitioned by the 'month_start' and 'metric_name' column.
+    PARTITIONING = ARRAY['metric_name', 'month_start']
 )
 
 -- Note:
