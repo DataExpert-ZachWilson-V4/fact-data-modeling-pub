@@ -11,7 +11,7 @@ today AS (
   -- Selects all entries from the 'daily_web_metrics' table for the specific day.
   -- These metrics are to be added to or create new entries in the 'host_activity_reduced' table.
   SELECT *
-  FROM videet.daily_web_metrics
+  FROM videet.daily_web_metrics    --Created this table so test could runs without errors.
   WHERE date = DATE('2023-02-02')  -- Focusing on metrics recorded on February 2, 2023.
 )
 
