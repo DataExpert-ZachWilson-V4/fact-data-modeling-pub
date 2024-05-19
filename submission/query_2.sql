@@ -1,4 +1,4 @@
-CREATE TABLE abhishekshetty.user_devices_cumulated (
+CREATE or REPLACE TABLE abhishekshetty.user_devices_cumulated (
   user_id BIGINT,
   browser_type VARCHAR,
   dates_active ARRAY(DATE),
