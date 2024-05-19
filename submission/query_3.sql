@@ -46,3 +46,4 @@ FROM yesterday y
 -- full ouetr join on user and browser type
 FULL OUTER JOIN today t ON y.user_id = t.user_id
                        AND y.browser_type = t.browser_type
+ 

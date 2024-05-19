@@ -39,3 +39,4 @@ SELECT COALESCE(y.host, t.host) AS host
      , DATE('2023-01-07') AS date
 FROM yesterday y
 FULL OUTER JOIN today t ON y.host = t.host
+ 

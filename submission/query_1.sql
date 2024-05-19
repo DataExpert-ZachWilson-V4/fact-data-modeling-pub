@@ -37,4 +37,4 @@ SELECT game_id
      , pts
      , plus_minus
 FROM ranking_cte
-WHERE row_cnt = 1
+WHERE row_cnt = 1 

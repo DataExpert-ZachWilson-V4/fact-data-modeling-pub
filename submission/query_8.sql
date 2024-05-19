@@ -26,3 +26,4 @@ SELECT COALESCE(y.host, t.host) AS host
 FROM yesterday y
 FULL OUTER JOIN today t ON y.host = t.host
                        AND y.metric_name = t.metric_name
+ 

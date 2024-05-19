@@ -14,3 +14,4 @@ WITH (
   -- records with same metric_name and month start day will be stored in same file partition
   partitioning = ARRAY['metric_name', 'month_start']
 )
+ 

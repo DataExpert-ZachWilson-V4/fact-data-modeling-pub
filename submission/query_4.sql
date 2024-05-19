@@ -31,3 +31,4 @@ SELECT user_id
      -- convert the integer to binary representation for storing
      , TO_BASE(date_int, 2) AS days_active_binary
 FROM date_list_int
+ 
