@@ -13,6 +13,6 @@ WITH BASE AS (
 ) 
 
 SELECT
-*, EXCEPT(dup)
+*
 FROM base
 WHERE dup = TRUE

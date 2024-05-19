@@ -1,12 +1,12 @@
 INSERT INTO
-  nancycas01.host_activity_reduced
+  nancycast01.host_activity_reduced
 
 WITH
   yesterday AS (
     SELECT
       *
     FROM
-      nancycas01.host_activity_reduced
+      nancycast01.host_activity_reduced
     WHERE
       month_start = '2023-08-01'
   ),
