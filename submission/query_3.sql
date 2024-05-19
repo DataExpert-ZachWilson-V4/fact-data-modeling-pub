@@ -35,9 +35,12 @@ SELECT
   -- If browser_type from yesterday is null, use browser_type from today and vice versa
   COALESCE(y.browser_type, t.browser_type) AS browser_type,
   -- If dates_active from yesterday is not null, concatenate today's event_date with it, otherwise create a new array with today's event_date
-  CASE
-    WHEN y.dates_active IS NOT NULL THEN ARRAY[t.event_date] || y.dates_active
-    ELSE ARRAY[t.event_date]
+    CASE
+    WHEN y.dates_active IS NOT NULL and t.event_date is NOT NULL
+    THEN ARRAY[t.event_date] || y.dates_active
+    WHEN y.dates_active IS NOT NULL and t.event_date is NULL 
+    THEN y.dates_active
+    WHEN y.dates_active IS NULL THEN ARRAY[t.event_date]
   END AS dates_active,
   -- Set the date for the record to today's date
   DATE('2023-01-01') AS date
