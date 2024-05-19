@@ -5,3 +5,4 @@ date date
 ) with
 (format = 'PARQUET', 
 partitioning = array['date'])
+
