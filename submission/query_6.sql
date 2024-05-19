@@ -34,3 +34,5 @@ Select
 from 
 yesterday y FULL OUTER JOIN today t
 on t.host = y.host
+
+-- Adding extra comment to force the Autograde program run on all files

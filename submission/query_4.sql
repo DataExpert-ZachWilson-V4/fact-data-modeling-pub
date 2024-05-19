@@ -29,3 +29,6 @@ Select
   /* Converting the calculated column History_int from date_list_int subquery into binary representation */
   TO_BASE(History_int,2) As History_int_binary
 from date_list_int
+
+
+-- Adding extra comment to force the Autograde program run on all files

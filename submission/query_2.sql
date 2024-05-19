@@ -10,3 +10,6 @@ WITH
 	FORMAT = 'PARQUET',
 	Partitioning = ARRAY['date']
 )
+
+
+-- Adding extra comment to force the Autograde program run on all files

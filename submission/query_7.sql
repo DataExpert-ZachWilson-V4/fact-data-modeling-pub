@@ -9,3 +9,5 @@ CREATE OR REPLACE TABLE Jaswanthv.host_activity_reduced(
     Partitioning = ARRAY['metric_name','month_start']
   )
   
+  
+-- Adding extra comment to force the Autograde program run on all files  

@@ -35,3 +35,5 @@ Select
 	plus_minus  
 from dedup where rnk = 1
 
+-- Adding extra comment to force the Autograde program run on all files
+

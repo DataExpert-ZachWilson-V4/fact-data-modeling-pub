@@ -21,3 +21,5 @@ Select
   '2023-08-01' As month_start
 from yesterday y FULL OUTER JOIN today t on
 y.host = t.host and y.metric_name = t.metric_name
+
+-- Adding extra comment to force the Autograde program run on all files

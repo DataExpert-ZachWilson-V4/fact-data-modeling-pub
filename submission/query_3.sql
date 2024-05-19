@@ -25,3 +25,6 @@ Select
   END AS dates_active,
   CAST('2021-01-01' As Date) As date
 from yesterday y FULL OUTER JOIN today t on y.user_id = t.user_id
+
+
+-- Adding extra comment to force the Autograde program run on all files
