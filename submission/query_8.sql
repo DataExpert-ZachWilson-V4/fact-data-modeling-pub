@@ -1,4 +1,4 @@
-Insert into host_activity_reduced
+Insert into Jaswanthv.host_activity_reduced
 With yesterday As
 (
 Select * from Jaswanthv.host_activity_reduced
@@ -10,10 +10,10 @@ Select
   metric_name,
   metric_value,
   date
-FROM Jaswanthv. daily_web_metrics_v4
+FROM Jaswanthv.daily_web_metrics
 Where Date = CAST('2023-08-02' As Date)
 )
-Select 
+Select
   COALESCE(y.host,t.host) As host,
   COALESCE(y.metric_name,t.metric_name) As metric_name,
   /* Appending Nulls for each day for metrics that doesn't come on month start until they start to show up */
@@ -21,4 +21,3 @@ Select
   '2023-08-01' As month_start
 from yesterday y FULL OUTER JOIN today t on
 y.host = t.host and y.metric_name = t.metric_name
-  
