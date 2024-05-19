@@ -18,7 +18,7 @@ deeptianievarghese22866.daily_web_metrics
       DATE = DATE('2023-08-02')
   )
 SELECT
-  COALESCE(t.host, y.host) AS host,
+  COALESCE(t.user_id, y.user_id) AS host,
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
   COALESCE(
     y.metric_array,
@@ -34,6 +34,8 @@ FROM
   today t
   FULL OUTER JOIN yesterday y ON t.user_id = y.host
   AND t.metric_name = y.metric_name
+
+
 
 
 
