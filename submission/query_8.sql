@@ -1,3 +1,4 @@
+--Inserts rows into videet.host_activity_reduced from daily metrics table
 INSERT INTO videet.host_activity_reduced
 -- Define two Common Table Expressions (CTEs) to handle the processing of historical data and current daily metrics
 WITH yesterday AS (
