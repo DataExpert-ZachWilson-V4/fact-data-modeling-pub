@@ -57,7 +57,7 @@ de_duplicated_table AS (
 )
 
 -- Step 3: Drop the original table
-DROP TABLE alissabdeltoro.nba_game_details;
+DROP TABLE alissabdeltoro.nba_game_details
 
 -- Step 4: Rename the final de-duplicated table
 ALTER TABLE de_duplicated_table RENAME TO nba_game_details
