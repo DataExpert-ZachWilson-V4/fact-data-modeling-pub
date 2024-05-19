@@ -26,10 +26,7 @@ WITH
       bootcamp.devices d ON d.device_id = we.device_id
     WHERE
       date_trunc('day', we.event_time) = DATE('2023-01-01')
-    GROUP BY
-      we.user_id,
-      d.browser_type,
-      event_date
+    GROUP BY 1,2,3
   )
 -- Select the final data to insert into the user_devices_cumulated table
 SELECT
