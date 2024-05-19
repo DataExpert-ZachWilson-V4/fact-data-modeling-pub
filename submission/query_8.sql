@@ -15,7 +15,7 @@ WITH
             host,
             metric_name,
             metric_value,
-            date
+            month_start
         FROM
             xeno.daily_web_metrics
         WHERE
