@@ -8,4 +8,4 @@ CREATE OR REPLACE TABLE shashankkongara.hosts_cumulated (
 WITH (
     FORMAT = 'PARQUET',                  -- Storing data in Parquet Format for efficiency
     partitioning = ARRAY['date']         -- Partitioning the table by 'date' for optimized queries and quick data retrieval
-);
+)
