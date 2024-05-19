@@ -1,3 +1,6 @@
+
+INSERT INTO
+  abhishekshetty.fct_nba_game_details
 WITH
   games AS (
     SELECT
