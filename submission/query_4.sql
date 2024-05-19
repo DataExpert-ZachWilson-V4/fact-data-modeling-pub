@@ -3,9 +3,8 @@ WITH
     SELECT * 
     FROM ovoxo.user_devices_cummulated
     WHERE date = DATE('2023-01-07')  
-  ),
+  )
   
-
 SELECT user_id,
     browser_type,
     TO_BASE(
