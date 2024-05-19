@@ -1,4 +1,4 @@
-create or replace fayiztk.user_devices_cumulated (
+create or replace table fayiztk.user_devices_cumulated (
     user_id bigint,
     browser_type varchar,
     dates_active array (date),
