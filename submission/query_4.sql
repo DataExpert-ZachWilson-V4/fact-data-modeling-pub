@@ -1,11 +1,18 @@
+-- Get today's data
 WITH today AS (
 	SELECT *
-	FROM aasimsani0586451.user_devices_cumulated
+	FROM user_devices_cumulated
 	WHERE DATE = DATE ('2023-01-07')
 ),
 date_list_int AS (
 	SELECT user_id,
 		browser_type,
+		-- Convert the cross joined dates to a binary representation
+		-- By putting up a 1 for each date the user was active by checking 
+		-- if the sequence_date is in the dates_active array and 
+		-- then raising 2 to the power of the difference in days
+		-- Sum it to get a number that represents the unique binary number which represents
+		-- the pattern of how the user was active
 		CAST(
 			SUM(
 				CASE
@@ -23,5 +30,6 @@ date_list_int AS (
 )
 SELECT user_id,
 	browser_type,
+	-- Convert the integer to a binary representation using the TO_BASE function
 	TO_BASE(history_int, 2) as bin_rep
 FROM date_list_int
