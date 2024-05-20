@@ -1,4 +1,4 @@
-CREATE TABLE datademonslayer.hosts_cumulated (
+CREATE OR REPLACE TABLE datademonslayer.hosts_cumulated (
   host VARCHAR,
   host_activity_datelist ARRAY(DATE),
   DATE DATE
