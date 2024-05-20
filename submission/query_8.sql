@@ -13,7 +13,7 @@ WITH
             metric_value,
             DATE
         FROM
-            daily_web_metrics
+            phabrahao.daily_web_metrics
         WHERE
             DATE = date('2023-08-01')
     )
