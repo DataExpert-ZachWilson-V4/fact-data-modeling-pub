@@ -1,4 +1,4 @@
--- INSERT INTO user_devices_cumulated
+INSERT INTO amaliah21315.user_devices_cumulated
 WITH old_events AS (
     SELECT
         *
@@ -18,7 +18,7 @@ new_events AS (
     WHERE
         date_trunc('day', e.event_time) = DATE('2021-01-19')
     GROUP BY
-        e.user_id, d.device_id, browser_type,
+        e.user_id, browser_type,
         CAST(date_trunc('day', e.event_time) AS DATE)
 )
 SELECT
