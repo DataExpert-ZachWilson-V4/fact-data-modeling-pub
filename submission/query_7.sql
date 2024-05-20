@@ -9,3 +9,5 @@ WITH
         FORMAT = 'PARQUET',
         partitioning = ARRAY['month_start']
     )
+
+    

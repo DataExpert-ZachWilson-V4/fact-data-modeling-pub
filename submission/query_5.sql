@@ -5,3 +5,5 @@ CREATE TABLE phabrahao.hosts_cumulated (
 )
 WITH
     (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+
+    

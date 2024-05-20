@@ -6,3 +6,4 @@ CREATE TABLE phabrahao.user_devices_cumulated (
 )
 WITH
     (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+    

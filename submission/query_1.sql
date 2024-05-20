@@ -45,3 +45,5 @@ FROM
     ngd
 WHERE
     rn = 1
+
+    

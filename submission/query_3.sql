@@ -27,3 +27,5 @@ FROM
   FULL OUTER JOIN new_data dl ON udc.user_id = dl.user_id
   AND udc.browser_type = dl.browser_type
   AND udc.date = date('2021-01-03')
+
+  

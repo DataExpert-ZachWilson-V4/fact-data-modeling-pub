@@ -31,3 +31,5 @@ SELECT
 FROM
     yesterday hc
     FULL OUTER JOIN today t ON hc.host = t.host
+
+

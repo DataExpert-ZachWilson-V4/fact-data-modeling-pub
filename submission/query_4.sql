@@ -38,3 +38,5 @@ SELECT
     to_base(power2, 2) AS binary
 FROM
     encoded
+
+    
