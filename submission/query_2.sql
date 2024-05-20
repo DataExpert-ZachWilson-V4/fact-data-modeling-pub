@@ -1,4 +1,4 @@
--- create cumulated table
+--create cumulated table
 create or replace table fayiztk.user_devices_cumulated (
     user_id bigint,
     browser_type varchar,
