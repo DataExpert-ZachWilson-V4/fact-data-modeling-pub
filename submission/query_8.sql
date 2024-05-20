@@ -40,5 +40,5 @@ SELECT
 FROM
   today t
   -- full outer join is used here to include NULLs of both today (no activity today) and new users (no activity prior to today)
-  FULL OUTER JOIN this_month tm ON t.user_id = tm.user_id
+  FULL OUTER JOIN this_month tm ON t.host = tm.host
   AND t.metric_name = tm.metric_name
