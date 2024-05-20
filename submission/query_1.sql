@@ -6,11 +6,9 @@ WITH deduped_nba_game_details AS (
                     game_id,  -- Partition the data by game_id
                     team_id,  -- Partition the data by team_id
                     player_id -- Partition the data by player_id
-            ) ROW_ID,
-            -- and add a new column "ROW_ID" that numbers the rows
+            ) ROW_ID, -- Adds a new column "ROW_ID" that numbers the duplicate rows
             * -- Select all columns from the "bootcamp.nba_game_details" table,
-        FROM
-            bootcamp.nba_game_details -- Source table containing NBA game details
+        FROM bootcamp.nba_game_details -- Source table containing NBA game details
     )
 SELECT
     dgd.* -- Select all columns from the CTE "deduped_nba_game_details"
