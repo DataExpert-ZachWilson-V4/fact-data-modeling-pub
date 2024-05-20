@@ -1,5 +1,5 @@
 INSERT INTO
-  derekleung.monthly_array_web_metrics
+  derekleung.host_metrics_reduced
 --CTE layers:
 --Context: data until January 2nd is ready, going on Jan 3rd
 --this_month: everything in the current month
@@ -10,7 +10,7 @@ WITH
     SELECT
       *
     FROM
-      derekleung.monthly_array_web_metrics
+      derekleung.host_metrics_reduced
     WHERE
       month_start = '2023-01-01'
   ),
