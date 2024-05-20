@@ -2,7 +2,7 @@
 CREATE TABLE user_devices_cumulated (
 	user_id BIGINT,
 	browser_type VARCHAR,
-	-- An array of dates when the user was active converted to binary to do cool stuff
+	-- An array of dates when the user was active
 	dates_active ARRAY(DATE),
 	date DATE
 ) WITH (

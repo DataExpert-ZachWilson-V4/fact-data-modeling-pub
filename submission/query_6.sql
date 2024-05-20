@@ -1,7 +1,5 @@
-INSERT INTO hosts_cumulated 
-
--- Get the previous day's data
-WITH yesterday AS (
+INSERT INTO hosts_cumulated -- Get the previous day's data
+  WITH yesterday AS (
     SELECT *
     FROM hosts_cumulated
     WHERE DATE = DATE('2023-01-01') - INTERVAL '1' DAY
@@ -20,9 +18,8 @@ WITH yesterday AS (
 SELECT COALESCE(y.host, t.host) AS host,
   -- Create a list of dates when the host was active
   CASE
-     -- Old host case
-    WHEN y.host_activity_datelist IS NOT NULL THEN ARRAY [t.event_date] || y.host_activity_datelist
-    -- If the host was active today, add the date to the array
+    -- Old host case
+    WHEN y.host_activity_datelist IS NOT NULL THEN ARRAY [t.event_date] || y.host_activity_datelist -- If the host was active today, add the date to the array
     -- Also covers the new host case for hosts that were active today but not yesterday
     -- and the null case for hosts that were active yesterday but not today
     ELSE ARRAY [t.event_date]

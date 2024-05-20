@@ -11,8 +11,8 @@ date_list_int AS (
 		-- By putting up a 1 for each date the user was active by checking 
 		-- if the sequence_date is in the dates_active array and 
 		-- then raising 2 to the power of the difference in days
-		-- Sum it to get a number that represents the unique binary number which represents
-		-- the pattern of how the user was active
+		-- Sum it to get a number that represents the unique binary number which 
+		-- represents the pattern of how the user was active
 		CAST(
 			SUM(
 				CASE

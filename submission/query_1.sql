@@ -9,7 +9,6 @@ WITH duplicate_data as (
 		*
 	FROM bootcamp.nba_game_details
 )
-
 -- SELECT only the first row of each partition
 SELECT *
 FROM duplicate_data

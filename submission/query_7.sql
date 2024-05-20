@@ -9,5 +9,4 @@ CREATE TABLE host_activity_reduced (
 ) WITH (
 	format = 'PARQUET',
 	partitioning = ARRAY['metric_name', 'month_start']
-	
 )
