@@ -1,54 +1,56 @@
-CREATE OR REPLACE TABLE daily_web_metrics (
-    host VARCHAR,
-    metric_name VARCHAR,
-    metric_array INTEGER,
-    date VARCHAR
-) WITH (
-    format = 'PARQUET',
-    partitioning = ARRAY['metric_name', 'date']
+CREATE
+OR REPLACE TABLE DAILY_WEB_METRICS (
+    HOST VARCHAR,
+    METRIC_NAME VARCHAR,
+    METRIC_ARRAY INTEGER,
+    DATE VARCHAR
 )
+WITH
+    (
+        FORMAT='PARQUET',
+        PARTITIONING=ARRAY['metric_name', 'date']
+    );
 
-
-insert into
-    rgindallas.host_activity_reduced
-with
-    prev as (
-        select
-            host,
-            metric_name,
-            metric_array,
-            month_start
-        from
-            rgindallas.host_activity_reduced
-        where
-            month_start = '2021-01-01' -- @month_start
+INSERT INTO
+    RGINDALLAS.HOST_ACTIVITY_REDUCED
+WITH
+    PREV AS (
+        SELECT
+            HOST,
+            METRIC_NAME,
+            METRIC_ARRAY,
+            MONTH_START
+        FROM
+            RGINDALLAS.HOST_ACTIVITY_REDUCED
+        WHERE
+            MONTH_START='2021-01-01' -- @month_start
     ),
-    curr as (
-        select
-            host,
-            metric_name,
-            metric_value,
-            date
-        from
-            daily_web_metrics
-        where
-            date = date('2021-01-02') -- iterate through days in month in order
+    CURR AS (
+        SELECT
+            HOST,
+            METRIC_NAME,
+            METRIC_VALUE,
+            DATE
+        FROM
+            DAILY_WEB_METRICS
+        WHERE
+            DATE=DATE('2021-01-02') -- iterate through days in month in order
     )
-select
-    coalesce(p.host, c.host) as host,
-    coalesce(p.metric_name, c.metric_name) as metric_name,
-    coalesce(
-        p.metric_array, -- if host already in host_cumulated then take previous metric_array and concat to add c.metric_value as last value in the array
-        repeat( -- if host not already in host_cumulated then add null for every day since the beginning of the month that have already been accounted for (number of days current date is from month_start date) and then add c.metric_value as last value in the array
-            null,
-            cast(
-                date_diff('day', date('2021-01-01'), c.date) as INTEGER -- date(@month_start) same @month_start as lines 13 & 38
+SELECT
+    COALESCE(P.HOST, C.HOST) AS HOST,
+    COALESCE(P.METRIC_NAME, C.METRIC_NAME) AS METRIC_NAME,
+    COALESCE(
+        P.METRIC_ARRAY, -- if host already in host_cumulated then take previous metric_array and concat to add c.metric_value as last value in the array
+        REPEAT( -- if host not already in host_cumulated then add null for every day since the beginning of the month that have already been accounted for (number of days current date is from month_start date) and then add c.metric_value as last value in the array
+            NULL,
+            CAST(
+                DATE_DIFF('day', DATE('2021-01-01'), C.DATE) AS INTEGER -- date(@month_start) same @month_start as lines 13 & 38
             )
         )
-    ) || ARRAY[c.metric_value] as metric_array,
-    '2021-01-01' as month_start -- @month_start
-from
-    prev p
-    full outer join curr c on p.host = c.host
-    and p.metric_name = c.metric_name
+    )||ARRAY[C.METRIC_VALUE] AS METRIC_ARRAY,
+    '2021-01-01' AS MONTH_START -- @month_start
+FROM
+    PREV P
+    FULL OUTER JOIN CURR C ON P.HOST=C.HOST
+    AND P.METRIC_NAME=C.METRIC_NAME
     -- tag for feedback
