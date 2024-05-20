@@ -1,56 +1,42 @@
 -- Reduced Host Fact Array Implementation (query_8.sql)
 -- This query incrementally populates the host_activity_reduced table from daily_web_metrics.
-INSERT INTO alissabdeltoro.host_activity_reduced
--- Retrieve data for the previous day from host_activity_reduced
-WITH previous_day AS (
-    SELECT 
-        host,
-        metric_name,
-        metric_array,
-        month_start
+
+INSERT INTO alissabdeltoro.host_activity_reduced (host, metric_name, metric_array, month_start)
+
+-- Step 1: Retrieve data for the previous month from host_activity_reduced
+WITH yesterday AS (
+    SELECT * 
     FROM alissabdeltoro.host_activity_reduced
-    WHERE month_start = '2023-08-02'  -- Adjust this date as needed for the initial setup
+    WHERE month_start = '2023-08-01'  -- Filter data for the previous month
 ),
 
--- Retrieve data for the first day of the month
-first_day AS (
+-- Step 2: Retrieve data for the current month from bootcamp.web_events
+today AS (
     SELECT 
-        we.host AS host,
-        dwm.metric_name AS metric_name,
-        SUM(dwm.metric_value) AS metric_value,
-        dwm.date AS date
+        we.host,
+        CASE 
+            WHEN we.url = '/signup' THEN 'visited_signup'
+            WHEN we.url = '/' THEN 'visited_homepage'
+        END AS metric_name,
+        COUNT(*) AS metric_value, -- Assuming you want to count occurrences
+        CAST(date_trunc('day', we.event_time) AS DATE) AS event_date
     FROM bootcamp.web_events we
-    LEFT JOIN alissabdeltoro.daily_web_metrics dwm
-      ON we.user_id = dwm.user_id AND we.event_time = dwm.date
-    WHERE dwm.date = DATE '2023-08-01'  -- The first day of the month
-    GROUP BY we.host, dwm.metric_name, dwm.date
-),
-
--- Retrieve data for the current day from daily_web_metrics
-current_day AS (
-    SELECT 
-        we.host AS host,
-        dwm.metric_name AS metric_name,
-        SUM(dwm.metric_value) AS metric_value,
-        dwm.date AS date
-    FROM bootcamp.web_events we
-    LEFT JOIN alissabdeltoro.daily_web_metrics dwm
-      ON we.user_id = dwm.user_id AND we.event_time = dwm.date
-    WHERE dwm.date = DATE '2023-08-03'  -- Adjust this date as needed for testing
-    GROUP BY we.host, dwm.metric_name, dwm.date
+    WHERE we.event_time >= DATE '2023-08-01' -- Filter data for the current day
+      AND we.event_time < DATE '2023-08-02' -- Filter data for the current day
+    GROUP BY we.host,
+             CASE 
+                 WHEN we.url = '/signup' THEN 'visited_signup'
+                 WHEN we.url = '/' THEN 'visited_homepage'
+             END,
+             CAST(date_trunc('day', we.event_time) AS DATE)
 )
 
--- Insert data for subsequent days
+-- Step 3: Select fields for incremental population and insert into host_activity_reduced table
 SELECT 
-    COALESCE(cd.host, pd.host) AS host,  -- Use the current day's host if available, otherwise, use the previous day's host
-    COALESCE(cd.metric_name, pd.metric_name) AS metric_name,  -- Use the current day's metric name if available, otherwise, use the previous day's metric name
-    CASE 
-        WHEN pd.metric_array IS NOT NULL THEN 
-            ARRAY[COALESCE(cd.metric_value, 0)] || pd.metric_array 
-        ELSE 
-            ARRAY[COALESCE(cd.metric_value, 0)] 
-    END AS metric_array,  -- Merge the metric arrays from both days
-    '2023-08-01' AS month_start  -- Adjust this date as needed for testing
-FROM current_day cd
-FULL OUTER JOIN previous_day pd
-    ON cd.host = pd.host AND cd.metric_name = pd.metric_name
+    COALESCE(t.host, y.host) AS host,
+    COALESCE(t.metric_name, y.metric_name) AS metric_name,
+    COALESCE(y.metric_array, REPEAT(NULL, CAST(DATE_DIFF('day', DATE '2023-08-01', t.event_date) AS INTEGER))) || ARRAY[t.metric_value] AS metric_array,
+    '2023-08-01' AS month_start
+FROM today t
+FULL OUTER JOIN yesterday y
+    ON t.host = y.host AND t.metric_name = y.metric_name
