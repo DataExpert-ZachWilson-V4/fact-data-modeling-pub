@@ -10,4 +10,3 @@ WITH
 -- dtore file as parquet in Apache Iceberg
 -- store records with same date in same partition for ease of retrieval
   (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
- 

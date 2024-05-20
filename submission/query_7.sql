@@ -1,4 +1,4 @@
-CREATE TABLEhost_activity_reduced (
+CREATE TABLE host_activity_reduced (
 -- host activity reduced to store monthly hosts active in a single row
 host varchar,
 -- metric name based on pages visited
