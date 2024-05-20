@@ -1,3 +1,14 @@
+CREATE OR REPLACE TABLE daily_web_metrics (
+    host VARCHAR,
+    metric_name VARCHAR,
+    metric_array INTEGER,
+    date VARCHAR
+) WITH (
+    format = 'PARQUET',
+    partitioning = ARRAY['metric_name', 'date']
+)
+
+
 insert into
     rgindallas.host_activity_reduced
 with
@@ -19,7 +30,7 @@ with
             metric_value,
             date
         from
-            daily_metrics
+            daily_web_metrics
         where
             date = date('2021-01-02') -- iterate through days in month in order
     )
