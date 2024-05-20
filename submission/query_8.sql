@@ -1,5 +1,5 @@
 -- INSERT DATA INCREMENTALLY INTO THE 'host_activity_reduced' TABLE
--- USING THE 'daily_web_metrics' TABLE AS SHOWN IN THE FACT DATA MODELING DAY 3 LAB
+-- USING THE 'daily_web_metrics' TABLE AS DEMONSTRATED IN THE FACT DATA MODELING DAY 3 LAB
 INSERT INTO
     devpatel18.host_activity_reduced
 WITH
