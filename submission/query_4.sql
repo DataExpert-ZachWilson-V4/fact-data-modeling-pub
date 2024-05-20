@@ -13,7 +13,7 @@ date_list_int as (
         cast(
             sum(
                 case when contains(dates_active, sequence_date) 
-                    then pow(2, 31 - datediff('day', sequence_date, date))
+                    then pow(2, 31 - date_diff('day', sequence_date, date))
                 else 0
                 end
             )

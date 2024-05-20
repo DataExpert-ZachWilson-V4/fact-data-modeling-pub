@@ -8,6 +8,5 @@ CREATE OR REPLACE TABLE dennisgera.user_devices_cumulated (
     -- date: the date
     date DATE
 ) WITH (
-    format = 'PARQUET',
     partitioning = ARRAY ['date']
 )

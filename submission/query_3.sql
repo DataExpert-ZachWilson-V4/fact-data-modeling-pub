@@ -1,5 +1,6 @@
-INSERT INTO
-    dennisgera.user_devices_cumulated WITH yesterday AS (
+INSERT INTO dennisgera.user_devices_cumulated 
+
+WITH yesterday AS (
         SELECT
             *
         FROM
