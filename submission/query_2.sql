@@ -10,6 +10,6 @@ CREATE OR REPLACE TABLE martinaandrulli.user_devices_cumulated (
     date DATE
 )
 WITH (
-    FORMAT = 'PARQUET'
+    FORMAT = 'PARQUET',
     PARTITIONING = ARRAY['date']
 )
