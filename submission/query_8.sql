@@ -4,7 +4,7 @@ INSERT INTO
 --Context: data until January 2nd is ready, going on Jan 3rd
 --this_month: everything in the current month
 --today: today's new data to put inside the monthly array
---SELECT statement: build the metric array: 1 is 
+--SELECT statement: for building the metric array, more comments in that part
 WITH
   this_month AS (
     SELECT
