@@ -1,5 +1,5 @@
 --quick intro: a reduced fact data table with 1 row per month per host per metric
-CREATE OR REPLACE TABLE derekleung.monthly_array_web_metrics (
+CREATE OR REPLACE TABLE derekleung.host_metrics_reduced (
   host VARCHAR,
   metric_name VARCHAR,
   metric_array ARRAY(INTEGER),
