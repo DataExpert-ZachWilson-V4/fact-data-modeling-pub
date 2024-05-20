@@ -23,4 +23,3 @@ SELECT user_id,
 FROM current_date_records 
 CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07'))) AS c (sequence_date) -- cross join unnest to period you want to run analysis for and based on data in base table
 GROUP BY user_id, browser_type -- aggregate data for user_id and browser_type
-

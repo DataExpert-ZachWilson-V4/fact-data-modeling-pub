@@ -2,7 +2,7 @@
 -- daily_web_metrics does not exists but I created a ovoxo.daily_web_metrics_host which contains the required data.
 --  so we will make the query 'runable' using a CTE for daily_web_metrics based on ovoxo.daily_web_metrics_host
 
-INSERT INTO host_activity_reduced
+INSERT INTO ovoxo.host_activity_reduced
 WITH
   -- select data from ovoxo.daily_web_metrics_host to mimic daily_web_metrics
   daily_web_metrics AS (
