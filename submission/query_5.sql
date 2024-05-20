@@ -1,4 +1,4 @@
-create or replace table hosts_cumulated
+create or replace table abhishekshetty.hosts_cumulated
 (
   host varchar,
   host_activity array(date),
