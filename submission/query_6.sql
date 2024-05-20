@@ -13,7 +13,7 @@ WITH
       CAST(date_trunc('day', w.event_time) AS DATE) AS event_date,
       COUNT(1)
     FROM
-      bootcamp.web_events AS we
+      bootcamp.web_events AS w
     WHERE
       date_trunc('day', w.event_time) = DATE('2023-01-01')
     GROUP BY
