@@ -26,7 +26,7 @@ SELECT
     COALESCE(oe.browser_type, ne.browser_type) AS browser_type,
     CASE
         WHEN oe.dates_active IS NOT NULL THEN ARRAY [ne.event_date] || oe.dates_active
-        ELSE ARRAY [ne.date]
+        ELSE ARRAY [ne.event_date]
     END AS dates_active,
     DATE('2021-01-19') AS DATE
 FROM
