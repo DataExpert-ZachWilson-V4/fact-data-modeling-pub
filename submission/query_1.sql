@@ -1,4 +1,4 @@
--- Create (CTE) that selects the first row from partition of (game_id, team_id, player_id)
+-- Deduplicates nba game details with CTE that selects the first row from partition of (game_id, team_id, player_id)
 WITH deduped_nba_game_details AS (
         SELECT -- Selects all data over partition then labels the duplicate data by row numbers
             ROW_NUMBER() OVER ( --groups data by the 3 below columns
