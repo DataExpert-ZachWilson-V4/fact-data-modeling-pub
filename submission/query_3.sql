@@ -14,7 +14,7 @@ WITH yesterday AS (
             d.browser_type,
             CAST(DATE_TRUNC('day', we.event_time) AS DATE) AS event_date,
             COUNT(
-                we.*
+                *
             ) AS event_count
         FROM
             bootcamp.web_events AS we
@@ -40,7 +40,7 @@ SELECT
         WHEN y.dates_active IS NOT NULL THEN ARRAY [t.event_date] || y.dates_active
         ELSE ARRAY [t.event_date]
     END AS dates_active,
-    COALESCE(t.event_date, date_add('day', 1, y.date)) AS DATE
+    COALESCE(t.event_date, date_add('day', 1, y.date)) AS date
 FROM
     yesterday y full
     OUTER JOIN today t
