@@ -11,7 +11,10 @@ WITH
   ),
   today AS (
     SELECT
-      *
+      host,
+      metric_name, 
+      metric_value, 
+      date 
     FROM
       kmbarth.daily_web_metrics 
     WHERE
