@@ -1,11 +1,16 @@
-INSERT INTO hosts_cumulated
+-- Incrementally load ovoxo.hosts_cumulated using bootcamp.web_events. 
+-- Add new hosts to table and extends host_activity_datelist array
+
+INSERT INTO ovoxo.hosts_cumulated
 WITH
+  -- get previous date aggreagted records from ovoxo.hosts_cumulated
   previous_date_records AS (
     SELECT *
-    FROM hosts_cumulated
+    FROM ovoxo.hosts_cumulated
     WHERE date = DATE('2023-01-05')  
   ),
   
+  -- get current date records from bootcamp.web_events for host activity
   current_date_records AS (
     SELECT host,
       CAST(date_trunc('day', event_time) AS DATE) AS event_date
