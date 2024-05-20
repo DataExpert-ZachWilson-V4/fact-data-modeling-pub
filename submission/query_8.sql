@@ -15,7 +15,7 @@ WITH daily_web_metrics AS (
 SELECT host,
     metric_name,
     ARRAY_AGG(metric_value) AS metric_array,
-    CAST(DATE_TRUNC('month', date) AS DATE) AS month_start
+    CAST(DATE_TRUNC('month', date) AS VARCHAR) AS month_start
 FROM daily_web_metrics
-GROUP BY host, metric_name, CAST(DATE_TRUNC('month', date) AS DATE)
+GROUP BY 1,2,4
 ORDER BY 4,1,2
