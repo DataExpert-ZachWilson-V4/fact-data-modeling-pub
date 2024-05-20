@@ -1,7 +1,8 @@
--- CUMULATED TABLE JOB will load one day of data at a time
+-- CUMULATED TABLE JOB will get loaded one day of data at a time
 -- USING FULL OUTER JOIN to get data from both yesterday and today
--- LOAD dates_active (ARRAY) in descending date order by user_id and browser_type
+-- LOAD dates_active (ARRAY) from date for user_id and browser_type
 
+INSERT INTO tharwaninitin.user_devices_cumulated
 WITH yesterday AS (
   SELECT *
   FROM tharwaninitin.user_devices_cumulated
