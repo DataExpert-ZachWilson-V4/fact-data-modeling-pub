@@ -7,5 +7,5 @@ create or replace table abhishekshetty.host_activity_reduced
 )
 WITH (
 format = 'PARQUET',
-partitioning = ARRAY['month_start']
+partitioning = ARRAY['month_start', 'metric_name']
 )
