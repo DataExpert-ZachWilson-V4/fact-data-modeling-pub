@@ -39,4 +39,4 @@ SELECT
   DATE('2023-01-01') AS DATE 
 FROM
   yesterday y
-  FULL OUTER JOIN today t ON y.user_id = t.user_id; -- Full outer join on user_id to combine data from both days
+  FULL OUTER JOIN today t ON y.user_id = t.user_id -- Full outer join on user_id to combine data from both days

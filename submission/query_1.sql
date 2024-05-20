@@ -46,4 +46,4 @@ SELECT
 FROM
   nba_game_details_with_rn
 WHERE
-  rn = 1; -- Filter to include only the first row in each partition
+  rn = 1 -- Filter to include only the first row in each partition

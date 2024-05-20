@@ -8,4 +8,4 @@ OR REPLACE TABLE RaviT.user_devices_cumulated (
 )
 WITH
   (FORMAT = 'PARQUET', -- Store the table in Parquet format
-  partitioning = ARRAY['date']); -- Partition the table by the date column
+  partitioning = ARRAY['date']) -- Partition the table by the date column
