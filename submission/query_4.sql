@@ -8,7 +8,7 @@ WITH
         SELECT
             *
         FROM
-            user_devices_cumulated
+            devpatel18.user_devices_cumulated
         WHERE
             date = DATE('2023-01-02')
     ),
