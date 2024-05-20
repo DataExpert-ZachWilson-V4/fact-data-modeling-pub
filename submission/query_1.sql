@@ -38,3 +38,4 @@ SELECT game_id
      , plus_minus
 FROM ranking_cte
 WHERE row_cnt = 1
+ 

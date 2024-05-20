@@ -10,7 +10,7 @@ WITH yesterday AS (
 -- current day's records aggregated daily web metrics table
 , today AS (
   SELECT *
-  FROM daily_web_metrics
+  FROM meetapandit89096646.daily_web_metrics
   WHERE date = DATE('2023-08-04')
 
 )
@@ -26,3 +26,4 @@ SELECT COALESCE(y.host, t.host) AS host
 FROM yesterday y
 FULL OUTER JOIN today t ON y.host = t.host
                        AND y.metric_name = t.metric_name
+ 

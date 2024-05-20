@@ -14,3 +14,4 @@ WITH (
   -- keys with same date will be stored in the same partition
   partitioning = ARRAY['date']
 )
+ 
