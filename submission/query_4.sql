@@ -26,6 +26,6 @@ FROM
 SELECT
   *,
   TO_BASE(history_int, 2) AS history_in_binary,
-  BIT_COUNT(history_int, 64) AS num_days_active,
+  BIT_COUNT(history_int, 64) AS num_days_active
 FROM
   datelist_int
