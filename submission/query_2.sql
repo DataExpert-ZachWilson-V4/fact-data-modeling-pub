@@ -5,5 +5,6 @@ CREATE or REPLACE TABLE jlcharbneau.user_devices_cumulated (
     date date
 )
 WITH (
-    format = 'PARQUET'
+    format = 'PARQUET',
+    partitioning = array['date']
 )
