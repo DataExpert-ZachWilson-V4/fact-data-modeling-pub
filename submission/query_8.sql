@@ -1,12 +1,12 @@
 INSERT INTO
-	host_activity_reduced
+	aasimsani0586451.host_activity_reduced
 -- Get the previous day's data
 WITH
   yesterday AS (
     SELECT
       *
     FROM
-      host_activity_reduced
+      aasimsani0586451.host_activity_reduced
     WHERE
       month_start = '2023-08-01'
   ),
@@ -15,7 +15,7 @@ WITH
     SELECT
       *
     FROM
-      daily_web_metrics
+      aasimsani0586451.daily_web_metrics
     WHERE
       DATE = DATE('2023-08-02')
   )
