@@ -23,7 +23,7 @@ WITH
       DATE = DATE('2023-01-03')
   )
 SELECT
-  COALESCE(t.user_id, tm.user_id) AS user_id,
+  COALESCE(t.host, tm.host) AS host,
   COALESCE(t.metric_name, tm.metric_name) AS metric_name,
 --if no nulls whatsoever (happiest path) then just concat today to this month
 --if today is first value to concat n nulls in front, or else tm.metric_array should have taken care of all the prevailing nulls
