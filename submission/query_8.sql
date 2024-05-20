@@ -19,7 +19,7 @@ with
             metric_value,
             date
         from
-            daily_web_metrics
+            daily_metrics
         where
             date = date('2021-01-02') -- iterate through days in month in order
     )
