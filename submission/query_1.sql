@@ -19,7 +19,7 @@ SELECT  -- Select all columns from the CTE "deduped_nba_game_details" excluding 
     dgd.player_name,
     dgd.nickname,
     dgd.start_position,
-    dgd.comments,
+    dgd.comment,
     dgd.min,
     dgd.fgm,
     dgd.fga,
