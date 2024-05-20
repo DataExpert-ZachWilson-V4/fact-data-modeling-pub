@@ -1,6 +1,6 @@
 --very straightforward
 --just added a unique check for user_id column
-CREATE TABLE zachwilson.web_users_cumulated (
+CREATE TABLE derekleung.web_users_cumulated (
   user_id BIGINT UNIQUE,
   browser_type VARCHAR,
   dates_active ARRAY(DATE),
