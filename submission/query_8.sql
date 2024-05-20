@@ -13,7 +13,7 @@ WITH
     SELECT
       *
     FROM
-      daily_web_metrics 
+      kmbarth.daily_web_metrics 
     WHERE
       DATE = DATE('2023-01-02')
   )
