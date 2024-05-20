@@ -7,7 +7,7 @@ with
             dates_active,
             date
         from
-            sarneski44638.user_devices_cumulated
+            rgindallas.user_devices_cumulated
         where
             date = date('2021-01-31') -- @end_date of period we'd like to represent in base-2 integer representation; goal is to take dates_active and transform into more compact representation of history; this record has the history as an array of dates called dates_active
     ),
