@@ -9,9 +9,7 @@ WITH
     ),
     today AS (
         SELECT
-            *,
-            metric_value,
-            DATE
+            *
         FROM
             phabrahao.daily_web_metrics
         WHERE
