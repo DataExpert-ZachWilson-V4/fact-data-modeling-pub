@@ -1,14 +1,14 @@
 -- INSERT DATA INCREMENTALLY INTO THE 'host_activity_reduced' TABLE
 -- FROM THE 'daily_web_metrics' TABLE AS SHOWN IN THE FACT DATA MODELING DAY 3 LAB
 INSERT INTO
-    host_activity_reduced
+    devpatel18.host_activity_reduced
 WITH
     yesterday AS (
         -- SELECT ALL COLUMNS FROM 'host_activity_reduced' TABLE FOR THE MONTH STARTING '2023-08-01'
         SELECT
             *
         FROM
-            host_activity_reduced
+            devpatel18.host_activity_reduced
         WHERE
             month_start = '2023-08-01'
     ),
@@ -20,7 +20,7 @@ WITH
             metric_value,
             DATE '2023-08-04' AS date
         FROM
-            daily_web_metrics
+            devpatel18.daily_web_metrics
         WHERE
             DATE = DATE('2023-08-04')
     )
