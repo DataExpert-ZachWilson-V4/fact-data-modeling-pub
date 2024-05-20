@@ -1,6 +1,6 @@
 
 --HW2 query_2
-CREATE TABLE hdamerla.user_devices_cumulated (
+CREATE TABLE user_devices_cumulated (
   user_id BIGINT,
   browser_type VARCHAR,
   dates_active ARRAY(DATE),
