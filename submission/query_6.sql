@@ -1,6 +1,8 @@
 -- Host Activity Datelist Implementation (query_6.sql)
 -- This query incrementally populates the hosts_cumulated table from the web_events table.
 
+INSERT INTO alissabdeltoro.hosts_cumulated
+    
 -- Step 1: Define the yesterday CTE to capture the state of hosts_cumulated table for the previous day.
 WITH yesterday AS (
     SELECT * 
@@ -20,7 +22,6 @@ today AS (
 )
 
 -- Step 3: Insert into the hosts_cumulated table by merging yesterday's data with today's data.
-INSERT INTO alissabdeltoro.hosts_cumulated
 SELECT 
     COALESCE(y.host, t.host) AS host,
     -- Update the host_activity_datelist array by adding today's event_date to the front of the list.
