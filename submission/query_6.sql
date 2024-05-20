@@ -1,14 +1,14 @@
 -- INSERT DATA INCREMENTALLY INTO THE 'hosts_cumulated' TABLE
 -- FROM THE 'web_events' TABLE AS SHOWN IN THE FACT DATA MODELING DAY 2 LAB
 INSERT INTO
-    hosts_cumulated
+    devpatel18.hosts_cumulated
 WITH
     yesterday AS (
         -- SELECT ALL COLUMNS FROM 'hosts_cumulated' TABLE FOR THE DATE '2023-01-04'
         SELECT
             *
         FROM
-            hosts_cumulated
+            devpatel18.hosts_cumulated
         WHERE
             date = DATE('2023-01-04')
     ),
