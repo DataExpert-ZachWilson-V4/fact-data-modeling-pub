@@ -10,11 +10,11 @@ today AS (
   WHERE date = '2023-08-01'
 )
 SELECT
-  COALESCE(t.user_id, y.user_id) as user_id,
+  COALESCE(t.host, y.host) as host,
   COALESCE(t.metric_name, y.metric_name) as metric_name,
   COALESCE(y.metric_array, REPEAT(NULL, CAST(DATE_DIFF('day', '2023-08-01', t.date) AS INTEGER))) || ARRAY[t.metric_value] as metric_array,
   '2023-08-01' as month_start
 FROM today t 
 FULL OUTER JOIN yesterday y 
-ON t.user_id = y.user_id
+ON t.host = y.host
 AND t.metric_name = y.metric_name
