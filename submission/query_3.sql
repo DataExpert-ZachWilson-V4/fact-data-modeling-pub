@@ -1,14 +1,14 @@
 -- INSERT DATA INCREMENTALLY INTO THE 'user_devices_cumulated' TABLE 
 -- FROM THE 'web_events' AND 'devices' TABLES
 INSERT INTO
-    user_devices_cumulated
+    devpatel18.user_devices_cumulated
 WITH
     yesterday AS (
         -- RETRIEVE ALL COLUMNS FROM 'user_devices_cumulated' FOR THE DATE '2023-01-01'
         SELECT
             *
         FROM
-            user_devices_cumulated
+            devpatel18.user_devices_cumulated
         WHERE
             date = DATE('2023-01-01')
     ),
