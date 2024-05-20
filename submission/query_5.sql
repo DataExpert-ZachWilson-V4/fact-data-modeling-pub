@@ -1,5 +1,5 @@
 -- Create or replace the hosts_cumulated table
-create or replace table hosts_cumulated
+create or replace table abhishekshetty.hosts_cumulated
 (
   -- Define the host column
   host varchar,
