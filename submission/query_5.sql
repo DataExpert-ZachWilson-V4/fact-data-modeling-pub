@@ -1,4 +1,4 @@
-CREATE TABLE meetapandit89096646.hosts_cumulated (
+CREATE TABLE hosts_cumulated (
 -- DDL for cumulated table grouped by host
   host VARCHAR,
   -- array date list of days active

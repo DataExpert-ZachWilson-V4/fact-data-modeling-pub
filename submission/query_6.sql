@@ -1,4 +1,4 @@
-INSERT INTO meetapandit89096646.hosts_cumulated
+INSERT INTO hosts_cumulated
 -- create an aggregated table from web_events by host name
 WITH hosts_aggregated AS (
 SELECT host
@@ -13,7 +13,7 @@ GROUP BY host
  -- previous day snapshot for incremental load
  , yesterday AS (
     SELECT *
-    FROM meetapandit89096646.hosts_cumulated
+    FROM hosts_cumulated
     WHERE date = DATE('2023-01-06')
  )
  -- current day from append to host_cumulated table

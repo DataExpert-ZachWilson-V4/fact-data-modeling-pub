@@ -6,7 +6,7 @@ SELECT user_id -- user id visiting the website
      -- array of days active
      , dates_active
      , date
-FROM meetapandit89096646.user_devices_cumulated
+FROM user_devices_cumulated
 WHERE date = DATE('2021-01-07')
 )
 , date_list_int AS (

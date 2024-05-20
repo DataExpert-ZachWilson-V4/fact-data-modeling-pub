@@ -1,4 +1,4 @@
-INSERT INTO meetapandit89096646.user_devices_cumulated
+INSERT INTO user_devices_cumulated
 -- incremental load of web_events and devices cumulated table
 WITH devices_events AS (
 -- Merge web_evnets and devices tables to join users with their browser types
@@ -20,7 +20,7 @@ GROUP BY we.user_id
 -- select a date to begin incremental load
 , yesterday AS (
 SELECT *
-FROM meetapandit89096646.user_devices_cumulated
+FROM user_devices_cumulated
 WHERE date = DATE('2021-01-06')
 )
 -- today will have current date's data which will be appended to yesterday

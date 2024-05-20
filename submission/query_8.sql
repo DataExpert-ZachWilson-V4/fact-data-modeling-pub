@@ -1,16 +1,16 @@
-INSERT INTO meetapandit89096646.host_activity_reduced
+INSERT INTO host_activity_reduced
 -- incremental query to load hosts activity reduced in a array date list
 WITH yesterday AS (
     -- previous day snapshot
   SELECT *
-  FROM meetapandit89096646.host_activity_reduced
+  FROM host_activity_reduced
   WHERE month_start = '2023-08-01'
   
 )
 -- current day's records aggregated daily web metrics table
 , today AS (
   SELECT *
-  FROM meetapandit89096646.daily_web_metrics
+  FROM daily_web_metrics
   WHERE date = DATE('2023-08-04')
 
 )

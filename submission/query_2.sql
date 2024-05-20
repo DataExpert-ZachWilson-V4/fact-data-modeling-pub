@@ -1,4 +1,4 @@
-CREATE TABLE meetapandit89096646.user_devices_cumulated (
+CREATE TABLE user_devices_cumulated (
 -- user_id of the user interacting with the website
   user_id BIGINT,
   -- browser type of the visiting user
