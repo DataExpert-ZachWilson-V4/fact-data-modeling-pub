@@ -1,4 +1,4 @@
-CREATE TABLE bgar.monthly_host_activity_reduced (
+CREATE TABLE bgar.host_activity_reduced (
     host VARCHAR,
     metric_name VARCHAR,
     metric_array ARRAY(INTEGER),
