@@ -1,4 +1,4 @@
-/*WITH
+WITH
   yesterday AS (
     SELECT
       *
@@ -33,7 +33,9 @@ SELECT
   DATE('2023-01-10') AS DATE
 FROM
   yesterday y
-  FULL OUTER JOIN today t ON y.user_id = t.user_id*/
+  FULL OUTER JOIN today t ON y.user_id = t.user_id
+  
+  /*
 
 
 DECLARE @yesterday_date DATE = '2023-01-09';
@@ -75,3 +77,4 @@ SELECT
 FROM
   yesterday y
   FULL OUTER JOIN today t ON y.user_id = t.user_id
+*/
