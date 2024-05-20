@@ -1,5 +1,6 @@
-INSERT INTO
-    dennisgera.host_activity_reduced WITH yesterday AS (
+INSERT INTO dennisgera.host_activity_reduced 
+
+WITH yesterday AS (
         SELECT
             *
         FROM
@@ -7,6 +8,7 @@ INSERT INTO
         WHERE
             month_start = '2023-08-01'
     ),
+
     today AS (
         SELECT
             *
@@ -15,6 +17,7 @@ INSERT INTO
         WHERE
             DATE = DATE('2023-08-02')
     )
+
 SELECT
     COALESCE(
         y.host,

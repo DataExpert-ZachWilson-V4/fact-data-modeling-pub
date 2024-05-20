@@ -1,4 +1,4 @@
-WITH
+WITH 
 
 today as (
     select *

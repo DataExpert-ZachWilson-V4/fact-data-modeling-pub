@@ -1,5 +1,6 @@
-INSERT INTO
-    dennisgera.hosts_cumulated WITH yesterday AS (
+INSERT INTO dennisgera.hosts_cumulated 
+    
+WITH yesterday AS (
         SELECT
             *
         FROM
@@ -7,6 +8,7 @@ INSERT INTO
         WHERE
             DATE = DATE('2022-12-31')
     ),
+
     today AS (
         SELECT
             host,
