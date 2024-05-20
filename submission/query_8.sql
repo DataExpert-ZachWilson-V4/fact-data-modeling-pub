@@ -32,11 +32,11 @@ SELECT
     REPEAT(
       NULL,
       CAST(
-        DATE_DIFF('day', DATE('2023-08-01'), t.date) AS INTEGER
+        DATE_DIFF('day', DATE('2023-01-01'), t.date) AS INTEGER
       )
     )
   ) || ARRAY[t.metric_value] AS metric_array,
-  '2023-08-01' AS month_start
+  '2023-01-01' AS month_start
 FROM
   today t
   -- full outer join is used here to include NULLs of both today (no activity today) and new users (no activity prior to today)
