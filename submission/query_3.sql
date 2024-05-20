@@ -1,5 +1,6 @@
 --insert into cumuluated table
-insert into fayiztk.user_devices_cumulated
+insert into
+    fayiztk.user_devices_cumulated
 with
     today as (
         select
@@ -40,7 +41,10 @@ select
         cumulative.browser_type
     ),
     case
-        when cumulative.user_id is not null then cumulative.dates_active || ARRAY[today_joined.date]
+        when cumulative.user_id is not null and today_joined.user_id is not null
+        then cumulative.dates_active || ARRAY[today_joined.date]
+        when cumulative.user_id is not null and today_joined.user_id is null
+        then cumulative.dates_active
         else ARRAY[today_joined.date]
     end as dates_active,
     current_date as date

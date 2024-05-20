@@ -1,7 +1,7 @@
 --use row_number by partition to identify duplicate rows
 with
     details_with_rownum as (
-        SELECT
+        select
             *,
             row_number() over (
                 partition by
@@ -9,7 +9,7 @@ with
                     team_id,
                     player_id
             ) as row_num
-        FROM
+        from
             bootcamp.nba_game_details
     )
 select

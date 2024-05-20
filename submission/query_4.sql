@@ -28,7 +28,7 @@ with
                 2
             ) as date_list_binary
         from
-            cumulated_with_date
+            cumulated_with_data_date
         group by
             user_id,
             browser_type,

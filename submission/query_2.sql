@@ -5,6 +5,6 @@ create or replace table fayiztk.user_devices_cumulated (
     dates_active array (date),
     date date
 ) with (
-  format = 'PARQUET',
+  format = 'parquet',
   partitioning = array['date']
 )
