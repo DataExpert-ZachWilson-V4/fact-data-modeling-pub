@@ -1,4 +1,3 @@
--- 878456185
 with
     cumulated_with_data_date as (
         select

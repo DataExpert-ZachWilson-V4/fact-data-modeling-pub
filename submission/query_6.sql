@@ -1,3 +1,4 @@
+--
 insert into fayiztk.hosts_cumulated 
 with
     today as (

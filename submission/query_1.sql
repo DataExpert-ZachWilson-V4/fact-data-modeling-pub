@@ -1,4 +1,4 @@
---use row_number by partition to identify duplicate rows
+-- use row_number by partition to identify duplicate rows
 with
     details_with_rownum as (
         select
