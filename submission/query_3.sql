@@ -1,4 +1,4 @@
--- CUMULATED TABLE JOB will get loaded one day of data at a time
+-- CUMULATED TABLE JOB will get loaded one day at a time
 -- USING FULL OUTER JOIN to get data from both yesterday and today
 -- LOAD dates_active (ARRAY) from date for user_id and browser_type
 

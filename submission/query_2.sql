@@ -3,7 +3,7 @@
 CREATE OR REPLACE TABLE tharwaninitin.user_devices_cumulated (
   user_id BIGINT,
   browser_type VARCHAR,
-  dates_active ARRAY(DATE),		-- array of dates active
+  dates_active ARRAY(DATE),		-- array of dates where there was activity from a given device and user
   date DATE		                -- current load date
 ) WITH (
   FORMAT = 'PARQUET',
