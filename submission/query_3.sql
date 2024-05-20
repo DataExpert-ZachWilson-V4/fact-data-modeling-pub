@@ -4,7 +4,7 @@ WITH yesterday AS (
         SELECT
             *
         FROM
-            dennisgera.user_deviced_cumulated
+            dennisgera.user_devices_cumulated
         WHERE
             DATE = DATE('2022-12-31')
     ),
