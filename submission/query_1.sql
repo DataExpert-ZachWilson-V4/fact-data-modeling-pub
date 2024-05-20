@@ -1,4 +1,6 @@
-WITH game_details_numbered AS (
+WITH 
+
+game_details_numbered AS (
     SELECT
         *,
         ROW_NUMBER() over (
@@ -9,9 +11,8 @@ WITH game_details_numbered AS (
     FROM
         bootcamp.nba_game_details
 )
-SELECT
-    *
-FROM
-    game_details_numbered
-WHERE
-    rn = 1
+
+SELECT *
+FROM game_details_numbered
+WHERE TRUE 
+    AND rn = 1
