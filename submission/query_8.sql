@@ -1,44 +1,37 @@
+-- Reduced Host Fact Array Implementation (query_8.sql)
+-- This query incrementally populates the host_activity_reduced table from daily_web_metrics.
 
-INSERT INTO
-    rgindallas.HOST_ACTIVITY_REDUCED
-WITH
-    PREV AS (
-        SELECT
-            HOST,
-            METRIC_NAME,
-            METRIC_ARRAY,
-            MONTH_START
-        FROM
-            rgindallas.HOST_ACTIVITY_REDUCED
-        WHERE
-            MONTH_START='2023-08-24' -- @month_start
-    ),
-    CURR AS (
-        SELECT
-            HOST,
-            METRIC_NAME,
-            METRIC_VALUE,
-            DATE
-        FROM
-            rgindallas.DAILY_WEB_METRICS
-        WHERE
-            DATE=DATE('2023-08-25') -- iterate through days in month in order
-    )
-SELECT
-    COALESCE(P.HOST, C.HOST) AS HOST,
-    COALESCE(P.METRIC_NAME, C.METRIC_NAME) AS METRIC_NAME,
-    COALESCE(
-        P.METRIC_ARRAY, -- if host already in host_cumulated then take previous metric_array and concat to add c.metric_value as last value in the array
-        REPEAT( -- if host not already in host_cumulated then add null for every day since the beginning of the month that have already been accounted for (number of days current date is from month_start date) and then add c.metric_value as last value in the array
-            NULL,
-            CAST(
-                DATE_DIFF('day', DATE('2021-01-01'), C.DATE) AS INTEGER -- date(@month_start) same @month_start as lines 13 & 38
-            )
-        )
-    )||ARRAY[C.METRIC_VALUE] AS METRIC_ARRAY,
-    '2021-01-01' AS MONTH_START -- @month_start
-FROM
-    PREV P
-    FULL OUTER JOIN CURR C ON P.HOST=C.HOST
-    AND P.METRIC_NAME=C.METRIC_NAME
-    -- tag for feedback
+INSERT INTO rgindallas.host_activity_reduced (host, metric_name, metric_array, month_start)
+
+-- Step 1: Retrieve data for the previous month from host_activity_reduced
+WITH yesterday AS (
+    SELECT * 
+    FROM rgindallas.host_activity_reduced
+    WHERE month_start = '2023-08-01'  -- Filter data for the previous month
+),
+
+-- Step 2: Retrieve data for the current month from bootcamp.web_events
+today AS (
+    SELECT 
+        host,
+        metric_name,
+        SUM(metric_value) AS metric_value,
+        date AS event_date
+    FROM rgindallas.daily_web_metrics
+    WHERE date >= DATE '2023-08-01' -- Filter data for the current month
+      AND date < DATE '2023-09-01' -- Filter data for the current month
+    GROUP BY 
+        host,
+        metric_name,
+        date
+)
+
+-- Step 3: Select fields for incremental population and insert into host_activity_reduced table
+SELECT 
+    COALESCE(t.host, y.host) AS host,
+    COALESCE(t.metric_name, y.metric_name) AS metric_name,
+    COALESCE(y.metric_array, REPEAT(NULL, CAST(DATE_DIFF('day', DATE '2023-08-01', t.event_date) AS INTEGER))) || ARRAY[t.metric_value] AS metric_array,
+    '2023-08-01' AS month_start
+FROM today t
+FULL OUTER JOIN yesterday y
+    ON t.host = y.host AND t.metric_name = y.metric_name
