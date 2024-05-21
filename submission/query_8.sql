@@ -1,18 +1,6 @@
-CREATE
-OR REPLACE TABLE DAILY_WEB_METRICS (
-    HOST VARCHAR,
-    METRIC_NAME VARCHAR,
-    METRIC_ARRAY INTEGER,
-    DATE VARCHAR
-)
-WITH
-    (
-        FORMAT='PARQUET',
-        PARTITIONING=ARRAY['metric_name', 'date']
-    );
 
 INSERT INTO
-    RGINDALLAS.HOST_ACTIVITY_REDUCED
+    rgindallas.HOST_ACTIVITY_REDUCED
 WITH
     PREV AS (
         SELECT
@@ -21,9 +9,9 @@ WITH
             METRIC_ARRAY,
             MONTH_START
         FROM
-            RGINDALLAS.HOST_ACTIVITY_REDUCED
+            rgindallas.HOST_ACTIVITY_REDUCED
         WHERE
-            MONTH_START='2021-01-01' -- @month_start
+            MONTH_START='2023-08-24' -- @month_start
     ),
     CURR AS (
         SELECT
@@ -32,9 +20,9 @@ WITH
             METRIC_VALUE,
             DATE
         FROM
-            DAILY_WEB_METRICS
+            rgindallas.DAILY_WEB_METRICS
         WHERE
-            DATE=DATE('2021-01-02') -- iterate through days in month in order
+            DATE=DATE('2023-08-25') -- iterate through days in month in order
     )
 SELECT
     COALESCE(P.HOST, C.HOST) AS HOST,
