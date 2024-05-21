@@ -1,4 +1,4 @@
-CREATE TABLE zachwilson.monthly_array_web_metrics (
+CREATE TABLE IF NOT EXISTS andreskammerath.monthly_array_web_metrics (
     user_id BIGINT,
     metric_name VARCHAR,
     metric_array ARRAY(INTEGER),
