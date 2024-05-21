@@ -1,4 +1,5 @@
 --HW2 query_1
+/* not including order by */
 
 with deduped_nba_game_details AS (
 select 
