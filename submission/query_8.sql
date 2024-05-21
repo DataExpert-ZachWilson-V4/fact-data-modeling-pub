@@ -1,12 +1,12 @@
 -- Reduced Host Fact Array Implementation (query_8.sql)
 -- This query incrementally populates the host_activity_reduced table from daily_web_metrics.
 
-INSERT INTO host_activity_reduced (host, metric_name, metric_array, month_start)
+INSERT INTO alissabdeltoro.host_activity_reduced (host, metric_name, metric_array, month_start)
 
 -- Step 1: Retrieve data for the previous month from host_activity_reduced
 WITH yesterday AS (
     SELECT * 
-    FROM host_activity_reduced
+    FROM alissabdeltoro.host_activity_reduced
     WHERE month_start = '2023-08-01'  -- Filter data for the previous month
 ),
 
@@ -15,7 +15,7 @@ today AS (
     SELECT 
         host,
         metric_name,
-        metric_value, -- Assuming you want to count occurrences
+        metric_value,
         date AS event_date
     FROM alissabdeltoro.daily_web_metrics
     WHERE date >= DATE '2023-08-01' -- Filter data for the current day
