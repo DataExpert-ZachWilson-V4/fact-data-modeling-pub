@@ -12,7 +12,7 @@ today AS (
     CAST(DATE_TRUNC('day', event_time) AS DATE) as event_date, 
     count(*) as device_count 
   FROM bootcamp.web_events we
-  JOIN bootcamp.devices d 
+  LEFT JOIN bootcamp.devices d 
     ON d.device_id = we.device_id
   WHERE CAST(DATE_TRUNC('day', event_time) AS DATE) = DATE('2021-02-07')
   GROUP BY 1,2,3
