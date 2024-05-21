@@ -15,14 +15,15 @@ today AS (
     SELECT 
         host,
         metric_name,
-        metric_value,
+        SUM(metric_value) AS metric_value,
         date AS event_date
     FROM alissabdeltoro.daily_web_metrics
-    WHERE date >= DATE '2023-08-01' -- Filter data for the current day
-      AND date < DATE '2023-08-02' -- Filter data for the current day
-    GROUP BY host,
-             metric_name,
-             date
+    WHERE date >= DATE '2023-08-01' -- Filter data for the current month
+      AND date < DATE '2023-09-01' -- Filter data for the current month
+    GROUP BY 
+        host,
+        metric_name,
+        date
 )
 
 -- Step 3: Select fields for incremental population and insert into host_activity_reduced table
