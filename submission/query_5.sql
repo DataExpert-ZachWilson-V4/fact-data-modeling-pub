@@ -7,3 +7,4 @@ WITH
 (
 FORMAT = 'PARQUET',                      
 partitioning = ARRAY['date']            
+)

@@ -6,5 +6,5 @@ CREATE OR REPLACE TABLE pratzo.user_devices_cumulated (
   date DATE                      
 )
 WITH (
-  FORMAT = 'PARQUET',            
+  FORMAT = 'PARQUET'           
 )
