@@ -44,4 +44,4 @@ SELECT game_id,
        season,
        team_did_win
 FROM ranked
-WHERE rn = 1;  -- Only include rows where 'rn' is 1 (the first row in each partition)
+WHERE rn = 1  -- Only include rows where 'rn' is 1 (the first row in each partition)
