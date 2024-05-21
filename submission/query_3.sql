@@ -34,4 +34,4 @@ SELECT -- Main SELECT statement to combine old and new event data
     END AS dates_active,  -- Constructs dates_active array: if old events exist, append new event date; otherwise, just use new event date
     DATE('2021-01-19') AS DATE    -- Set the date for the new record to most recent date
 FROM
-    old_events oe FULL OUTER JOIN new_events ne ON oe.user_id = ne.user_id;  -- To include all old and new events
+    old_events oe FULL OUTER JOIN new_events ne ON oe.user_id = ne.user_id  -- To include all old and new events
