@@ -17,7 +17,7 @@ INSERT INTO
             metric_value,
             DATE
         FROM
-            daily_web_metrics
+            williampbassett.daily_web_metrics
         WHERE
             DATE = DATE('2023-08-02')
     )
