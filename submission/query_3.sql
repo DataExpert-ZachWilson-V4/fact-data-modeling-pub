@@ -38,7 +38,7 @@ SELECT
     WHEN y.dates_active IS NOT NULL THEN ARRAY[t.event_date] || y.dates_active
     ELSE ARRAY[t.event_date]
   END AS dates_active,
-  CURRENT_DATE AS date
+  DATE('2023-01-01') AS date
 FROM
   yesterday y
   FULL OUTER JOIN today t ON y.user_id = t.user_id AND y.browser_type = t.browser_type
