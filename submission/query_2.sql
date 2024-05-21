@@ -1,8 +1,8 @@
-CREATE OR REPLACE halloweex.user_devices_cumulated
+CREATE OR REPLACE TABLE halloweex.user_devices_cumulated
 (
     user_id      BIGINT,
     browser_type VARCHAR,
-    dates_active ARRAY( DATE) ,
+    dates_active ARRAY( DATE),
     date         DATE
 )
     WITH
