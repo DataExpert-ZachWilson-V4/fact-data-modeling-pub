@@ -1,6 +1,10 @@
--- Create the hosts_cumulated table
-CREATE TABLE hosts_cumulated (
-    host varchar,
-    host_activity_datelist array(date),
-    date date
+--DDL statement to create a hosts_cumulated table
+create or REPLACE table mmarquez225.hosts_cumulated(
+    host VARCHAR ,--name of the host 
+    host_activity_datelist ARRAY(DATE), -- datelist array
+    date DATE
+)
+with (
+    FORMAT = 'PARQUET',
+    partitioning = ARRAY['date']
 )
