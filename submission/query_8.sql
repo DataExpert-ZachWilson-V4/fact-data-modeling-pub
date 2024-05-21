@@ -1,4 +1,4 @@
-INSERT INTO bmmarquez225.host_activity_reduced
+INSERT INTO mmarquez225.host_activity_reduced
 WITH yesterday AS (
 SELECT * 
 FROM mmarquez225.host_activity_reduced
