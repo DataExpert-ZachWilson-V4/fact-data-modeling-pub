@@ -2,7 +2,7 @@
 -- This DDL statement creates a monthly host_activity_reduced table to store reduced host activity data.
 
 -- Create the host_activity_reduced table
-CREATE TABLE alissabdeltoro.host_activity_reduced (
+CREATE TABLE host_activity_reduced (
     host VARCHAR,
     metric_name VARCHAR,
     metric_array ARRAY(INTEGER),
