@@ -11,7 +11,7 @@ yesterday AS (
 today AS (
     SELECT *
     FROM
-        daily_web_metrics
+        bhautikgandhi.daily_web_metrics
     WHERE
         date = DATE('2023-08-02')
 )

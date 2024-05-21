@@ -23,7 +23,7 @@ date_list_int AS (
         ) AS history_int
     FROM
         today
-    CROSS JOIN UNNEST(SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07')))
+    CROSS JOIN UNNEST(SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07')))  AS t (sequence_date)
     GROUP BY
         user_id,
         browser_type
