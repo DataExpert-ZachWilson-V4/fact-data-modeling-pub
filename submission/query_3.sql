@@ -1,43 +1,43 @@
 -- query to incrementally populate the cumulative user devices activity datelist table
 -- min date in web_events table is '2021-01-02'
-insert into
-    rgindallas.user_devices_cumulated
-with
-    prev_day as (
-        select
+INSERT INTO
+    RGINDALLAS.USER_DEVICES_CUMULATED
+WITH
+    PREV_DAY AS (
+        SELECT
             *
-        from
-            rgindallas.user_devices_cumulated
-        where
-            date = date('2021-01-01') -- @start_date
+        FROM
+            RGINDALLAS.USER_DEVICES_CUMULATED
+        WHERE
+            DATE=DATE('2021-01-01') -- @start_date
     ),
-    curr_day as (
-        select
-            user_id,
-            browser_type,
-            cast(event_time as date) as event_date
-        from
-            bootcamp.web_events w
-            join bootcamp.devices d on w.device_id = d.device_id
-        where
-            cast(event_time as date) = date('2021-01-02') --@start_date + 1
-        group by
+    CURR_DAY AS (
+        SELECT
+            USER_ID,
+            BROWSER_TYPE,
+            CAST(EVENT_TIME AS DATE) AS EVENT_DATE
+        FROM
+            BOOTCAMP.WEB_EVENTS W
+            JOIN BOOTCAMP.DEVICES D ON W.DEVICE_ID=D.DEVICE_ID
+        WHERE
+            CAST(EVENT_TIME AS DATE)=DATE('2021-01-02') --@start_date + 1
+        GROUP BY
             1,
             2,
             3
     )
-select
-    coalesce(c.user_id, p.user_id) as user_id,
-    coalesce(c.browser_type, p.browser_type) as browser_type,
-    case
-        when p.dates_active is not null
-        and c.event_date is not null then array[c.event_date] || p.dates_active
-        when p.dates_active is not null
-        and c.event_date is null then p.dates_active
-        when p.dates_active is null then array[c.event_date]
-    end as dates_active,
-    coalesce(c.event_date, p.date + interval '1' day) as date
-from
-    prev_day p
-    full outer join curr_day c on p.user_id = c.user_id
-    and p.browser_type = c.browser_type
+SELECT
+    COALESCE(C.USER_ID, P.USER_ID) AS USER_ID,
+    COALESCE(C.BROWSER_TYPE, P.BROWSER_TYPE) AS BROWSER_TYPE,
+    CASE
+        WHEN P.DATES_ACTIVE IS NOT NULL
+        AND C.EVENT_DATE IS NOT NULL THEN ARRAY[C.EVENT_DATE]||P.DATES_ACTIVE
+        WHEN P.DATES_ACTIVE IS NOT NULL
+        AND C.EVENT_DATE IS NULL THEN P.DATES_ACTIVE
+        WHEN P.DATES_ACTIVE IS NULL THEN ARRAY[C.EVENT_DATE]
+    END AS DATES_ACTIVE,
+    COALESCE(C.EVENT_DATE, P.DATE+INTERVAL '1' DAY) AS DATE
+FROM
+    PREV_DAY P
+    FULL OUTER JOIN CURR_DAY C ON P.USER_ID=C.USER_ID
+    AND P.BROWSER_TYPE=C.BROWSER_TYPE
