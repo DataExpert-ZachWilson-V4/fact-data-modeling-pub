@@ -1,13 +1,12 @@
-create
-or replace table rgindallas.host_activity_reduced (
-    host VARCHAR,
-    metric_name VARCHAR,
-    metric_array ARRAY(INTEGER),
-    month_start VARCHAR
+CREATE
+OR REPLACE TABLE RGINDALLAS.HOST_ACTIVITY_REDUCED (
+    HOST VARCHAR,
+    METRIC_NAME VARCHAR,
+    METRIC_ARRAY ARRAY(INTEGER),
+    MONTH_START VARCHAR
 )
-with
+WITH
     (
-        FORMAT = 'PARQUET',
-        partitioning = ARRAY['metric_name', 'month_start']
+        FORMAT='PARQUET',
+        PARTITIONING=ARRAY['metric_name', 'month_start']
     )
-    -- tag for feedback
