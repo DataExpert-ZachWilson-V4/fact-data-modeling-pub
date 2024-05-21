@@ -1,3 +1,4 @@
+-- 
 WITH today AS (
   SELECT *
   FROM user_devices_cumulated

@@ -1,3 +1,4 @@
+-- 
 CREATE TABLE host_activity_reduced (
   host VARCHAR,
   metric_name VARCHAR,

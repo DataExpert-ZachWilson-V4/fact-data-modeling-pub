@@ -1,3 +1,4 @@
+-- 
 INSERT INTO host_activity_reduced
 WITH yesterday AS (
   SELECT *

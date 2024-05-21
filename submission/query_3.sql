@@ -1,3 +1,4 @@
+-- 
 INSERT INTO user_devices_cumulated
 WITH yesterday AS (
   SELECT *

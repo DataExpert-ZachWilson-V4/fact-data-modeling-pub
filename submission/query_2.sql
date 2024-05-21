@@ -1,3 +1,4 @@
+-- 
 CREATE TABLE user_devices_cumulated (
   user_id BIGINT,
   browser_type VARCHAR,

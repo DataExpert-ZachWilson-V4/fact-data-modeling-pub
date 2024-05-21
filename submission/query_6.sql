@@ -1,3 +1,4 @@
+-- 
 INSERT INTO hosts_cumulated
 WITH yesterday AS (
   SELECT *

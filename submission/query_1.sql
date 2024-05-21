@@ -1,3 +1,4 @@
+-- 
 WITH data_ranked AS (
   -- query to get row number for each row partitioned by id columns
   SELECT
