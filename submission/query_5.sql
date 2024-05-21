@@ -1,10 +1,9 @@
---DDL statement to create a hosts_cumulated table
-create or REPLACE table bootcamp.hosts_cumulated(
-    host VARCHAR ,--name of the host 
-    host_activity_datelist ARRAY(DATE), -- datelist array
+CREATE OR REPLACE TABLE mmarquez225.hosts_cumulated
+(
+    host VARCHAR,
+    host_activity_datelist ARRAY(DATE),
     date DATE
-)
-with (
-    FORMAT = 'PARQUET',
-    partitioning = ARRAY['date']
+) WITH (
+    format='PARQUET',
+    partitioning= ARRAY['date']
 )

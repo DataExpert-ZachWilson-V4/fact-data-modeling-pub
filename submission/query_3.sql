@@ -1,42 +1,48 @@
--- incremental query 
-INSERT INTO
-  bootcamp.user_devices_cumulated
-WITH
-  yesterday AS ( -- collect yesterday's data from our target table
-    SELECT
-      *
-    FROM
-      bootcamp.user_devices_cumulated
-    WHERE
-      DATE = DATE('2022-12-31')
-  ),
-  today AS ( --collect latest data from our base table 
-    SELECT
-      user_id,
-      browser_type,  --browser_type from which the user logged in
-      CAST(date_trunc('day', event_time) AS DATE) AS event_date, --extracting date from event_time column
-      COUNT(1)
-    FROM
-      bootcamp.web_events we 
-      left join bootcamp.devices d --left join devices to extract browser type
-      on we.device_id = d.device_id
-    WHERE
-      date_trunc('day', event_time) = DATE('2023-01-01') --today's date
-    GROUP BY
-      user_id,
-      browser_type,
-      CAST(date_trunc('day', event_time) AS DATE)
-  )
-SELECT
-  COALESCE(y.user_id, t.user_id) AS user_id,
-  COALESCE(y.browser_type, t.browser_type) as browser_type,
-  CASE
-    WHEN y.dates_active IS NOT NULL THEN ARRAY[t.event_date] || y.dates_active --check if dates_active is not null the concat the new date to the existing list.
-    ELSE ARRAY[t.event_date] -- if the dates_active list is null then create the list with new date
-  END AS dates_active,
-  DATE('2023-01-01') AS DATE
-FROM
-  yesterday y
-  FULL OUTER JOIN today t ----join yesterday's data with today's data on user_id and browser_type
-  ON y.user_id = t.user_id  
-  and y.browser_type = t.browser_type
+INSERT INTO mmarquez225.user_devices_cumulated 
+WITH yesterday AS (
+  SELECT * -- This gives us the dates when the user was active in a specific browser
+  FROM mmarquez225.user_devices_cumulated
+  WHERE date = DATE('2022-12-31') -- This is for the initial run or if it is empty
+),
+today AS (
+  SELECT 
+    user_id,
+    CAST(date_trunc('day',event_time) AS DATE) AS event_date,
+    MAP_AGG(
+    browser_type,
+    ARRAY[CAST(date_trunc('day',event_time) AS DATE)]
+    ) AS browser_type_agg
+    -- This is to aggregate browser type and todays date 
+  FROM bootcamp.web_events AS WE
+  LEFT JOIN bootcamp.devices AS D
+    ON WE.device_id = D.device_id
+  WHERE CAST(date_trunc('day',event_time) AS DATE) = DATE('2023-01-01')
+  GROUP BY 1,2
+),
+aggregated AS (
+  SELECT
+    COALESCE(Y.user_id, T.user_id) AS user_id,
+    CASE
+        WHEN Y.dates_active IS NULL AND T.browser_type_agg IS NOT NULL THEN T.browser_type_agg
+        -- this is to see if user was active today but not yesterday in that case we take todays date
+        WHEN Y.dates_active IS NOT NULL AND T.browser_type_agg IS NULL THEN MAP_AGG(Y.browser_type, Y.dates_active)
+        -- same logic as above just taking yesterdays date
+        ELSE MAP_ZIP_WITH(
+        MAP_AGG(Y.browser_type, Y.dates_active),
+        T.browser_type_agg,
+        (k, v1, v2)->  COALESCE(v2,ARRAY[]) || COALESCE(v1, ARRAY[]))
+        -- this if the user was active both the days so we merge the two
+    END AS browser_type_agg,
+    COALESCE(T.event_date, Y.date + INTERVAL '1' DAY) AS date
+  FROM yesterday AS Y
+  FULL OUTER JOIN today AS T ON Y.user_id = T.user_id
+  GROUP BY 1, Y.dates_active, T.browser_type_agg, 3
+)
+SELECT 
+  A.user_id,
+  B.browser_type,
+  B.dates_active,
+  A.date
+FROM aggregated AS A
+CROSS JOIN UNNEST(A.browser_type_agg) WITH ORDINALITY AS B (browser_type, dates_active, ind)
+-- Unnest the MAP into rows. We use WITH ORDINALITY to get the key, value pairs

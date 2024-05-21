@@ -1,10 +1,11 @@
-CREATE OR REPLACE TABLE bootcamp.user_devices_cumulated (
-  user_id BIGINT, -- id of the user
-  browser_type varchar, --browser from which user logged in
-  dates_active ARRAY(DATE), -- CREATING A MAP COLUMN that has browser_type as key and date_list as values
-  date DATE
-)
-WITH (
-  format = 'PARQUET',
-  partitioning = ARRAY['date']
+CREATE OR REPLACE TABLE mmarquez225.user_devices_cumulated
+(
+    user_id BIGINT,
+    browser_type VARCHAR,
+    dates_active ARRAY(DATE),
+    date DATE
+) WITH (
+    format='PARQUET', -- This is the format we want for compression
+    partitioning = ARRAY['date']  -- column on which partition the table
+    -- To take advantage of Parquet's run length encoding 
 )
