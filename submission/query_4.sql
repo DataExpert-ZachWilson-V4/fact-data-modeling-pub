@@ -5,10 +5,9 @@
     -- Main Query:
     --     Selects all columns from date_list_int.
     --     Converts history_int to a binary string (history_in_binary).
-    --     Defines weekly_base as a binary string representing activity across 8 days.
+    --     Defines weekly_base as a binary string representing activity across 7 days.
     --     Counts the number of days the user was active in the past week (num_days_active).
-    --     Checks if the user was active in the last three days by performing a bitwise AND operation and counting active bits (is_active_last_three_days).
-
+ 
 WITH
     today AS (
         SELECT
@@ -25,14 +24,14 @@ WITH
             CAST(
                 SUM(
                     CASE
-                        WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 7 - DATE_DIFF('day', sequence_date, DATE))
+                        WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 6 - DATE_DIFF('day', sequence_date, DATE))
                         ELSE 0
                     END
                 ) AS BIGINT
             ) AS history_int
         FROM
             today
-            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-02'), DATE('2023-01-08'))) AS t (sequence_date)
+            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-03'), DATE('2023-01-09'))) AS t (sequence_date)
         GROUP BY
             user_id,
             browser_type
