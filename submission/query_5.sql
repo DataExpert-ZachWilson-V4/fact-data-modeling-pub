@@ -1,6 +1,6 @@
 -- Creates a table of cumilated hosts
 CREATE
-OR REPLACE TABLE hosts_cumulated (
+OR REPLACE TABLE amaliah21315.hosts_cumulated (
     host VARCHAR, -- host name variable
     host_activity_datelist ARRAY(DATE), -- an array of host activity dates
     date DATE -- Column to store the date of the record

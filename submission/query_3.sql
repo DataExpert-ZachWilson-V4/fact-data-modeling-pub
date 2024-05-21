@@ -14,7 +14,7 @@ INSERT INTO
         SELECT
             e.user_id, -- Users id from the web event
             d.browser_type,  -- Browser type from devices received through join
-            CAST(date_trunc('day', e.event_time) AS DATE) AS event_date
+            CAST(date_trunc('day', e.event_time) AS DATE) AS event_date -- select the event date excluding the time
         FROM
             bootcamp.web_events e
             LEFT JOIN bootcamp.devices d ON e.device_id = d.device_id  -- Join with "devices" table to get browser type
@@ -37,4 +37,4 @@ SELECT -- Main SELECT statement to combine old and new event data
 FROM
     old_events oe FULL OUTER JOIN new_events ne ON oe.user_id = ne.user_id  -- To include all old and new events
 
-    ---sample ids to test functionality -1718986903, -2147470439
+    ---sample ids to test functionality -233460261, -1718986903, -2147470439
