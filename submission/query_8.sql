@@ -6,7 +6,7 @@ WITH yesterday AS (
 ),
 today AS (
   SELECT *
-  FROM ibrahimsherif.daily_web_metrics
+  FROM ibrahimsherif.daily_web_metrics_hosts
   WHERE date = DATE('2023-08-01') 
 )
 SELECT
