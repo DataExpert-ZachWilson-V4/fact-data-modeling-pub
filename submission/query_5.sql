@@ -1,8 +1,9 @@
-create or replace table rgindallas.hosts_cumulated (
-    host VARCHAR,
-    host_activity_datelist ARRAY(DATE),
-    date DATE
+CREATE
+OR REPLACE TABLE RGINDALLAS.HOSTS_CUMULATED (
+    HOST VARCHAR,
+    HOST_ACTIVITY_DATELIST ARRAY(DATE),
+    DATE DATE
 )
-with
-    (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+WITH
+    (FORMAT='PARQUET', PARTITIONING=ARRAY['date'])
     -- tag for feedback
