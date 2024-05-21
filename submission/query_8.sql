@@ -6,7 +6,7 @@ WITH monthly_metrics AS (
         ARRAY_AGG(metric_value ORDER BY metric_date) as metric_array,
         -- Get the start of the month for each metric_date
         DATE_TRUNC('month', metric_date) as month_start
-    FROM daily_web_metrics
+    FROM bootcamp.daily_web_metrics
     -- Group by host, metric_name, and the start of the month
     GROUP BY host, metric_name, DATE_TRUNC('month', metric_date)
 )
@@ -17,4 +17,4 @@ SELECT
     metric_array,
     -- Convert the month_start date to a string
     CAST(month_start AS varchar) as month_start
-FROM monthly_metrics
+FROM bootcamp.monthly_metrics
