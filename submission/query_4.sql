@@ -15,7 +15,7 @@ WITH
         FROM
             alia.user_devices_cumulated 
         WHERE
-            DATE = DATE('2023-01-09')
+            DATE = DATE('2023-01-01')
     ),
     date_list_int AS (
         SELECT
@@ -31,7 +31,7 @@ WITH
             ) AS history_int
         FROM
             today
-            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-03'), DATE('2023-01-09'))) AS t (sequence_date)
+            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07'))) AS t (sequence_date)
         GROUP BY
             user_id,
             browser_type
