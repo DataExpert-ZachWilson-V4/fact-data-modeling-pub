@@ -41,10 +41,6 @@ SELECT
     *,
     TO_BASE(history_int, 2) AS history_in_binary,
     TO_BASE(FROM_BASE('11111111', 2), 2) AS weekly_base,
-    BIT_COUNT(history_int, 8) AS num_days_active,
-    BIT_COUNT(
-        BITWISE_AND(history_int, FROM_BASE('11100000', 2)),
-        8
-    ) > 0 AS is_active_last_three_days
+    BIT_COUNT(history_int, 64) AS num_days_active
 FROM
     date_list_int
