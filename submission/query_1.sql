@@ -55,3 +55,5 @@ de_duplicated_table AS (
         r.team_id,
         r.player_id
 )
+-- Step 3: Rename the final de-duplicated table
+ALTER TABLE de_duplicated_table RENAME TO nba_game_details
