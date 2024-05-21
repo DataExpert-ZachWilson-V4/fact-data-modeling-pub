@@ -19,7 +19,7 @@ WITH
       host,                      
       metric_name,             
       metric_value,              
-      DATE                     
+      DATE                    
     FROM
       pratzo.daily_web_metrics
     WHERE
