@@ -15,7 +15,7 @@ WITH
         FROM
             alia.user_devices_cumulated 
         WHERE
-            DATE = DATE('2023-01-01')
+            DATE = DATE('2023-01-07')
     ),
     date_list_int AS (
         SELECT
