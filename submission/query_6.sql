@@ -24,4 +24,4 @@ SELECT
   DATE('2023-01-07') AS date  -- Set the date for the combined data to '2023-01-07'
 FROM 
   yesterday y
-  FULL OUTER JOIN today t ON y.host = t.host;  -- Perform a full outer join on 'yesterday' and 'today' using 'host'
+  FULL OUTER JOIN today t ON y.host = t.host  -- Perform a full outer join on 'yesterday' and 'today' using 'host'
