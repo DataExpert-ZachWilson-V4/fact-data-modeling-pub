@@ -1,6 +1,6 @@
 
 with unique_records as (
-select *, row_number() over (partition by game_id, team_id, player_id order by dim_game_date desc)rn 
+select *, row_number() over (partition by game_id, team_id, player_id order by game_date desc)rn 
 from  -- using row_number() function for combination of each game_id, team_id, player_id. Using latest dim_game_date as the 1st record.
 bootcamp.nba_game_details)
 
@@ -29,6 +29,7 @@ m_turnovers,
 m_personal_fouls,
 m_points,
 m_plus_minus,
+game_date,
 dim_season,
 dim_team_did_win
  from 
