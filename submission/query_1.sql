@@ -19,4 +19,4 @@ SELECT
     comment,
     min
 FROM ranked_game_details
-WHERE row_num = 1;
+WHERE row_num = 1
