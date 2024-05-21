@@ -1,6 +1,6 @@
 -- This query incrementally populates the 'hosts_cumulated' table from the 'web_events' table.
 -- It captures the host activity and updates the 'hosts_cumulated' table with new activity records.
-INSERT INTO jlcharbneau.hosts_cumulated
+INSERT INTO hosts_cumulated
 -- Step 1: Define a CTE to capture the activity for the current day.
 WITH today_activity AS (
     SELECT
@@ -17,8 +17,8 @@ WITH today_activity AS (
              host,
              host_activity_datelist,
     date
-FROM jlcharbneau.hosts_cumulated
-WHERE date = (SELECT MAX(date) FROM jlcharbneau.hosts_cumulated)
+FROM hosts_cumulated
+WHERE date = (SELECT MAX(date) FROM hosts_cumulated)
     )
 
 -- Step 3: Combine the new activity with the previous cumulative activity.

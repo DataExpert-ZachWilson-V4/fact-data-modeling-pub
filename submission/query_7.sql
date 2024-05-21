@@ -1,7 +1,7 @@
 -- SQL DDL to create a table for reduced host activity metrics.
 -- This table is designed to store monthly reduced metrics for each host.
 
-CREATE TABLE jlcharbneau.host_activity_reduced (
+CREATE OR REPLACE TABLE host_activity_reduced (
     host VARCHAR,                          -- Stores the host identifier, typically a string.
     metric_name VARCHAR,                   -- The name of the metric being tracked.
     metric_array ARRAY(INTEGER),           -- An array of integers representing the metric values for the month.

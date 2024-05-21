@@ -4,7 +4,7 @@
 WITH today AS (
     -- Select records from the last day of the target month to base the analysis on the most recent data
     SELECT *
-    FROM jlcharbneau.user_devices_cumulated
+    FROM user_devices_cumulated
     WHERE date = DATE '2021-02-08'
     ),
     datelist_seq AS (

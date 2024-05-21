@@ -1,10 +1,10 @@
 -- delete from jlcharbneau.user_devices_cumulated
 -- select * from jlcharbneau.user_devices_cumulated
 
-INSERT INTO jlcharbneau.user_devices_cumulated
+INSERT INTO user_devices_cumulated
 WITH yesterday AS (
     SELECT *
-    FROM jlcharbneau.user_devices_cumulated
+    FROM user_devices_cumulated
     WHERE date = DATE '2021-02-04'  -- Last updated date
     ),
 

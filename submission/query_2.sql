@@ -1,4 +1,4 @@
-CREATE or REPLACE TABLE jlcharbneau.user_devices_cumulated (
+CREATE or REPLACE TABLE user_devices_cumulated (
     user_id bigint,
     browser_type varchar,
     dates_active array(date),
