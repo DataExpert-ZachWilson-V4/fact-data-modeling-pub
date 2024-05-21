@@ -29,9 +29,12 @@ SELECT -- Main SELECT statement to combine old and new event data
     COALESCE(oe.user_id, ne.user_id) AS user_id, -- Select user_id from old events or new events (preferring old events if available)
     COALESCE(oe.browser_type, ne.browser_type) AS browser_type, -- Select browser_type from old events or new events (preferring old events if available)
     CASE
-        WHEN oe.dates_active IS NOT NULL THEN ARRAY [ne.event_date] || oe.dates_active
-        ELSE ARRAY [ne.event_date]
+        WHEN oe.dates_active IS NOT NULL AND ne.event_date IS NOT NULL THEN ARRAY [ne.event_date] || oe.dates_active -- Append only if both are not null
+        WHEN oe.dates_active IS NOT NULL THEN oe.dates_active -- Keep old dates active value if and new dates are null
+        ELSE ARRAY [ne.event_date] -- Otherwise old record is empty and should be replaced with new record
     END AS dates_active,  -- Constructs dates_active array: if old events exist, append new event date; otherwise, just use new event date
     DATE('2021-01-19') AS DATE    -- Set the date for the new record to most recent date
 FROM
     old_events oe FULL OUTER JOIN new_events ne ON oe.user_id = ne.user_id  -- To include all old and new events
+
+    ---sample ids to test functionality -1718986903, -2147470439
