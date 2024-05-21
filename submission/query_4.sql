@@ -3,10 +3,8 @@ WITH exploded_dates AS (
     SELECT
         user_id,
         browser_type,
-        -- Unnest the dates_active array into individual dates
-        UNNEST(dates_active) as active_date,
-        -- Calculate the number of days ago from the current date
-        DATE_DIFF('day', active_date, CURRENT_DATE) as days_ago
+        UNNEST(dates_active) AS active_date,
+        DATE_DIFF('day', active_date, CURRENT_DATE) AS days_ago
     FROM user_devices_cumulated
 ),
 -- CTE to calculate the sum of powers of 2 for each (user_id, browser_type) combination
@@ -14,8 +12,7 @@ powers_of_two AS (
     SELECT
         user_id,
         browser_type,
-        -- Sum the powers of 2 for each days_ago value
-        SUM(POW(2, days_ago)) as datelist_int
+        SUM(POW(2, days_ago)) AS datelist_int
     FROM exploded_dates
     GROUP BY user_id, browser_type
 )
