@@ -1,14 +1,14 @@
 --HW2 query_8
-INSERT into hdamerla.host_activity_reduced
+INSERT into host_activity_reduced
 With yesterday AS (
 select * from 
-hdamerla.host_activity_reduced
+host_activity_reduced
 where DATE(month_start) = DATE('2023-08-02')
 ), 
 today as (
 select
   *
-from hdamerla.daily_web_metrics
+from daily_web_metrics
 where DATE(date) = DATE('2023-08-02')
 )
 
