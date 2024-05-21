@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE vaishnaviaienampmmarquez225udi83291.user_devices_cumulated (
+CREATE OR REPLACE TABLE mmarquez225.user_devices_cumulated (
   user_id BIGINT, -- id of the user
   browser_type varchar, --browser from which user logged in
   dates_active ARRAY(DATE), -- CREATING A MAP COLUMN that has browser_type as key and date_list as values
