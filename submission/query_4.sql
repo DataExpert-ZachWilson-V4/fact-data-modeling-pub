@@ -1,5 +1,5 @@
     -- Subqueries:
-    --     today: Selects records from alia.web_users_cumulated for January 9, 2023.
+    --     today: Selects records from alia.user_devices_cumulated for January 9, 2023.
     --     date_list_int: Calculates a numeric representation (history_int) for each user's activity over the past week (from January 2 to January 9, 2023). Each day’s activity is encoded as a power of 2 if the user was active that day.
 
     -- Main Query:
@@ -14,7 +14,7 @@ WITH
         SELECT
             *
         FROM
-            alia.web_users_cumulated
+            alia.user_devices_cumulated 
         WHERE
             DATE = DATE('2023-01-09')
     ),
