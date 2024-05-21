@@ -1,10 +1,10 @@
 -- create cumulating user activity table by device
-create
-or replace table rgindallas.user_devices_cumulated (
-    user_id BIGINT,
-    browser_type VARCHAR,
-    dates_active ARRAY(DATE),
-    date DATE
+CREATE
+OR REPLACE TABLE RGINDALLAS.USER_DEVICES_CUMULATED (
+    USER_ID BIGINT,
+    BROWSER_TYPE VARCHAR,
+    DATES_ACTIVE ARRAY(DATE),
+    DATE DATE
 )
-with
-    (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
+WITH
+    (FORMAT='PARQUET', PARTITIONING=ARRAY['date'])
