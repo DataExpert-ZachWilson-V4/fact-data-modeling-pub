@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS ningde95.user_devices_cumulated (
 -- Specify table storage format and partitioning
 WITH (
   FORMAT = 'PARQUET',      -- Use the Parquet format for storage
-  partitioning = ['date']  -- Partition the table by the 'date' column
+  partitioning = ARRAY['date']  -- Partition the table by the 'date' column
 )
