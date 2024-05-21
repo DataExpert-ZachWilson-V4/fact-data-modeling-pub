@@ -1,6 +1,6 @@
--- CUMULATED TABLE JOB will get loaded one day at a time
--- USING FULL OUTER JOIN to get data from both yesterday and today
--- LOAD dates_active (ARRAY) from date for user_id and browser_type
+-- CUMULATIVE TABLE [INCREMENTAL LOAD] => Below query populates the user_devices_cumulated table one day at a time
+-- LOGIC => 1) USING FULL OUTER JOIN to get data from both yesterday(2022-12-31) and today(2023-01-01)
+--          2) LOAD dates_active (ARRAY) from date for user_id and browser_type
 
 INSERT INTO tharwaninitin.user_devices_cumulated
 WITH yesterday AS (
@@ -21,6 +21,6 @@ SELECT COALESCE(y.user_id,t.user_id) as user_id,
     WHEN y.dates_active IS NOT NULL THEN ARRAY[t.event_date] || y.dates_active
     ELSE ARRAY[t.event_date]
   END AS dates_active,
-  DATE('2023-01-01') AS date
+  COALESCE(t.event_date, y.date + interval '1' day) AS date
 FROM yesterday y
 FULL OUTER JOIN today t on y.user_id = t.user_id AND y.browser_type = t.browser_type

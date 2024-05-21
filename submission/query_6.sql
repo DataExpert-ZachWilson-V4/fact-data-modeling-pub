@@ -1,6 +1,6 @@
--- CUMULATED TABLE JOB will get loaded one day at a time
--- USING FULL OUTER JOIN to get data from both yesterday and today
--- LOAD host_activity_datelist (ARRAY) from date for host
+-- CUMULATIVE TABLE [INCREMENTAL LOAD] => Below query populates the hosts_cumulated table one day at a time
+-- LOGIC => 1) USING FULL OUTER JOIN to get data from both yesterday(2022-12-31) and today(2023-01-01)
+--          2) LOAD host_activity_datelist (ARRAY) from date for host
 
 INSERT INTO tharwaninitin.hosts_cumulated
 WITH yesterday AS (
@@ -20,6 +20,6 @@ SELECT COALESCE(y.host,t.host) as host,
     WHEN y.host_activity_datelist IS NOT NULL THEN ARRAY[t.event_date] || y.host_activity_datelist
     ELSE ARRAY[t.event_date]
   END AS host_activity_datelist,
-  DATE('2023-01-01') AS date
+  COALESCE(t.event_date, y.date + interval '1' day) AS date
 FROM yesterday y
 FULL OUTER JOIN today t on y.host = t.host
