@@ -6,7 +6,7 @@ WITH ranked_games AS (
         player_id,
         ROW_NUMBER() OVER (PARTITION BY game_id, team_id, player_id ORDER BY game_id) AS rn
     FROM
-        alissabdeltoro.nba_game_details
+        bootcamp.nba_game_details
 ),
 -- Step 2: Create a new table with de-duplicated data
 de_duplicated_table AS (
@@ -43,7 +43,7 @@ de_duplicated_table AS (
     FROM
         ranked_games r
     JOIN
-        alissabdeltoro.nba_game_details n
+        bootcamp.nba_game_details n
     ON
         r.game_id = n.game_id
         AND r.team_id = n.team_id
@@ -56,8 +56,9 @@ de_duplicated_table AS (
         r.player_id
 )
 
+
 -- Step 3: Drop the original table
-DROP TABLE alissabdeltoro.nba_game_details
+DROP TABLE bootcamp.nba_game_details
 
 -- Step 4: Rename the final de-duplicated table
 ALTER TABLE de_duplicated_table RENAME TO nba_game_details
