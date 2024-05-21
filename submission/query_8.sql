@@ -35,4 +35,4 @@ SELECT
 FROM
     new_host_activity nha -- Alias for the new host activity data
     FULL OUTER JOIN last_host_activity la ON nha.host = la.host -- Full Join last and new host data on host
-    AND nha.metric_name = la.metric_name; -- Full join last amd mew on metric name
+    AND nha.metric_name = la.metric_name -- Full join last amd mew on metric name
