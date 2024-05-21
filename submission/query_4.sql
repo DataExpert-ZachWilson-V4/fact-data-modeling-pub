@@ -25,14 +25,14 @@ WITH
             CAST(
                 SUM(
                     CASE
-                        WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 8 - DATE_DIFF('day', sequence_date, DATE))
+                        WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 7 - DATE_DIFF('day', sequence_date, DATE))
                         ELSE 0
                     END
                 ) AS BIGINT
             ) AS history_int
         FROM
             today
-            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-02'), DATE('2023-01-09'))) AS t (sequence_date)
+            CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-02'), DATE('2023-01-08'))) AS t (sequence_date)
         GROUP BY
             user_id,
             browser_type
@@ -40,7 +40,6 @@ WITH
 SELECT
     *,
     TO_BASE(history_int, 2) AS history_in_binary,
-    TO_BASE(FROM_BASE('11111111', 2), 2) AS weekly_base,
     BIT_COUNT(history_int, 64) AS num_days_active
 FROM
     date_list_int
