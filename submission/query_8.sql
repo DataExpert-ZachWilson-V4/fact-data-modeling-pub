@@ -1,32 +1,19 @@
--- Insert data into the host_activity_reduced table
-INSERT INTO mmarquez225.host_activity_reduced (host, metric_name, metric_array, month_start)
 WITH yesterday AS (
-  -- Select all columns from host_activity_reduced for the specified month_start
-  SELECT *
-  FROM mmarquez225.host_activity_reduced
-  WHERE month_start = '2023-08-01'
+	SELECT *
+	FROM mmarquez225.host_activity_reduced
+	WHERE month_start = '2023-01-01'
 ),
 today AS (
-  -- Select all columns from daily_web_metrics for the specified date
-  SELECT *
-  FROM mmarquez225.daily_web_metrics 
-  WHERE date = DATE('2023-08-02')
+	SELECT *
+	FROM dataste0.daily_web_metrics
+	WHERE date = DATE('2023-01-02')
 )
-SELECT
-  -- Coalesce to handle missing hosts by taking non-null values
-  COALESCE(T.host, Y.host) AS host,
-  -- Coalesce to handle missing metric names by taking non-null values
-  COALESCE(T.metric_name, Y.metric_name) AS metric_name,
-  -- Coalesce to handle missing metric arrays by creating a padded array
-  COALESCE(
-    Y.metric_array,
-    REPEAT(null, 
-      CAST(DATE_DIFF('day', DATE('2023-08-01'), DATE('2023-08-02')) AS INTEGER)
-    )
-  ) || ARRAY[T.metric_value] AS metric_array,
-  -- Set the month_start to '2023-08-01' as specified
-  '2023-08-01' AS month_start
-FROM today AS T
--- Perform a full outer join on host and metric_name to combine both CTEs
-FULL OUTER JOIN yesterday AS Y 
-  ON T.host = Y.host AND T.metric_name = Y.metric_name
+
+SELECT 
+	COALESCE(t.host,y.host) as host,
+	COALESCE(t.metric_name,y.metric_name) as metric_name,
+	COALESCE(y.metric_array, REPEAT(NULL, CAST(DATE_DIFF('day', DATE('2023-01-01'), t.date) AS INTEGER))) || ARRAY[t.metric_value] as metric_value,
+	'2023-01-01' as month_start
+FROM yesterday y
+FULL OUTER JOIN today t 
+ON y.host=t.host AND y.metric_name=t.metric_name
