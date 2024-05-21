@@ -1,5 +1,5 @@
 -- Create a table named 'fct_nba_game_details_filtered' in the 'ningde95' schema
-CREATE TABLE ningde95.fct_nba_game_details_filtered (
+CREATE TABLE IF NOT EXISTS ningde95.fct_nba_game_details_filtered (
   game_id BIGINT,  -- Unique identifier for the game
   team_id BIGINT,  -- Unique identifier for the team
   player_id BIGINT,  -- Unique identifier for the player
