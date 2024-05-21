@@ -6,7 +6,7 @@
 -- This table will be the result of joining the devices table onto the web_events 
 -- table, so that you can get both the user_id and the browser_type
 
-CREATE TABLE vzucher.user_devices_cumulated AS
+CREATE OR REPLACE TABLE vzucher.user_devices_cumulated AS
 WITH CombinedData AS (
     SELECT
         we.user_id AS user_id,

@@ -10,7 +10,7 @@
 -- host_activity_datelist array(date)
 -- date date
 
-CREATE TABLE vzucher.hosts_cumulated (
+CREATE OR REPLACE TABLE vzucher.hosts_cumulated (
     host VARCHAR,
     host_activity_datelist ARRAY(DATE),
     date DATE
