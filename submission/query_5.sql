@@ -2,6 +2,7 @@
 CREATE
 OR REPLACE TABLE amaliah21315.hosts_cumulated (
     host VARCHAR, -- host name variable
+    visits ARRAY(INTEGER), --Column to record number of visits per host per day
     host_activity_datelist ARRAY(DATE), -- an array of host activity dates
     date DATE -- Column to store the date of the record
 ) WITH (

@@ -13,6 +13,7 @@ INSERT INTO
          -- Subquery to select new event data from "web_events" table
         SELECT
             e.host, -- Hosts name from the web event
+             COUNT(*) AS visits,
             CAST(date_trunc('day', e.event_time) AS DATE) AS event_date -- select the event date excluding the time
         FROM
             bootcamp.web_events e
@@ -24,11 +25,19 @@ INSERT INTO
     )
 SELECT -- Main SELECT statement to combine old and new event data
     COALESCE(oe.host, ne.host) AS host, -- Select host from old events or new events (preferring old events if available)
+    oe.visits + ne.visits AS total_visits, -- Select the number of visits the host received from old events or new events (preferring old events if available)
+     CASE
+        WHEN oe.host_activity_datelist  IS NOT NULL AND ne.event_date IS NOT NULL THEN  ARRAY [ne.visits] || oe.visits  -- Append only if both are not null
+        WHEN oe.host_activity_datelist  IS NOT NULL THEN oe.visits  -- Keep old visit value if new visits are null
+        ELSE ARRAY [ne.visits] -- Otherwise old record is empty and should be replaced with new record
+    END AS visits ,  -- Constructs visits array: if old events exist, append new event count; otherwise, just use new event count
+
    CASE
         WHEN oe.host_activity_datelist  IS NOT NULL AND ne.event_date IS NOT NULL THEN ARRAY [ne.event_date] || oe.host_activity_datelist  -- Append only if both are not null
         WHEN oe.host_activity_datelist  IS NOT NULL THEN oe.host_activity_datelist  -- Keep old dates active value if and new dates are null
         ELSE ARRAY [ne.event_date] -- Otherwise old record is empty and should be replaced with new record
     END AS host_activity_datelist ,  -- Constructs dates_active array: if old events exist, append new event date; otherwise, just use new event date
+   
     DATE('2022-03-11') AS DATE    -- Set the date for the new record to most recent date
 FROM
     old_events oe FULL OUTER JOIN new_events ne ON oe.host = ne.host  -- To include all old and new events
