@@ -8,5 +8,5 @@ CREATE OR REPLACE TABLE host_activity_reduced (
     month_start VARCHAR                    -- The start of the month in 'YYYY-MM' format to denote the period.
 ) WITH (
     FORMAT = 'PARQUET',                    -- Specifies the storage format; PARQUET is chosen for efficient storage.
-    PARTITIONING = ARRAY['month_start']  -- Partitions the table by the 'month_start' column for better query performance.
+    PARTITIONING = ARRAY['metric_name', 'month_start']  -- Partitions the table by the 'metric_name' and 'month_start' columns for better query performance.
 )
