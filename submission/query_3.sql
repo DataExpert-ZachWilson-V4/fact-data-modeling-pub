@@ -1,4 +1,5 @@
-INSERT INTO user_devices_cumulated
+INSERT INTO user_devices_cumulated (user_id, browser_type, dates_active, date)
+    
 -- Step 1: Define the yesterday CTE to capture the state of user_devices_cumulated table for the previous day.
 WITH yesterday AS (
     SELECT * 
@@ -34,3 +35,7 @@ merged_data AS (
     FULL OUTER JOIN today t 
     ON y.user_id = t.user_id AND y.browser_type = t.browser_type
 )
+    
+ -- Step 4: Insert the merged data into the user_devices_cumulated table
+SELECT *
+FROM merged_data
