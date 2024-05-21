@@ -5,7 +5,7 @@ INSERT INTO host_activity_reduced WITH yesterday AS (
     ),
     today AS (
         SELECT *
-        FROM daily_web_metrics
+        FROM rudnickipm91007.daily_web_metrics
         WHERE DATE = DATE('2023-08-02')
     )
 SELECT COALESCE(t.host, y.host) AS host,
