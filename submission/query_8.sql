@@ -1,4 +1,3 @@
--- CTE to calculate monthly metrics
 WITH monthly_metrics AS (
     SELECT
         host,
@@ -11,8 +10,7 @@ WITH monthly_metrics AS (
     -- Group by host, metric_name, and the start of the month
     GROUP BY host, metric_name, DATE_TRUNC('month', metric_date)
 )
--- Insert data into the host_activity_reduced table
-INSERT INTO host_activity_reduced
+INSERT INTO host_activity_reduced (host, metric_name, metric_array, month_start)
 SELECT
     host,
     metric_name,
