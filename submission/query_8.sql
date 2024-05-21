@@ -1,14 +1,14 @@
 --HW2 query_8
-INSERT into host_activity_reduced
+INSERT into hdamerla.host_activity_reduced
 With yesterday AS (
 select * from 
-host_activity_reduced
+hdamerla.host_activity_reduced
 where DATE(month_start) = DATE('2023-08-02')
 ), 
 today as (
 select
   *
-from daily_web_metrics
+from hdamerla.daily_web_metrics
 where DATE(date) = DATE('2023-08-02')
 )
 
@@ -19,4 +19,4 @@ COALESCE(y.metric_name, t.metric_name) as metric_name,
 CAST('2023-08-01' as DATE) as month_start
 from yesterday y
 full outer join today t
-on y.host = t.host and y.metric_name=t.metric_name
+on y.host = t.host and y.metric_name=t.metric_name 
