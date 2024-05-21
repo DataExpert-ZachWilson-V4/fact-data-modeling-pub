@@ -6,7 +6,7 @@ WITH yesterday AS (
 ),
 today AS(
   SELECT *
-  FROM bootcamp.daily_web_metrics 
+  FROM mmarquez225.daily_web_metrics 
   WHERE date = DATE('2023-08-02')
 )
 SELECT
