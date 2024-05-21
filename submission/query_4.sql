@@ -57,4 +57,4 @@ SELECT
     ),
     64
   ) > 0 AS is_second_week_active
-FROM int_history;
+FROM int_history
