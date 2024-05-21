@@ -1,5 +1,5 @@
 -- Create a table named 'fct_nba_game_details_filtered' in the 'ningde95' schema
-CREATE TABLE IF NOT EXISTS ningde95.fct_nba_game_details_filtered (
+CREATE TABLE IF NOT EXISTS ningde95.fct_nba_game_details_filtered4 (
   game_id BIGINT,  -- Unique identifier for the game
   team_id BIGINT,  -- Unique identifier for the team
   player_id BIGINT,  -- Unique identifier for the player
@@ -25,19 +25,19 @@ CREATE TABLE IF NOT EXISTS ningde95.fct_nba_game_details_filtered (
   m_personal_fouls DOUBLE,  -- Number of personal fouls
   m_points DOUBLE,  -- Number of points scored
   m_plus_minus DOUBLE,  -- Plus/minus statistic
-  dim_game_date DATE,  -- Date of the game
-  dim_season INTEGER,  -- Season of the game
-  dim_team_did_win BOOLEAN,  -- Indicates if the team won the game
+  game_date DATE,  -- Date of the game
+  season INTEGER,  -- Season of the game
+  team_did_win BOOLEAN,  -- Indicates if the team won the game
   rn INTEGER  -- Row number for partitioning purposes
 )
 -- Specify table storage format and partitioning
 WITH (
   FORMAT = 'PARQUET',  -- Use the Parquet format for storage
-  partitioning = ARRAY['dim_season']  -- Partition the table by 'dim_season'
+  partitioning = ARRAY['season']  -- Partition the table by 'dim_season'
 )
 
 -- Insert data into the 'fct_nba_game_details_filtered' table
-INSERT INTO ningde95.fct_nba_game_details_filtered
+INSERT INTO ningde95.fct_nba_game_details_filtered4
 -- Define a Common Table Expression (CTE) named 'ranked'
 WITH ranked AS (
   -- Select all columns from 'fct_nba_game_details' table
