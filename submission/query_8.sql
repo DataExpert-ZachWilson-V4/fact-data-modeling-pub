@@ -13,22 +13,16 @@ WITH yesterday AS (
 -- Step 2: Retrieve data for the current month from bootcamp.web_events
 today AS (
     SELECT 
-        we.host,
-        CASE 
-            WHEN we.url = '/signup' THEN 'visited_signup'
-            WHEN we.url = '/' THEN 'visited_homepage'
-        END AS metric_name,
-        COUNT(*) AS metric_value, -- Assuming you want to count occurrences
-        CAST(date_trunc('day', we.event_time) AS DATE) AS event_date
-    FROM bootcamp.web_events we
-    WHERE we.event_time >= DATE '2023-08-01' -- Filter data for the current day
-      AND we.event_time < DATE '2023-08-02' -- Filter data for the current day
-    GROUP BY we.host,
-             CASE 
-                 WHEN we.url = '/signup' THEN 'visited_signup'
-                 WHEN we.url = '/' THEN 'visited_homepage'
-             END,
-             CAST(date_trunc('day', we.event_time) AS DATE)
+        host,
+        metric_name,
+        metric_value, -- Assuming you want to count occurrences
+        date AS event_date
+    FROM daily_web_metrics
+    WHERE date >= DATE '2023-08-01' -- Filter data for the current day
+      AND date < DATE '2023-08-02' -- Filter data for the current day
+    GROUP BY host,
+             metric_name,
+             date
 )
 
 -- Step 3: Select fields for incremental population and insert into host_activity_reduced table
