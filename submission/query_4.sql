@@ -2,6 +2,7 @@
 -- the base-2 integer (0,1)
 -- datelist representation as shown in the 
 -- fact data modeling day 2 lab
+
 WITH
     today AS (
         -- select all columns from 'user_devices_cumulated'

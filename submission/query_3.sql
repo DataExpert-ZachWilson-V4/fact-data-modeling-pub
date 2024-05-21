@@ -1,6 +1,7 @@
 --  Incremental query to populate the table 
 -- 'user_devices_cumulated' from 
 -- the 'web_events' and 'devices' tables
+
 INSERT INTO
     user_devices_cumulated
 WITH

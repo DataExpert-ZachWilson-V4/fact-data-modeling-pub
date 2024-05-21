@@ -1,6 +1,7 @@
 -- query to incrementally populate the 
 -- hosts_cumulated table from the web_events table
 -- As shown in the fact data modeling day 2 lab
+
 INSERT INTO
     jimmybrock65656.hosts_cumulated
 WITH

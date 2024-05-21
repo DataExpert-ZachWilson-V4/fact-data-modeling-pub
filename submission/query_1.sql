@@ -1,5 +1,6 @@
 -- de-dup nba_game_details table
 -- select all distinct records from the cte
+
 WITH
     deduped AS (
         -- CTE to add a row number to each record 
