@@ -4,3 +4,6 @@ CREATE OR REPLACE TABLE ebrunt.user_devices_cumulated (
   dates_active ARRAY(DATE),
   date DATE
 )
+WITH (
+  partitioning = ARRAY[ date ]
+)
