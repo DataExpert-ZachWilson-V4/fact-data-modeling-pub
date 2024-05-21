@@ -11,3 +11,4 @@ CREATE TABLE user_devices_cumulated (
 ) WITH (
     format = 'PARQUET',            -- Storage format
     partitioning = ARRAY['date']   -- Partitioning by date for efficient querying
+    )
