@@ -3,9 +3,10 @@ WITH exploded_dates AS (
     SELECT
         user_id,
         browser_type,
-        UNNEST(dates_active) AS active_date,
+        active_date,
         DATE_DIFF('day', active_date, CURRENT_DATE) AS days_ago
-    FROM user_devices_cumulated
+    FROM user_devices_cumulated,
+    CROSS JOIN UNNEST(dates_active) AS t(active_date)
 ),
 -- CTE to calculate the sum of powers of 2 for each (user_id, browser_type) combination
 powers_of_two AS (
