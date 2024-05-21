@@ -1,12 +1,12 @@
 -- incremental query 
 INSERT INTO
-  mmarquez225.user_devices_cumulated
+  bootcamp.user_devices_cumulated
 WITH
   yesterday AS ( -- collect yesterday's data from our target table
     SELECT
       *
     FROM
-      mmarquez225.user_devices_cumulated
+      bootcamp.user_devices_cumulated
     WHERE
       DATE = DATE('2022-12-31')
   ),

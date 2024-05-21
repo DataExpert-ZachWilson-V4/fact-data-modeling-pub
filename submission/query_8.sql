@@ -1,11 +1,11 @@
 --incrementally populate the host_activity_reduced
-INSERT INTO mmarquez225.host_activity_reduced
+INSERT INTO bootcamp.host_activity_reduced
 WITH
   yesterday AS ( -- get yesterday's data from host_activity_reduced table
     SELECT
       *
     FROM
-      mmarquez225.host_activity_reduced
+      bootcamp.host_activity_reduced
     WHERE
       month_start = '2023-05-01'
   ),
@@ -13,7 +13,7 @@ WITH
     SELECT
       *
     FROM
-      mmarquez225.daily_web_metrics 
+      bootcamp.daily_web_metrics 
     WHERE
       DATE = DATE('2023-05-02')
   )

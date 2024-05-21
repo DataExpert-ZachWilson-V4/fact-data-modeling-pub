@@ -5,7 +5,7 @@ WITH
     SELECT
       *
     FROM
-      mmarquez225.user_devices_cumulated
+      bootcamp.user_devices_cumulated
     WHERE
       DATE = DATE('2023-01-07')
   ),

@@ -1,12 +1,12 @@
 --incrementally populate the hosts_cumulated table
 INSERT INTO
-  mmarquez225.hosts_cumulated
+  bootcamp.hosts_cumulated
 WITH
   yesterday AS ( -- collect yesterday's data from our target table
     SELECT
       *
     FROM
-      mmarquez225.hosts_cumulated
+      bootcamp.hosts_cumulated
     WHERE
       DATE = DATE('2022-12-31')
   ),
