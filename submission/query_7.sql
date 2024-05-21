@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS andreskammerath.host_activity_reduced (
-    user_id BIGINT,
+    host VARCHAR,
     metric_name VARCHAR,
     metric_array ARRAY(INTEGER),
     month_start VARCHAR
