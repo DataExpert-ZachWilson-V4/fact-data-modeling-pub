@@ -9,7 +9,7 @@ today AS (
     host,
     DATE(event_time) AS event_date,
     COUNT(1) AS count
-  FROM web_events
+  FROM bootcamp.web_events
   WHERE DATE(event_time) = DATE('2023-01-01')
   GROUP BY
     host,

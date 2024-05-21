@@ -10,8 +10,8 @@ today AS (
     d.browser_type,
     DATE(w.event_time) AS event_date,
     COUNT(1) AS count
-  FROM web_events w
-  LEFT JOIN devices d ON w.device_id = d.device_id
+  FROM bootcamp.web_events w
+  LEFT JOIN bootcamp.devices d ON w.device_id = d.device_id
   WHERE DATE(w.event_time) = DATE('2023-01-01')
   GROUP BY
     w.user_id,
