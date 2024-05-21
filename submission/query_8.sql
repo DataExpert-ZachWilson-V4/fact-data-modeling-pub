@@ -17,7 +17,7 @@ today AS (
         metric_name,
         metric_value, -- Assuming you want to count occurrences
         date AS event_date
-    FROM daily_web_metrics
+    FROM alissabdeltoro.daily_web_metrics
     WHERE date >= DATE '2023-08-01' -- Filter data for the current day
       AND date < DATE '2023-08-02' -- Filter data for the current day
     GROUP BY host,
