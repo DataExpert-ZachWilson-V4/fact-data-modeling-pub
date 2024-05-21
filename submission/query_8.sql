@@ -13,12 +13,12 @@ with
         select
             *
         from
-            bootcamp.daily_web_metrics
+            fayiztk.daily_web_metrics
         where
             date = date('2023-08-01')
     )
 select
-    coalesce(t.host, y.host) as user_id,
+    coalesce(t.host, y.host) as host,
     coalesce(t.metric_name, y.metric_name) as metric_name,
     coalesce(
         y.metric_array,
