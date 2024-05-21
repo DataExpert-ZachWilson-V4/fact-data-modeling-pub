@@ -15,7 +15,7 @@ with
         from
             fayiztk.daily_web_metrics
         where
-            date = date('2023-08-01')
+            date = date('2023-08-02')
     )
 select
     coalesce(t.host, y.host) as host,
