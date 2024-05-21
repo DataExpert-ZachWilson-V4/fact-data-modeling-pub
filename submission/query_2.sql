@@ -1,5 +1,5 @@
 -- Create a table named 'user_devices_cumulated' in the 'ningde95' schema
-CREATE TABLE ningde95.user_devices_cumulated (
+CREATE TABLE IF NOT EXISTS ningde95.user_devices_cumulated (
   user_id BIGINT,          -- Unique identifier for the user
   browser_type VARCHAR,    -- Type of browser used by the user
   dates_active ARRAY(DATE),-- Array of dates when the user was active
