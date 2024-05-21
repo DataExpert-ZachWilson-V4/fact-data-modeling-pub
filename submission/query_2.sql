@@ -3,7 +3,7 @@
 -- The table is the result of joining the devices table onto the web_events table to get both the user_id and the browser_type.
 
 -- Create the user_devices_cumulated table
-CREATE TABLE alissabdeltoro.user_devices_cumulated (
+CREATE TABLE user_devices_cumulated (
     user_id BIGINT,                -- User identifier
     browser_type VARCHAR,          -- Type of browser used by the user
     dates_active ARRAY(DATE),      -- Array of dates when the user was active
