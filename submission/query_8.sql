@@ -1,47 +1,32 @@
-INSERT INTO
-  mmarquez225.host_activity_reduced  -- Inserting data into the host_activity_reduced table
-WITH
-  -- CTE to fetch data for the previous month start (2023-08-01)
-  yesterday AS (
-    SELECT
-      host,                      -- Host Name
-      metric_name,               -- Name of the metric
-      metric_array,              -- Array of metric values
-      month_start                -- Start month of the metric data
-    FROM
-      mmarquez225.host_activity_reduced
-    WHERE
-      month_start = '2023-08-01' -- Filtering for the start of the month
-  ),
-  -- CTE to fetch data for the current day (2023-08-02)
-  today AS (
-    SELECT
-      host,                      -- Host Name
-      metric_name,               -- Name of the metric
-      metric_value,              -- Value of the metric for the current day
-      DATE                      -- Current date
-    FROM
-      mmarquez225.daily_web_metrics
-    WHERE
-      DATE = DATE('2023-08-02')  -- Filtering for the current date
-  )
--- Main query to insert data in the host_activity_reduced table
+-- Insert data into the host_activity_reduced table
+INSERT INTO mmarquez225.host_activity_reduced (host, metric_name, metric_array, month_start)
+WITH yesterday AS (
+  -- Select all columns from host_activity_reduced for the specified month_start
+  SELECT *
+  FROM mmarquez225.host_activity_reduced
+  WHERE month_start = '2023-08-01'
+),
+today AS (
+  -- Select all columns from daily_web_metrics for the specified date
+  SELECT *
+  FROM mmarquez225.daily_web_metrics 
+  WHERE date = DATE('2023-08-02')
+)
 SELECT
-  COALESCE(t.host, y.host) AS host,  -- Handling NULL values with COALESCE to get the host ID
-  COALESCE(t.metric_name, y.metric_name) AS metric_name,  -- Handling NULL values with COALESCE to get the metric name
-  -- Updating or creating the metric_array
+  -- Coalesce to handle missing hosts by taking non-null values
+  COALESCE(T.host, Y.host) AS host,
+  -- Coalesce to handle missing metric names by taking non-null values
+  COALESCE(T.metric_name, Y.metric_name) AS metric_name,
+  -- Coalesce to handle missing metric arrays by creating a padded array
   COALESCE(
-    y.metric_array,  -- If the metric_array exists from yesterday
-    -- If not, create an array of NULLs with length based on the difference in days
-    REPEAT(
-      NULL,
-      CAST(
-        DATE_DIFF('day', DATE('2023-08-01'), t.date) AS INTEGER
-      )
+    Y.metric_array,
+    REPEAT(null, 
+      CAST(DATE_DIFF('day', DATE('2023-08-01'), DATE('2023-08-02')) AS INTEGER)
     )
-  ) || ARRAY[t.metric_value] AS metric_array,  -- Append today's metric_value to the metric_array
-  '2023-08-01' AS month_start  -- Keeping the month_start as 2023-08-01 for consistency
-FROM
-  today t
-  FULL OUTER JOIN yesterday y ON t.host = y.host  
-  AND t.metric_name = y.metric_name  -- Joining today's and yesterday's data on host and metric_name
+  ) || ARRAY[T.metric_value] AS metric_array,
+  -- Set the month_start to '2023-08-01' as specified
+  '2023-08-01' AS month_start
+FROM today AS T
+-- Perform a full outer join on host and metric_name to combine both CTEs
+FULL OUTER JOIN yesterday AS Y 
+  ON T.host = Y.host AND T.metric_name = Y.metric_name
