@@ -7,4 +7,4 @@ WITH dedup AS (
 SELECT
     *
 FROM dedup
-WHERE rn = 1
+WHERE rn = 1 -- filtering out the 1st row to keep non repeating records
