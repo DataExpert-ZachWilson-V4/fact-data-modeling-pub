@@ -29,7 +29,6 @@ m_turnovers,
 m_personal_fouls,
 m_points,
 m_plus_minus,
-dim_game_date,
 dim_season,
 dim_team_did_win
  from 

@@ -13,7 +13,7 @@ WITH
     SELECT
       *
     FROM
-      bootcamp.daily_web_metrics 
+      daily_web_metrics 
     WHERE
       DATE = DATE('2023-05-02')
   )
