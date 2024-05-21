@@ -2,7 +2,7 @@
 -- This DDL statement creates a hosts_cumulated table to track host activity by date.
 
 -- Create the hosts_cumulated table
-CREATE TABLE alissabdeltoro.hosts_cumulated (
+CREATE TABLE hosts_cumulated (
     host VARCHAR,  -- Hostname or IP address of the host
     host_activity_datelist ARRAY(DATE),  -- Array to store activity dates
     date DATE  -- Date for partitioning
