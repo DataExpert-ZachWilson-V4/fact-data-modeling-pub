@@ -5,7 +5,7 @@
 -- and the date field to store the most recent date of activity.
 -- partition key used is date column to allow for more efficient querying when filtering by date
 
-CREATE TABLE vpsjul8468082.user_devices_cumulated (
+CREATE OR REPLACE TABLE vpsjul8468082.user_devices_cumulated (
     user_id bigint,
     browser_type varchar,
     dates_active array(date),
