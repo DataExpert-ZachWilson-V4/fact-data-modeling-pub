@@ -1,4 +1,4 @@
-CREATE TABLE nikhilsahni.host_activity_reduced (
+CREATE OR REPLACE TABLE nikhilsahni.host_activity_reduced (
   -- Column to store user IDs
   user_id BIGINT,
   -- Column to store the name of the metric
