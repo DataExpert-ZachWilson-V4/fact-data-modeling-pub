@@ -57,7 +57,7 @@ WHERE rn = 1
 --         (SELECT COUNT(*) FROM RankedEntries WHERE rn = 1) AS deduped_count
 -- )
 
--- SELECT * FROM Counts
+-- SELECT * FROM Count
 
 -- original_count	deduped_count
 -- 668628	668339

@@ -2,7 +2,7 @@
 
 -- Host Activity Datelist Implementation (query_6.sql)
 -- As shown in the fact data modeling day 2 lab, Write a query to
--- incrementally populate the hosts_cumulated table from the web_events table.
+-- incrementally populate the hosts_cumulated table from the web_events table
 
 -- Creating a new combined data table
 WITH yesterday AS (

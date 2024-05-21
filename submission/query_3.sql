@@ -10,7 +10,7 @@
 -- The ExistingData CTE selects the existing current data from the user_devices_cumulated table,
 -- The AggregatedNewData CTE aggregates the new data so that we can join it with the existing data,
 -- The DistinctDates CTE selects data from ExistingData and AggregatedNewData CTEs and unions them together, but only the distinct dates,
--- The ReaggregatedDates CTE aggregates the distinct dates and finds the latest date for each user and browser type,
+-- The ReaggregatedDates CTE aggregates the distinct dates and finds the latest date for each user and browser type
 
 WITH NewEventData AS (
     SELECT

@@ -15,7 +15,6 @@
 -- sum those powers of 2 in a group by on user_id and browser_type
 -- convert the sum to base 2
 
-
 WITH
     today AS (
         SELECT
