@@ -1,0 +1,41 @@
+select
+    game_id,
+    team_id,
+    team_abbreviation,
+    team_city,
+    player_id,
+    player_name,
+    nickname,
+    start_position,
+    comment,
+    min,
+    fgm,
+    fga,
+    fg_pct,
+    fg3m,
+    fg3a,
+    fg3_pct,
+    ftm,
+    fta,
+    ft_pct,
+    oreb,
+    dreb,
+    reb,
+    ast,
+    stl,
+    blk,
+    to,
+    pf,
+    pts,
+    plus_minus
+FROM
+    (
+        SELECT
+            *,
+            -- Using Row number function and partitioning by game_id, team_id, player_id
+            ROW_NUMBER() OVER (PARTITION BY game_id, team_id, player_id) AS row_num
+        FROM
+            bootcamp.nba_game_details
+    )
+where
+    row_num = 1
