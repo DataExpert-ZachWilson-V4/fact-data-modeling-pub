@@ -10,7 +10,6 @@ CREATE OR REPLACE TABLE nikhilsahni.host_activity_reduced (
 )
 WITH
   (
-    -- Specify the format of the table as Parquet for efficient storage and retrieval
     FORMAT = 'PARQUET',
     -- Partition the table by 'metric_name' and 'month_start' for improved query performance
     partitioning = ARRAY['metric_name', 'month_start']
