@@ -14,7 +14,7 @@ WITH
     FROM
       nikhilsahni.hosts_cumulated
     WHERE
-      DATE = DATE('2022-12-31')
+      DATE = DATE_ADD('day', -1 , CURRENT_DATE)
   ),
   /*
   This CTE named today, selects host and truncates the event_time to the day level as event_date.
@@ -30,7 +30,8 @@ WITH
     FROM
       bootcamp.web_events
     WHERE
-      DATE(DATE_TRUNC('day', event_time)) = DATE('2023-01-01')
+      DATE(DATE_TRUNC('day', event_time)) = CURRENT_DATE
+      AND event_time IS NOT NULL
     GROUP BY
       host,
       DATE(DATE_TRUNC('day', event_time))
@@ -58,7 +59,7 @@ SELECT
     WHEN y.host IS NOT NULL
     AND t.host IS NULL THEN y.host_activity_datelist
   END AS host_activity_datelist,
-  DATE('2023-01-01') AS DATE
+  CURRENT_DATE AS DATE
 FROM
   yesterday AS y
   FULL OUTER JOIN today AS t ON y.host = t.host
