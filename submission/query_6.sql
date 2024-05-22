@@ -18,7 +18,7 @@ today AS (
   
 SELECT
 COALESCE(y.host, t.host) as host,
-CASE when y.host_activity_datelist is NULL THEN ARRAY[t.event_date]
+CASE when y.host_activity_datelist is NULL THEN ARRAY[t.event_date] --combine date activity from yesterday and today
 ELSE ARRAY[t.event_date] || y.host_activity_datelist
 END as host_activity_datelist,
 CAST('2023-01-06' as DATE) as date
