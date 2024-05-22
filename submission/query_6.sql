@@ -9,7 +9,7 @@ WITH yesterday AS (
 today AS (
   SELECT 
     host, 
-    CAST(date_trunc('day', event_time) as DATE) as host_activity_datelist, 
+    CAST(date_trunc('day', event_time) as DATE) as event_date, 
     COUNT(1) 
   FROM bootcamp.web_events 
   WHERE date_trunc('day', event_time) = DATE('2023-01-06')
@@ -18,8 +18,8 @@ today AS (
   
 SELECT
 COALESCE(y.host, t.host) as host,
-CASE when y.host_activity_datelist is NOT NULL THEN ARRAY[t.host_activity_datelist] || y.host_activity_datelist
-ELSE ARRAY[t.host_activity_datelist]
+CASE when y.host_activity_datelist is NOT NULL THEN ARRAY[t.event_date] || y.host_activity_datelist
+ELSE ARRAY[t.event_date]
 END as host_activity_datelist,
 CAST('2023-01-06' as DATE) as date
 from yesterday y
