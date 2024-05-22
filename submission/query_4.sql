@@ -12,14 +12,13 @@ With today AS ( select
      date_list_int AS ( select
         user_id,
         browser_type,
-        CAST(SUM(CASE  --using bitwise operations calculating the integer representation
-            WHEN CONTAINS(dates_active,
-            sequence_date) THEN POW(2,
-            31 - DATE_DIFF('day',
-            sequence_date,
-            DATE('2023-01-01'))) 
-            ELSE 0 
-        END ) AS BIGINT ) as history_int  
+        CAST(SUM(
+              CASE  --using bitwise operations, calculating the integer representation
+                   WHEN CONTAINS(dates_active, sequence_date) THEN 
+                     POW(2, 31 - DATE_DIFF('day', sequence_date, DATE('2023-01-01'))) 
+                   ELSE 0 
+              END 
+       ) AS BIGINT ) as history_int  
     from
         today CROSS 
     JOIN
