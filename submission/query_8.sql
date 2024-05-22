@@ -34,7 +34,7 @@ yesterday AS (
   SELECT 
     * 
   FROM ebrunt.host_activity_reduced 
-  WHERE month_start = DATE('2021-04-01')
+  WHERE DATE(month_start) = DATE('2021-04-01')
 ),
 today AS (
   SELECT 
