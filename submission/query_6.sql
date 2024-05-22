@@ -22,10 +22,14 @@ SELECT
   COALESCE(y.host, t.host) AS host,  -- Use host from yesterday or today
   -- Combine the dates_active array from yesterday with today's event_date
   CASE
-  -- Append today's event date to the existing array
-    WHEN y.host_activity_datelist IS NOT NULL THEN 
+	  -- If yesterday's dates_active array is not empty
+	  -- and today's active is not empty then concat today's date
+    WHEN y.host_activity_datelist IS NOT NULL THEN AND t.event_date IS NOT NULL
       ARRAY[t.event_date] || y.host_activity_datelist
-    -- If no dates_active from yesterday, start a new array with today's event date
+    -- If yesterday's dates_active array is not empty
+	  -- and today's active is empty then return yesterday's date
+    WHEN y.host_activity_datelist IS NOT NULL AND t.event_date IS NULL
+      THEN y.host_activity_datelist
     ELSE 
       ARRAY[t.event_date]
   END AS dates_active,

@@ -26,9 +26,14 @@ SELECT
   COALESCE(y.browser_type, t.browser_type) AS browser_type,  -- Use the browser_type from yesterday or today
   -- Combine dates_active from yesterday with today's event date
   CASE
-    -- Append today's event date to the existing array
-    WHEN y.dates_active IS NOT NULL
+	  -- If yesterday's dates_active array is not empty
+	  -- and today's active is not empty then concat today's date
+    WHEN y.dates_active IS NOT NULL AND t.event_date IS NOT NULL
       THEN ARRAY[t.event_date] || y.dates_active
+    -- If yesterday's dates_active array is not empty
+	  -- and today's active is empty then return yesterday's date
+    WHEN y.dates_active IS NOT NULL AND t.event_date IS NULL
+      THEN y.dates_active
     -- If no dates_active from yesterday, start a new array with today's event date
     ELSE
       ARRAY[t.event_date]
