@@ -1,8 +1,7 @@
 /*
 This SQL query is designed to identify and handle duplicate records in the bootcamp.nba_game_details table. 
-Here's a step-by-step explanation of what the query is doing:
 
-Step 1: Creating the CTE dedup
+Creating the CTE dedup
 The query first creates a Common Table Expression (CTE) named dedup
 For each combination of game_id, team_id, and player_id, it groups the records.
 The HAVING COUNT(*) > 1 clause ensures that only groups with more than one record are considered duplicates.
@@ -52,7 +51,7 @@ WITH
   )
 
 /*
-Step 2: Selecting Non-Duplicate Records
+Selecting Non-Duplicate Records
 The query then selects records from the bootcamp.nba_game_details table that are not part of the dedup CTE
 */
 SELECT
