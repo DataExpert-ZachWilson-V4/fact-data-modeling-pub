@@ -43,3 +43,4 @@ WITH (
   format = 'PARQUET',
   partitioning = ARRAY['date']
 )
+-- Go go chatgpt feedback! :)

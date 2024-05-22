@@ -17,3 +17,4 @@ WITH (
     format='PARQUET',
     partitioning = ARRAY['metric_name', 'month_start']
 )
+-- Go go chatgpt feedback! :)

@@ -50,3 +50,4 @@ SELECT
     TO_BASE(history_int, 2) AS history_base_2,
     DATE('2023-01-07') AS date
 FROM date_list_int 
+-- Go go chatgpt feedback! :)

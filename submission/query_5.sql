@@ -16,3 +16,4 @@ CREATE OR REPLACE TABLE danieldavid.hosts_cumulated (
     format='PARQUET',
     partitioning= ARRAY['date']
 )
+-- Go go chatgpt feedback! :)

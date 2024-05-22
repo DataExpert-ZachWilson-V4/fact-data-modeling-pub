@@ -21,3 +21,4 @@ FROM bootcamp.nba_game_details
 -- 2) Dedupe: only the rows with row_count = 1, thus removing duplicates
 SELECT * FROM deduped_stage
 WHERE row_count = 1
+-- Go go chatgpt feedback! :)

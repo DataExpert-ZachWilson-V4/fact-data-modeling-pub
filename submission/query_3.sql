@@ -49,3 +49,4 @@ FROM
     yesterday y
     FULL OUTER JOIN today t 
     ON y.user_id = t.user_id AND y.browser_type = t.browser_type
+    -- Go go chatgpt feedback! :)

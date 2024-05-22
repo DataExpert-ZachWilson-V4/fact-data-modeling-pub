@@ -32,3 +32,4 @@ FROM
     yesterday y
     FULL OUTER JOIN today t 
     ON y.host = t.host
+    -- Go go chatgpt feedback! :)
