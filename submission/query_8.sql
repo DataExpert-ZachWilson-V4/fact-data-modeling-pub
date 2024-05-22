@@ -6,7 +6,7 @@ The goal is to update the monthly metrics with new daily data.
 INSERT INTO
   nikhilsahni.host_activity_reduced
 /*
-  This CTE gets all existing records from nikhilsahni.host_activity_reduced for the month starting 2023-08-01.
+  This CTE gets all existing records from nikhilsahni.host_activity_reduced for the month starting 2023-08-01
 */
 WITH
   yesterday AS (
