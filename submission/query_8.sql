@@ -22,7 +22,7 @@ WITH
     FROM
       ykshon52797255.daily_web_metrics
     WHERE
-      DATE = DATE('2023-08-01')
+      DATE = DATE('2023-08-02')
   )
 
 -- full outer join yesterday and today's date and cumulate for that  month
