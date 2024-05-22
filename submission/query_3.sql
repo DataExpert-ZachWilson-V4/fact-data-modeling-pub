@@ -62,7 +62,7 @@ WITH
     FROM
       nikhilsahni.user_devices_cumulated
     WHERE
-      DATE = DATE('2022-12-31')
+      DATE = DATE_ADD('day', -1 , CURRENT_DATE)
   ),
 /*
   The today CTE selects all records from the deduped CTE where the event_date is January 1, 2023, 
@@ -76,7 +76,8 @@ WITH
     FROM
       deduped
     WHERE
-      event_date = DATE('2023-01-01')
+      event_date = CURRENT_DATE
+      AND event_date IS NOT NULL
   )
 /*
   This part performs a full outer join between the yesterday and today CTEs on user_id and browser_type 
@@ -96,7 +97,7 @@ SELECT
     WHEN y.user_id IS NOT NULL
     AND t.user_id IS NULL THEN y.dates_active
   END AS dates_active,
-  DATE('2023-01-01') AS DATE
+  CURRENT_DATE AS DATE
 FROM
   yesterday AS y
   FULL OUTER JOIN today AS t ON y.user_id = t.user_id
