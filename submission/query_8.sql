@@ -27,4 +27,4 @@ SELECT
 
 -- Join the today and yesterday CTEs using FULL OUTER JOIN to ensure all rows are included
 FROM today t
-         FULL OUTER JOIN yesterday y ON t.host = y.host AND t.metric_name = y.metric_name;
+         FULL OUTER JOIN yesterday y ON t.host = y.host AND t.metric_name = y.metric_name
