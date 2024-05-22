@@ -17,9 +17,9 @@ today AS (
 SELECT 
   COALESCE(y.host, t.host) as host,
   CASE
-    WHEN y. host_activity_datelist IS NULL THEN ARRAY[t.event_date]
+    WHEN y.host_activity_datelist IS NULL THEN ARRAY[t.event_date]
     WHEN t.event_date IS NULL THEN y. host_activity_datelist
-    ELSE ARRAY[t.event_date] || y. host_activity_datelist
+    ELSE ARRAY[t.event_date] || y.host_activity_datelist
   END as host_activity_datelist,
   DATE('2021-04-02') as date
 FROM yesterday y
