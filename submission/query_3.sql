@@ -16,8 +16,9 @@ WITH yesterday AS (
             bootcamp.web_events w
             left join bootcamp.devices d on d.device_id = w.device_id
         WHERE
-            date_trunc('day', event_time) = DATE('2023-01-01') --and user_id= 1320602989
+            date_trunc('day', event_time) = DATE('2023-01-01')
         GROUP BY
+            -- group by user_id, date and browser_type 
             user_id,
             browser_type,
             CAST(date_trunc('day', event_time) AS DATE)
@@ -25,6 +26,9 @@ WITH yesterday AS (
 SELECT
     COALESCE(y.user_id, t.user_id) AS user_id,
     COALESCE(y.browser_type, t.browser_type) as browser_type,
+    -- To ensure no nulls show up in the array, following case checks if yesterday's dates_active and event date is not null
+    -- then add event_date to dates_active array. When fates_active is not numm but event_date is null then just use yesterday's 
+    -- dates_active. When yesterday's dates_active is  NULL thne use today's event date
     CASE
         WHEN y.dates_active IS NOT NULL and t.event_date is NOT NULL
              THEN ARRAY [t.event_date] || y.dates_active

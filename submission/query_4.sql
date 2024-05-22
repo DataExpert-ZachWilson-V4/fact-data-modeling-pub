@@ -22,6 +22,7 @@ date_list_int AS (
         today
         CROSS JOIN UNNEST (SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07'))) AS t (sequence_date)
     GROUP BY
+        -- including browser type in group by
         user_id,
         browser_type
 )
