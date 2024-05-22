@@ -9,7 +9,7 @@ WITH yesterday AS (
 today AS (
   SELECT *
   FROM ibrahimsherif.daily_web_metrics_hosts
-  WHERE date = DATE('2023-08-01')
+  WHERE date = DATE('2023-08-02')
 )
 -- Select and combine data from both CTEs
 SELECT
