@@ -1,4 +1,4 @@
-INSERT INTO host_activity_reduced
+INSERT INTO host_activity_reduced 
 -- CTE to select records from host_activity_reduced for the previous month start date (2023-08-01)
 WITH yesterday AS (
   SELECT *

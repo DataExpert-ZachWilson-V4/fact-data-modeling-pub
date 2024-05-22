@@ -24,8 +24,8 @@ SELECT
   CASE
 	  -- If yesterday's dates_active array is not empty
 	  -- and today's active is not empty then concat today's date
-    WHEN y.host_activity_datelist IS NOT NULL THEN AND t.event_date IS NOT NULL
-      ARRAY[t.event_date] || y.host_activity_datelist
+    WHEN y.host_activity_datelist IS NOT NULL AND t.event_date IS NOT NULL
+      THEN ARRAY[t.event_date] || y.host_activity_datelist
     -- If yesterday's dates_active array is not empty
 	  -- and today's active is empty then return yesterday's date
     WHEN y.host_activity_datelist IS NOT NULL AND t.event_date IS NULL

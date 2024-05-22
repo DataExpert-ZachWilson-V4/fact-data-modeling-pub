@@ -1,4 +1,4 @@
-INSERT INTO user_devices_cumulated
+INSERT INTO user_devices_cumulated 
 -- CTE to select records from previously aggregated data for yesterday's data
 WITH yesterday AS (
   SELECT *
