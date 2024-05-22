@@ -1,7 +1,7 @@
 -- 
 CREATE TABLE hosts_cumulated (
   host VARCHAR,
-  host_activity_datelist ARRAY(DATE),
+  host_activity_datelist ARRAY(DATE),  --Array that holds all active dates
   date DATE
 )
 WITH (

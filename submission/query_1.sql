@@ -1,6 +1,6 @@
--- 
+-- CTE to assign a row number to each row partitioned by game_id, team_id, and player_id
 WITH data_ranked AS (
-  -- query to get row number for each row partitioned by id columns
+  -- Select all columns and assign row numbers to each row within each partition
   SELECT
     *,
     ROW_NUMBER() OVER (
@@ -8,7 +8,7 @@ WITH data_ranked AS (
     ) AS row_num
   FROM bootcamp.nba_game_details
 )
--- select only rows with row num = 1 while the others are duplicates
+-- Select only the rows where row_num is 1, filtering out duplicates
 SELECT *
 FROM data_ranked
 WHERE row_num = 1
