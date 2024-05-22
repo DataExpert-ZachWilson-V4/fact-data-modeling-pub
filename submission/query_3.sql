@@ -1,5 +1,10 @@
+/*------------------------------------------------------------
+insert values into a user devices cumulated tables that
+increments manually
+*/------------------------------------------------------------
 INSERT INTO ykshon52797255.user_devices_cumulated
 
+-- yesterday cte to grab data from previous day
 WITH
   yesterday AS (
     SELECT
@@ -9,14 +14,18 @@ WITH
     WHERE
       DATE = DATE('2023-01-06')
   ),
+
+--today cte to grab data for today
   today AS (
     SELECT
       a.user_id,
       b.browser_type,
+      -- only grab the date portion from event_time's timestamp
       CAST(date_trunc('day', a.event_time) AS DATE) AS event_date,
       COUNT(1)
     FROM
       bootcamp.web_events a
+    -- left join devices table to grab browser_type
     LEFT JOIN 
       bootcamp.devices b
     on a.device_id = b.device_id
@@ -28,6 +37,7 @@ WITH
       CAST(date_trunc('day', a.event_time) AS DATE)
   )
 
+--full outer join and coalesce to join the yesterday's and today's table
 SELECT
   COALESCE(y.user_id, t.user_id) AS user_id,
   COALESCE(y.browser_type, t.browser_type) as browser_type,
