@@ -1,10 +1,13 @@
 --HW2 query_8
+/* incrementally populate the host_activity_reduced table from a daily_web_metrics table*/
+
 INSERT into hdamerla.host_activity_reduced
 With yesterday AS (
 select * from 
 hdamerla.host_activity_reduced
 where(month_start) =('2023-08-01')
 ), 
+ 
 today as (
 select
   *
@@ -15,7 +18,7 @@ where (date) = DATE('2023-08-02')
 SELECT
 COALESCE(y.host, t.host) as host,
 COALESCE(y.metric_name, t.metric_name) as metric_name,
- COALESCE(
+ COALESCE( --creating the metric array
     y.metric_array,
     REPEAT(
       NULL,
