@@ -9,4 +9,4 @@ SELECT
     team_id,
     player_id
 FROM ranked_details
-WHERE row_num = 1;
+WHERE row_num = 1
