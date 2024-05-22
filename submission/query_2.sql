@@ -1,4 +1,4 @@
-CREATE TABLE raniasalzahrani.user_devices_cumulated (
+CREATE OR REPLACE TABLE raniasalzahrani.user_devices_cumulated (
     user_id BIGINT,             -- The unique identifier for the user
     browser_type VARCHAR,       -- The type of browser used by the user
     dates_active ARRAY(DATE),   -- Array of dates the user was active on the browser
