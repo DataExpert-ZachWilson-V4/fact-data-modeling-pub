@@ -4,7 +4,7 @@ Each bit in the binary number represents a day within that range
 1 if the user was active on that day,
 0 if the user was inactive.
 The history_int column stores this as an integer, and history_int_binary shows it in binary format. 
-This allows you to quickly see a user's activity pattern over the week.
+This allows you to quickly see a user's activity pattern over the week
 */
 WITH
   today AS (
