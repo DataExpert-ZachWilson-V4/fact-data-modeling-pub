@@ -26,4 +26,4 @@ SELECT
     metric_array,
     TO_CHAR(month_start, 'YYYY-MM') AS month_start
 FROM
-    filled_metrics;
+    filled_metrics
