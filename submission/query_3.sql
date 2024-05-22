@@ -1,4 +1,5 @@
 --HW2 query_3
+/*incremental query to populate the table user_devices_cumulated from the web_events and devices tables*/
 
 INSERT INTO hdamerla.user_devices_cumulated
 WITH yesterday AS (
@@ -12,7 +13,7 @@ today AS (
     CAST(date_trunc('day', w.event_time) as DATE) as event_date, 
     COUNT(1) 
   FROM bootcamp.web_events w
-  LEFT JOIN bootcamp.devices d
+  LEFT JOIN bootcamp.devices d --join to devices table to obtain the browswer type
   ON w.device_id = d.device_id
   WHERE date_trunc('day', w.event_time) = DATE('2023-01-01')
   GROUP BY w.user_id, d.browser_type, CAST(date_trunc('day', w.event_time) AS DATE)
