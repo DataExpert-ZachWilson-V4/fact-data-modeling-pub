@@ -1,12 +1,12 @@
 WITH today AS (
   SELECT *
   FROM user_devices_cumulated
-  WHERE date = DATE('2022-10-31')
+  WHERE date = DATE('2022-08-31')
 ), 
 datelist_seq AS (
   SELECT *
   FROM today
-    CROSS JOIN UNNEST (SEQUENCE(DATE('2022-10-01'),DATE('2022-10-31'))) AS t(sequence_date)
+    CROSS JOIN UNNEST (SEQUENCE(DATE('2022-08-01'),DATE('2022-08-31'))) AS t(sequence_date)
 ), 
 datelist_int AS (
   SELECT user_id,
