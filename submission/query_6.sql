@@ -1,4 +1,6 @@
 --HW2 query_6
+/* incrementally populate the hosts_cumulated table from the web_events table*/
+
 INSERT INTO hdamerla.hosts_cumulated
 WITH yesterday AS (
   SELECT * FROM hdamerla.hosts_cumulated 
