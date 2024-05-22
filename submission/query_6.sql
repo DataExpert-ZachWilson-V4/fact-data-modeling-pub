@@ -1,5 +1,11 @@
+/*-----------------------------------------------------------------
+Write a query to incrementally populate the hosts_cumulated table 
+from the web_events table.
+*/-----------------------------------------------------------------
+
 insert into ykshon52797255.hosts_cumulated
 
+-- only grab yesterday's data
 WITH
   yesterday AS (
     SELECT
@@ -9,9 +15,12 @@ WITH
     WHERE
       DATE = DATE('2023-01-06')
   ),
+
+  --only grab today's data
   today AS (
     SELECT
       host,
+      -- only grab the date from event_time's timestamp
       CAST(date_trunc('day', event_time) AS DATE) AS event_date,
       COUNT(1)
     FROM
@@ -23,6 +32,7 @@ WITH
       CAST(date_trunc('day', event_time) AS DATE)
   )
 
+-- full outer join yesterday and today's data
 SELECT
   COALESCE(y.host, t.host) AS host,
   CASE
