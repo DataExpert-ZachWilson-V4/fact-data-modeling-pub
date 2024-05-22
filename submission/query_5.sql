@@ -1,7 +1,7 @@
 -- Create table hosts_cumulated to store cumulative host activity by browser_type
 
 CREATE OR REPLACE TABLE shruthishridhar.hosts_cumulated (
-    host VARCHAR,   -- host identifier
+    host VARCHAR,   -- host name
     host_activity_datelist ARRAY(DATE), -- dates of activity for current host
     date DATE   -- current date of host activity
 )
