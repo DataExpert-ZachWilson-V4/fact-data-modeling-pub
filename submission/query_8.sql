@@ -46,6 +46,6 @@ SELECT
   COALESCE(y.host, t.host) as host,
   COALESCE(y.metric_name, t.metric_name) as metric_name,
   COALESCE(y.metric_array, REPEAT(null, CAST(DATE_DIFF('day', DATE('2021-04-02'), t.metric_date) AS INTEGER))) || ARRAY[t.metric_value] as metric_array,
-  DATE('2021-04-02') as month_start
+  '2021-04-01' as month_start
 FROM yesterday y
 FULL OUTER JOIN today t ON t.host = y.host AND t.metric_name = y.metric_name
