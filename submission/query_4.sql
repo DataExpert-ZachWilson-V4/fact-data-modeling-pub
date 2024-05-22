@@ -24,7 +24,9 @@ With today AS ( select
         UNNEST (SEQUENCE(DATE('2023-01-01'), DATE('2023-01-07'))) as t(sequence_date) 
     group by
         user_id,
-        browser_type )  select
+        browser_type )  
+       
+        select
         *,
         TO_BASE(history_int,
         2) as history_in_binary,
