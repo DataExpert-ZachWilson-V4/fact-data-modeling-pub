@@ -1,7 +1,9 @@
 --HW2 query_5
-CREATE TABLE hosts_cumulated(
+/*DDL statement to create a hosts_cumulated table*/
+
+CREATE OR REPLACE TABLE hosts_cumulated(
   host VARCHAR,
-  host_activity_datelist ARRAY(DATE),
+  host_activity_datelist ARRAY(DATE), --Array of dates
   date DATE
 )
 WITH (
