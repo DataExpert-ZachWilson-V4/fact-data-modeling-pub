@@ -8,5 +8,5 @@ CREATE OR REPLACE TABLE shruthishridhar.host_activity_reduced (
 )
 WITH (
     format = 'PARQUET', -- setting data format as PARQUET
-    partitioning = ARRAY['month_start']  -- partitioning this data based on month_start
+    partitioning = ARRAY['metric_name', 'month_start']  -- partitioning this data based on metric name and month_start
 )
