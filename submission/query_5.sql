@@ -4,6 +4,6 @@ CREATE OR REPLACE TABLE nikhilsahni.hosts_cumulated (
     date DATE                        -- Column to store the date of the record
 )
 WITH (
-    FORMAT = 'PARQUET',              -- Specify the table storage format as Parquet
+    FORMAT = 'PARQUET',            
     PARTITIONING = ARRAY['date']     -- Partition the table by the date column for performance optimization
 )
