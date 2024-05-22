@@ -4,4 +4,3 @@ SELECT game_id, team_id, player_id
 from bootcamp.nba_game_details. )
 select game_id, team_id, player_id from nba_game_details_ranked
 where rownum = 1
-order by 3,1,2
