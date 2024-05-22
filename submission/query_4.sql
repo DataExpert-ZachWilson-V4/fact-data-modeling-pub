@@ -26,7 +26,7 @@ date_list_int AS (
             ) AS BIGINT
         ) AS date_int
     FROM user_device_info
-    CROSS JOIN UNNEST (SEQUENCE(DATE('2022-05-22'), DATE('2022-05-28'))) AS t(sequence_date)
+    CROSS JOIN UNNEST (SEQUENCE(DATE('2022-05-16'), DATE('2022-05-22'))) AS t(sequence_date)
     GROUP BY 
         user_id,
         browser_type

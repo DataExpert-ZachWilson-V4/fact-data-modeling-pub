@@ -19,7 +19,7 @@ SELECT
     COALESCE(y.host, t.host) AS host,
     COALESCE(y.metric_name, t.metric_name) AS metric_name,
     -- Extrapolate data for dates where activity is missing
-    COALESCE(y.metric_array, REPEAT(null, CAST(DATE_DIFF('day', DATE('2023-05-1'), date) AS INTEGER))) || ARRAY[t.metric_value] AS metric_array,
+    COALESCE(y.metric_array, REPEAT(null, CAST(DATE_DIFF('day', DATE('2023-05-1'), COALESCE(date, DATE('2023-05-1'))) AS INTEGER))) || ARRAY[t.metric_value] AS metric_array,
     '2023-05-1' AS month_start
 FROM yesterday y
 FULL OUTER JOIN today t 
