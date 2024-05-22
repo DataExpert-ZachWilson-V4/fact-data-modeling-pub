@@ -21,7 +21,7 @@ SELECT
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
   -- If the host isn't already listed in the cumulative host records, append null for each day from the 
   -- start of the month up to the current date. Then append t.metric_value at the last.
-    y.metric_array,
+    COALESCE(y.metric_array,
     REPEAT(
       NULL,
       CAST(
