@@ -1,22 +1,12 @@
 -- This query inserts data into the 'host_activity_reduced' table by combining data from 'last_host_activity' and 'new_host_activity'
 INSERT INTO amaliah21315.host_activity_reduced 
-WITH last_host_activity AS (
-    -- Subquery to select all records from 'host_activity_reduced' for a specific date
-    SELECT
-        *
-    FROM
-        amaliah21315.host_activity_reduced
-    WHERE
-        month_start = '2023-08-01' -- Filter table for the specific date '2023-08-01'
+WITH last_host_activity AS ( -- Subquery to select all records from 'host_activity_reduced' for a specific date
+    SELECT * FROM amaliah21315.host_activity_reduced
+    WHERE month_start = '2023-08-01' -- Filter table for the specific date '2023-08-01'
 ),
-new_host_activity AS (
-    -- Subquery to select all records from 'daily_web_metrics' for a specific date typically new data
-    SELECT
-        *
-    FROM
-        amaliah21315.daily_web_metrics
-    WHERE
-        DATE = DATE('2023-08-03') -- Filter metrics to only include those from '2023-08-03'
+new_host_activity AS (-- Subquery to select all records from 'daily_web_metrics' for a specific date typically new data
+    SELECT * FROM amaliah21315.daily_web_metrics
+    WHERE DATE = DATE('2023-08-03') -- Filter metrics to only include those from '2023-08-03'
 )
 -- Main SELECT statement to combine old and new host activity data
 SELECT
