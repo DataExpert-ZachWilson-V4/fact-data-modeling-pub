@@ -2,7 +2,7 @@ INSERT INTO user_devices_cumulated
 WITH yesterday AS (
   SELECT *
   FROM user_devices_cumulated
-  WHERE date = DATE('2022-09-30')
+  WHERE date = DATE('2022-07-31')
 ), 
 today AS (
   SELECT we.user_id,
@@ -10,7 +10,7 @@ today AS (
     CAST(DATE_TRUNC('day', we.event_time) AS DATE) AS event_date
   FROM bootcamp.web_events we
     JOIN bootcamp.devices d ON we.device_id = d.device_id
-  WHERE DATE_TRUNC('day', we.event_time) = DATE('2022-10-01')
+  WHERE DATE_TRUNC('day', we.event_time) = DATE('2022-08-01')
   GROUP BY we.user_id,
     d.browser_type,
     DATE_TRUNC('day', we.event_time)
