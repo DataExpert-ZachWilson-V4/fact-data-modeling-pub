@@ -1,11 +1,11 @@
-INSERT INTO host_activity_reduced
+INSERT INTO tejalscr.host_activity_reduced
 WITH 
     yesterday AS (
-        SELECT * FROM host_activity_reduced
+        SELECT * FROM tejalscr.host_activity_reduced
         WHERE month_start = '2021-01-02'
     ),
     today AS (
-        SELECT * FROM daily_web_metrics 
+        SELECT * FROM tejalscr.daily_web_metrics 
         WHERE DATE = DATE('2021-01-03')
     )
 SELECT
