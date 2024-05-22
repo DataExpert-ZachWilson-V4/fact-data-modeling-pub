@@ -14,4 +14,4 @@ SELECT
     host_activity_datelist,
     date
 FROM
-    host_activity;
+    host_activity
