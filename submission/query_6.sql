@@ -1,10 +1,10 @@
 -- This query incrementally populates the hosts_cumulated table by merging new web event data with the existing cumulative data.
-
 -- Step 1: Define a CTE (Common Table Expression) for yesterday's data
 -- The yesterday CTE retrieves the records from hosts_cumulated for the previous day.
 -- Step 2: Define a CTE for today's data
 -- The today CTE extracts the relevant data from the web_events table for today's date.
 -- Step 3: Insert the merged data into hosts_cumulated
+
 INSERT INTO vpsjul8468082.hosts_cumulated
 WITH yesterday AS (
     SELECT *
