@@ -19,7 +19,7 @@ SELECT
     -- Handle the case where y.metric_array is NULL
     CASE
         WHEN y.metric_array IS NOT NULL THEN y.metric_array
-        ELSE ARRAY_REPEAT(CAST(NULL AS INTEGER), CAST(DATE_DIFF('day', DATE '2023-08-01', t.date) AS INTEGER))
+        ELSE REPEAT(CAST(NULL AS INTEGER), CAST(DATE_DIFF('day', DATE '2023-08-01', t.date) AS INTEGER))
         END || ARRAY[t.metric_value]       AS metric_array,
 
     -- Set the month_start column to the specific date
