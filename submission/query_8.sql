@@ -1,10 +1,11 @@
 -- This query incrementally populates the host_activity_reduced table by merging new daily web metrics data with the existing reduced monthly data.
-
 -- Step 1: Define a CTE (Common Table Expression) for yesterday's data
 -- The yesterday CTE retrieves the records from `host_activity_reduced` for the previous month (2022-12-31).
 -- Step 2: Define a CTE for today's data
 -- The today CTE extracts the relevant data from the daily_web_metrics table for today's date (2023-01-01).
 -- Step 3: Insert the merged data into host_activity_reduced
+
+
 INSERT INTO vpsjul8468082.host_activity_reduced
 WITH yesterday AS (
     SELECT *
