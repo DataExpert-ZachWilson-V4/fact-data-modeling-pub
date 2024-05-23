@@ -3,6 +3,7 @@
 -- It ensures that the dates_active array is updated with the most recent date of activity for each user and browser_type combination.
 
 
+
 INSERT INTO
   vpsjul8468082.user_devices_cumulated
 WITH
