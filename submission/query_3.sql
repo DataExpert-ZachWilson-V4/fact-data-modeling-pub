@@ -23,7 +23,7 @@ WITH
       COUNT(1)
     FROM
       academy.bootcamp.web_events we
-    JOIN
+    LEFT JOIN
       academy.bootcamp.devices d ON we.device_id = d.device_id
     WHERE
       date_trunc('day', we.event_time) = DATE('2023-01-01')
