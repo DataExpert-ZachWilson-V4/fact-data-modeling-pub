@@ -8,7 +8,7 @@ WITH
     -- CTE to select data from the daily_web_metrics table for a specific date
     today AS (SELECT *
               FROM halloweex.daily_web_metrics
-              WHERE event_time = DATE '2023-08-03')
+              WHERE date = DATE '2023-08-03')
 
 -- Main SELECT statement to combine data from yesterday and today CTEs
 SELECT
