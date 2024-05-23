@@ -1,11 +1,10 @@
-
-
 -- The purpose of this query is to convert the dates_active array into a base-2 integer datelist representation.
 -- This involves three main transformations:
 -- 1. Unnest the dates_active array and convert each date into a power of 2.
 -- 2. Sum these powers of 2 for each user_id and browser_type combination.
 -- 3. Convert the sum to a base-2 representation and calculate the number of active days.
 -- The final result will include the user_id, browser_type, the integer history, its binary representation, and the number of active days.
+
 
 WITH
   -- Select the current day's data
