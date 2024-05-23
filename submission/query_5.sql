@@ -3,7 +3,6 @@
 -- 1. `host` (VARCHAR): This column stores the name or address of the host.
 -- 2. `host_activity_datelist` (ARRAY(DATE)): This column stores an array of dates indicating when the host was active.
 -- 3. `date` (DATE): This column stores the current or latest date for the activity data.
-
 -- The table uses the Parquet format for efficient data storage and retrieval. Parquet is a columnar storage format that is optimized for use with big data processing frameworks.
 -- Additionally, the table is partitioned by the `date` column. Partitioning improves query performance by allowing the database to scan only relevant partitions based on the date, thus reducing the amount of data read during queries.
 
