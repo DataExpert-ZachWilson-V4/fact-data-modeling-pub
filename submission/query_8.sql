@@ -7,7 +7,7 @@ SELECT
 	, metric_array
 	, month_start
 FROM mamontesp.host_activity_reduced
-WHERE month_start = '2021-01-01'
+WHERE month_start = DATE('2021-01-01')
 ), 
 
 today AS (
