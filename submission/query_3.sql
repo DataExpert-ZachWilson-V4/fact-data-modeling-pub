@@ -1,6 +1,3 @@
---- DML to populate above query
-DELETE FROM mamontesp.user_devices_cumulated
-
 INSERT INTO mamontesp.user_devices_cumulated
 WITH yesterday AS (
 	SELECT 
@@ -31,6 +28,3 @@ SELECT
 FROM yesterday AS Y
 FULL OUTER JOIN today AS t
 ON y.user_id = t.user_id
-
--- Test query
-SELECT * FROM mamontesp.user_devices_cumulated

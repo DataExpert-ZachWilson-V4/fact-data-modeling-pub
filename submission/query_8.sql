@@ -14,7 +14,7 @@ today AS (
 SELECT
 	  host
 	, metric_name
-	, SUM(metric_value) AS metric_value
+	, CAST(SUM(metric_value) AS INTEGER) AS metric_value
 	, DATE_TRUNC('day', date) AS date
 	, DATE_TRUNC('month', date) AS month_start
 FROM mamontesp.daily_web_metrics
