@@ -5,7 +5,7 @@
 -- and the date field to store the most recent date of activity.
 -- The partition key used is the date column to allow for more efficient querying when filtering by date.
 
-CREATE TABLE iliamokhtarian.user_devices_cumulated (
+CREATE TABLE user_devices_cumulated (
     -- The unique identifier for the user
     user_id BIGINT,
     -- The type of browser the user is using
