@@ -6,12 +6,12 @@
 -- The today CTE extracts the relevant data from the web_events table for today's date.
 -- Step 3: Insert the merged data into hosts_cumulated.
 
-INSERT INTO iliamokhtarian.hosts_cumulated
+INSERT INTO hosts_cumulated
 WITH 
   -- Retrieve records from hosts_cumulated for the previous day
   yesterday AS (
     SELECT *
-    FROM iliamokhtarian.hosts_cumulated
+    FROM hosts_cumulated
     WHERE date = DATE('2022-12-01')  -- Assuming '2022-12-01' is the previous day
   ),
 
