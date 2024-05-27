@@ -4,7 +4,7 @@
 -- II. `host_activity_datelist` (ARRAY(DATE)): Stores an array of dates indicating when the host was active.
 -- III. `date` (DATE): Stores the current or latest date of the activity data.
 
-CREATE TABLE iliamokhtarian.hosts_cumulated (
+CREATE TABLE hosts_cumulated (
     host VARCHAR,                           -- Column to store the host name or address
     host_activity_datelist ARRAY(DATE),     -- Column to store an array of dates when the host was active
     date DATE                               -- Column to store the current or latest date for the activity data
