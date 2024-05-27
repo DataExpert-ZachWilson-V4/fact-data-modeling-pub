@@ -1,6 +1,6 @@
 -- This query creates the host_activity_reduced table to store reduced monthly activity data for each host.
 
-CREATE TABLE IF NOT EXISTS iliamokhtarian.host_activity_reduced (
+CREATE TABLE IF NOT EXISTS host_activity_reduced (
     host VARCHAR,                      -- Stores the name or address of the host
     metric_name VARCHAR,               -- Stores the name of the metric being tracked (e.g., page views, active users)
     metric_array ARRAY(INTEGER),       -- Stores an array of integer values representing the daily metric values for the month
