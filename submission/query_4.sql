@@ -11,7 +11,7 @@ WITH
     SELECT
       *
     FROM
-      iliamokhtarian.user_devices_cumulated
+      user_devices_cumulated
     WHERE
       date = DATE('2022-12-21')
   ),
