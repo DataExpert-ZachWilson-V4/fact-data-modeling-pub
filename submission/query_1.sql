@@ -1,6 +1,6 @@
 -- Create a new table called nba_game_details_deduplicates and call all the columns in the original table
 
-CREATE TABLE iliamokhtarian.nba_game_details_deduplicate AS
+CREATE TABLE nba_game_details_deduplicate AS
 SELECT
     game_id,
     team_id,
@@ -36,7 +36,7 @@ FROM (
     -- Order by game_id
     SELECT *,
            ROW_NUMBER() OVER (PARTITION BY game_id, team_id, player_id ORDER BY game_id) AS row_num
-    FROM bootcamp.nba_game_details
+    FROM nba_game_details
 ) i
 -- Only select rows where the row number is 1, effectively deduplicating the dataset based on the points
 WHERE row_num = 1
