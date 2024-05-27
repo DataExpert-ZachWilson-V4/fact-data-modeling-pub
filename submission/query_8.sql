@@ -1,12 +1,12 @@
 -- This query incrementally populates the host_activity_reduced table by merging new daily web metrics data with the existing reduced monthly data.
 
-INSERT INTO iliamokhtarian.host_activity_reduced
+INSERT INTO host_activity_reduced
 WITH 
     -- Define a CTE (Common Table Expression) for yesterday's data
     -- The yesterday CTE retrieves the records from `host_activity_reduced` for the previous month (2022-12-01).
     yesterday AS (
         SELECT *
-        FROM iliamokhtarian.host_activity_reduced
+        FROM host_activity_reduced
         WHERE month_start = '2022-12-01'  -- Assuming '2022-12-01' is the previous month's start date
     ),
 
@@ -18,7 +18,7 @@ WITH
             metric_name,                      -- Name of the metric being tracked
             metric_value,                     -- Value of the metric for today
             DATE                              -- Date of the metric value
-        FROM iliamokhtarian.daily_web_metrics
+        FROM daily_web_metrics
         WHERE DATE = DATE('2022-12-21')       -- Assuming '2022-12-21' is today's date
     )
 
