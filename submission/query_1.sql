@@ -1,4 +1,5 @@
 -- Create a new table called nba_game_details_deduplicates and call all the columns in the original table
+
 CREATE TABLE iliamokhtarian.nba_game_details_deduplicate AS
 SELECT
     game_id,
