@@ -15,7 +15,7 @@ select
         else 0
     end) as bigint), 2) as dates_active
 from data cross join
-    unnest(sequence(date('2023-01-01'), date('2023-01-07')))
+    unnest(sequence(date('2023-01-01'), date('2023-01-07'))) as t(sequence_date)
 group by
     user_id,
     browser_type
