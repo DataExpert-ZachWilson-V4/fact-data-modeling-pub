@@ -2,7 +2,7 @@
 -- This query inserts data by combining the previous day's data with today's new events.
 -- It ensures that the dates_active array is updated with the most recent date of activity for each user and browser_type combination.
 
-INSERT INTO iliamokhtarian.user_devices_cumulated (
+INSERT INTO user_devices_cumulated (
     user_id,
     browser_type,
     dates_active,
@@ -17,7 +17,7 @@ WITH
       dates_active,
       date
     FROM
-      iliamokhtarian.user_devices_cumulated
+      user_devices_cumulated
     WHERE
       date = DATE('2022-12-01')
   ),
