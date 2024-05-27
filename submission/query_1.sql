@@ -1,4 +1,5 @@
 --Selecting first row from cte for each game_id, team_id, player_id
+--De-dupe Query
 with cte as (
 
 select *,

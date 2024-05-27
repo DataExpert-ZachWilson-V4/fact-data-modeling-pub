@@ -1,8 +1,11 @@
 
--- user_id	device_id	referrer	host	url	event_time
+-- User Devices Activity Datelist Implementation 
 
--- device_id	browser_type	os_type	device_type
+-- Helper Comments:
+-- bootcamp.web_events : user_id	device_id	referrer	host	url	event_time
+-- bootcamp.devices : device_id	browser_type	os_type	device_type
 
+-- We join the web_events and devices table on device_id and create the final user_devices_cumulated aggregated till 2023-01-07
 
 insert into hariomnayani88482.user_devices_cumulated
 with yesterday as(

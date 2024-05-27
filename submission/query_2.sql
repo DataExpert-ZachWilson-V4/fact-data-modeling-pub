@@ -1,3 +1,4 @@
+--User Devices Activity Datelist DDL 
 create or replace table
 hariomnayani88482.user_devices_cumulated
 (
