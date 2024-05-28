@@ -11,8 +11,8 @@ WITH
         SELECT *
         FROM positivelyamber.host_activity_reduced
         WHERE date = DATE('2023-01-01')
-    ),
-
+    )
+    
 SELECT
     COALESCE(y.host, t.host) as host,
     COALESCE(y.metric_name, t.metric_name) as metric_name,

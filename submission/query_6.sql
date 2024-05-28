@@ -1,6 +1,5 @@
 -- Query to incrementally populate the hosts_cumulated table from the 
 -- web_events table. (This is similar to query 3 but with host instead of user_id)
-
 INSERT INTO positivelyamber.hosts_cumulated
 WITH 
     yesterday AS (
@@ -30,7 +29,6 @@ SELECT
         ELSE ARRAY[t.event_date]
     END AS dates_active,
     DATE('2023-01-01') AS date
-
 FROM yesterday y 
 FULL OUTER JOIN today t 
 ON y.host = t.host
