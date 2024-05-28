@@ -8,7 +8,7 @@ WITH
     ),
     date_list_int AS (
         SELECT 
-            userId,
+            user_id,
             browser_type,
             CAST(SUM(
                 CASE 

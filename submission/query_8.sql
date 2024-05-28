@@ -23,7 +23,7 @@ SELECT
             CAST(DATE_DIFF('day', DATE('2023-01-01'), t.date) AS INTEGER)
         )
     ) || ARRAY[t.metric_value] AS metric_array,
-    2023-01-01 AS month_start
+    '2023-01-01' AS month_start
 FROM yesterday y 
 FULL OUTER JOIN today t 
 ON y.host = t.host AND y.metric_name = t.metric_name
