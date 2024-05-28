@@ -25,7 +25,6 @@ WITH
             user_id, 
             browser_type
     )
-
 SELECT 
     *, 
     TO_BASE(history_int, 2) AS history_in_binary,

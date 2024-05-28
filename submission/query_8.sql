@@ -24,6 +24,6 @@ SELECT
         )
     ) || ARRAY[t.metric_value] AS metric_array,
     2023-01-01 AS month_start
-FROM yesterda y 
+FROM yesterday y 
 FULL OUTER JOIN today t 
 ON y.host = t.host AND y.metric_name = t.metric_name
