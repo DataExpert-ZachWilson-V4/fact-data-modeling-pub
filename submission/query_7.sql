@@ -7,7 +7,7 @@ CREATE OR REPLACE TABLE positivelyamber.host_activity_reduced(
     -- List of the dates the host had activity 
     metric_array ARRAY(INTEGER),
     -- The month we are starting with
-    month_start VARCHAR,
+    month_start VARCHAR
 )
 WITH (
     -- Parquet formatting

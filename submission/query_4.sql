@@ -7,7 +7,7 @@ WITH
         WHERE date = DATE('2022-12-31')
     ),
     date_list_int AS (
-        SELCT 
+        SELECT 
             userId,
             browser_type,
             CAST(SUM(

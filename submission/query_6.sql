@@ -24,10 +24,10 @@ SELECT
     COALESCE(y.host, t.host) as host,
     CASE 
         -- See if there are dates active before concat today's array to yesterday's       
-        WHEN y.dates_active IS NOT NULL THEN Array[t.event_date] || y.dates_active
+        WHEN y.host_activity_datelist IS NOT NULL THEN Array[t.event_date] || y.host_activity_datelist
         -- If yesterday's dates_active are null start new array with today's
         ELSE ARRAY[t.event_date]
-    END AS dates_active,
+    END AS host_activity_datelist,
     DATE('2023-01-01') AS date
 FROM yesterday y 
 FULL OUTER JOIN today t 

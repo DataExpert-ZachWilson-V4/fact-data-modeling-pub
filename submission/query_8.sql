@@ -9,10 +9,10 @@ WITH
     ),
     today AS (
         SELECT *
-        FROM positivelyamber.host_activity_reduced
+        FROM positivelyamber.daily_web_metrics
         WHERE date = DATE('2023-01-01')
     )
-    
+
 SELECT
     COALESCE(y.host, t.host) as host,
     COALESCE(y.metric_name, t.metric_name) as metric_name,
