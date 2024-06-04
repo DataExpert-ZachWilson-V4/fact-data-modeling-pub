@@ -24,7 +24,7 @@
 
 -- The first index of the date list array should correspond to the most **recent** date (today's date).
 
-CREATE TABLE ChrisTaulbee.user_devices_cumulated (
+CREATE TABLE IF NOT EXISTS ChrisTaulbee.user_devices_cumulated (
   user_id bigint,
   browser_type varchar,
   dates_active array(date),

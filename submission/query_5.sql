@@ -9,7 +9,7 @@
 -- - `date date`
 
 
-CREATE TABLE ChrisTaulbee.hosts_cumulated (
+CREATE TABLE IF NOT EXISTS ChrisTaulbee.hosts_cumulated (
   host varchar,
   host_activity_datelist array(date),
   date date

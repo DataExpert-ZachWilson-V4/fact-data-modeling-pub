@@ -5,7 +5,7 @@
 -- - `metric_array array(integer)`
 -- - `month_start varchar`
 
-CREATE TABLE ChrisTaulbee.host_activity_reduced (
+CREATE TABLE IF NOT EXISTS ChrisTaulbee.host_activity_reduced (
   host varchar,
   metric_name varchar,
   metric_array array(integer),
