@@ -1,0 +1,3 @@
+SELECT GAME_ID, TEAM_ID, PLAYER_ID
+FROM bootcamp.nba_game_details 
+GROUP BY GAME_ID, TEAM_ID, PLAYER_ID
