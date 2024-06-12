@@ -14,7 +14,7 @@ WITH
       CAST(
         SUM(
           CASE
-            WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 30 - DATE_DIFF('day', sequence_date, DATE))
+            WHEN CONTAINS(dates_active, sequence_date) THEN POW(2, 31 - DATE_DIFF('day', sequence_date, DATE))
             ELSE 0
           END
         ) AS BIGINT
