@@ -1,5 +1,5 @@
 -- Using a Common Table Expression (CTE) to create a temporary table named 'deduped'
-WITH cte AS (
+WITH deduped AS (
   -- Assigning a unique row number to each row within a partition of game_id, team_id, and player_id
   SELECT
     ROW_NUMBER() OVER (
@@ -14,6 +14,6 @@ WITH cte AS (
 SELECT
   *
 FROM
-  cte
+  deduped
 WHERE
   row_id = 1
