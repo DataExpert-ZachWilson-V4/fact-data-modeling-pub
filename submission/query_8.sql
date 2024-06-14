@@ -9,6 +9,7 @@
 -- Ind populate data into the daily_web_metrics table.
 -- Ensure that this table is created in your schema, as you did in Week 2 Lab. Mention the schema name in your CTE/query during the submission.
 
+
 INSERT INTO rgindallas.host_activity_reduced
 WITH yesterday AS (
 SELECT *
