@@ -1,5 +1,4 @@
-INSERT INTO
-  rgindallas.user_devices_cumulated
+INSERT INTO rgindallas.user_devices_cumulated
 WITH
   yesterday AS (
     SELECT
