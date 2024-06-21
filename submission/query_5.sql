@@ -1,21 +1,12 @@
--- QUERY N.5
+-- SQL DDL to create a table for tracking cumulative host activity.
+-- This table is designed to cumulate activity data by host over time,
+-- storing each host's activity history in an array of dates.
 
--- Host Activity Datelist DDL (query_5.sql)
--- Write a DDL statement to create a hosts_cumulated table,
--- as shown in the fact data modeling day 2 lab. Except for 
--- in the homework, you'll be doing it by host, not user_id
-
--- The schema for this table should include:
--- host varchar
--- host_activity_datelist array(date)
--- date date
-
-CREATE OR REPLACE TABLE vzucher.hosts_cumulated (
-    host VARCHAR,
-    host_activity_datelist ARRAY(DATE),
-    date DATE
+CREATE OR REPLACE TABLE hosts_cumulated (
+    host VARCHAR,                           -- Stores the host identifier, typically a string.
+    host_activity_datelist ARRAY(DATE),     -- An array of DATEs indicating the days on which the host was active.
+    date DATE                               -- The date when the record was last updated, to track the latest activity.
+) WITH (
+   FORMAT = 'PARQUET', -- Specifies the storage format; ORC is often used for efficient storage of columnar data.
+   PARTITIONING = ARRAY['date'] -- Partitions the table by the 'date' column for better query performance on temporal data.
 )
-WITH
-    (FORMAT = 'PARQUET', partitioning = ARRAY['date'])
-
-    

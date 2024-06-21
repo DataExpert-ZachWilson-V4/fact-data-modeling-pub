@@ -1,36 +1,32 @@
--- QUERY N.6
-
--- Host Activity Datelist Implementation (query_6.sql)
--- As shown in the fact data modeling day 2 lab, Write a query to
--- incrementally populate the hosts_cumulated table from the web_events table
-
--- Creating a new combined data table
-WITH yesterday AS (
-  SELECT
-    *
-  FROM vzucher.hosts_cumulated
-  WHERE date = DATE('2021-01-01')
+-- This query incrementally populates the 'hosts_cumulated' table from the 'web_events' table.
+-- It captures the host activity and updates the 'hosts_cumulated' table with new activity records.
+INSERT INTO hosts_cumulated
+-- Step 1: Define a CTE to capture the activity for the current day.
+WITH today_activity AS (
+    SELECT
+        host,
+        ARRAY_AGG(DISTINCT DATE_TRUNC('day', event_time)) AS dates_active_today
+    FROM bootcamp.web_events
+    WHERE DATE_TRUNC('day', event_time) = CURRENT_DATE
+    GROUP BY host
 ),
--- Today's CTE from the source table `bootcamp.web_events`
-today AS (
-  SELECT
-    host,
-    CAST(date_trunc('day', event_time) AS DATE) AS event_date,
-    COUNT(1)
-  FROM
-    bootcamp.web_events
-  WHERE CAST(date_trunc('day', event_time) AS DATE) = DATE('2021-01-02')
-  GROUP BY
-    host, CAST(date_trunc('day', event_time) AS DATE)
-)
+
+-- Step 2: Select data from the existing 'hosts_cumulated' table for the previous cumulative activity.
+     previous_activity AS (
+         SELECT
+             host,
+             host_activity_datelist,
+    date
+FROM hosts_cumulated
+WHERE date = (SELECT MAX(date) FROM hosts_cumulated)
+    )
+
+-- Step 3: Combine the new activity with the previous cumulative activity.
+
 SELECT
-  COALESCE(t.host, y.host) AS host,
-  CASE WHEN
-    -- When the host is in yesterday's table, concatenate today's host activity date
-    y.host_activity_datelist IS NOT NULL THEN ARRAY[t.event_date] || y.host_activity_datelist
-    -- When the host is not in yesterday's table, return today's host activity date
-    ELSE ARRAY[t.event_date]
-  END AS host_activity_datelist,
-  DATE('2021-01-02') AS date
-FROM today t
-  FULL OUTER JOIN yesterday y ON t.host = y.host
+    COALESCE(pa.host, ta.host) AS host,
+    array_distinct(concat(COALESCE(pa.host_activity_datelist, ARRAY[]), COALESCE(ta.dates_active_today, ARRAY[]))) AS host_activity_datelist,
+    CURRENT_DATE AS date
+FROM
+    previous_activity pa
+    FULL OUTER JOIN today_activity ta ON pa.host = ta.host

@@ -1,81 +1,43 @@
--- QUERY N.3
+-- delete from jlcharbneau.user_devices_cumulated
+-- select * from jlcharbneau.user_devices_cumulated
 
--- User Devices Activity Datelist Implementation (query_3.sql)
--- Write the incremental query to populate the table you wrote the DDL for in the above 
--- question from the web_events and devices tables. This should look like the query to generate the cumulation table from the fact modeling day 2 lab.
--- Assumption: We have a timestamp or a mechanism to track the last update
+INSERT INTO user_devices_cumulated
+WITH yesterday AS (
+    SELECT *
+    FROM user_devices_cumulated
+    WHERE date = DATE '2021-02-04'  -- Last updated date
+    ),
 
-
--- The NewEventData CTE selects new event data from the web_events table
--- The ExistingData CTE selects the existing current data from the user_devices_cumulated table,
--- The AggregatedNewData CTE aggregates the new data so that we can join it with the existing data,
--- The DistinctDates CTE selects data from ExistingData and AggregatedNewData CTEs and unions them together, but only the distinct dates,
--- The ReaggregatedDates CTE aggregates the distinct dates and finds the latest date for each user and browser type
-
-WITH NewEventData AS (
-    SELECT
-        we.user_id,
-        d.browser_type,
-        CAST(we.event_time AS DATE) AS event_date
-    FROM
-        bootcamp.web_events AS we
-    JOIN
-        bootcamp.devices AS d ON we.device_id = d.device_id
-    WHERE
-        we.event_time > (SELECT MAX(date) FROM vzucher.user_devices_cumulated) -- Only select events newer than the latest in the cumulation table
-),
-ExistingData AS (
-    SELECT
-        user_id,
-        browser_type,
-        dates_active,
-        (SELECT MAX(date) FROM UNNEST(dates_active) AS date) AS latest_date -- Computes the latest date from the existing active dates
-    FROM
-        vzucher.user_devices_cumulated
-),
-AggregatedNewData AS (
-    SELECT
-        n.user_id,
-        n.browser_type,
-        ARRAY_AGG(DISTINCT n.event_date) AS new_dates_active,
-        MAX(n.event_date) AS new_date
-    FROM
-        NewEventData n
-    GROUP BY
-        n.user_id, n.browser_type
-),
-DistinctDates AS (
-    SELECT
-        user_id,
-        browser_type,
-        date
-    FROM
-        ExistingData
-    CROSS JOIN UNNEST(dates_active) AS t(date)
-    UNION
-    SELECT
-        user_id,
-        browser_type,
-        date
-    FROM
-        AggregatedNewData
-    CROSS JOIN UNNEST(new_dates_active) AS t(date)
-),
-ReaggregatedDates AS (
-    SELECT
-        user_id,
-        browser_type,
-        ARRAY_AGG(DISTINCT date) AS dates_active,  -- Aggregate distinct dates into an array
-        MAX(date) AS date  -- Find the latest date from the aggregated distinct dates
-    FROM
-        DistinctDates
-    GROUP BY
-        user_id, browser_type
-)
+-- The 'today' CTE processes new activities from the web events, targeting the day immediately after 'yesterday'.
+-- It groups data by 'user_id' and 'browser_type' and collects distinct active dates.
+    today AS (
 SELECT
-    user_id,
-    browser_type,
-    dates_active,
-    date
+    we.user_id,
+    d.browser_type,
+    ARRAY_AGG(DISTINCT DATE_TRUNC('day', we.event_time)) AS dates_active
 FROM
-    ReaggregatedDates
+    bootcamp.devices d
+    JOIN bootcamp.web_events we ON d.device_id = we.device_id
+WHERE DATE_TRUNC('day', we.event_time) = DATE '2021-02-05'  -- The next day after the last update
+GROUP BY
+    we.user_id, d.browser_type
+    )
+
+-- Insert updated data into the cumulative table, merging 'yesterday' and 'today' data.
+-- This step ensures that all user activities are accurately recorded and no data is lost between updates.
+
+SELECT
+    -- Use COALESCE to handle any null values by choosing data from 'today' if available, otherwise from 'yesterday'.
+    COALESCE(yesterday.user_id, today.user_id) AS user_id,
+    COALESCE(yesterday.browser_type, today.browser_type) AS browser_type,
+
+    -- Merge and deduplicate date arrays from 'yesterday' and 'today' using the concat function and array_distinct.
+    -- This ensures all unique activity dates are captured in the cumulative table.
+    array_distinct(concat(COALESCE(yesterday.dates_active, ARRAY[]), COALESCE(today.dates_active, ARRAY[]))) AS dates_active,
+
+    DATE('2021-02-05') AS date  -- Record the date of update to track when the last update occurred.
+FROM
+    yesterday
+    FULL OUTER JOIN today
+ON yesterday.user_id = today.user_id
+    AND yesterday.browser_type = today.browser_type

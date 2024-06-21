@@ -1,29 +1,12 @@
--- QUERY N.7
+-- SQL DDL to create a table for reduced host activity metrics.
+-- This table is designed to store monthly reduced metrics for each host.
 
-
--- Reduced Host Fact Array DDL (query_7.sql)
--- As shown in the fact data modeling day 3 lab, write a DDL statement
---  to create a monthly host_activity_reduced table, containing the following fields
-
--- host varchar
--- metric_name varchar
--- metric_array array(integer)
--- month_start varchar
-
-
--- CREATE TABLE vzucher.monthly_host_activity_recuded (
---     host VARCHAR,
---     metric_name VARCHAR,
---     metric_array ARRAY(INTEGER),
---     month_start VARCHAR
--- )
-
-CREATE TABLE host_activity_reduced (
-  host VARCHAR,
-  metric_name VARCHAR,
-  metric_array ARRAY(INTEGER),
-  month_start VARCHAR
-)
-WITH (
-  partitioning = ARRAY['metric_name', 'month_start']
+CREATE OR REPLACE TABLE host_activity_reduced (
+    host VARCHAR,                          -- Stores the host identifier, typically a string.
+    metric_name VARCHAR,                   -- The name of the metric being tracked.
+    metric_array ARRAY(INTEGER),           -- An array of integers representing the metric values for the month.
+    month_start VARCHAR                    -- The start of the month in 'YYYY-MM' format to denote the period.
+) WITH (
+    FORMAT = 'PARQUET',                    -- Specifies the storage format; PARQUET is chosen for efficient storage.
+    PARTITIONING = ARRAY['metric_name', 'month_start']  -- Partitions the table by the 'metric_name' and 'month_start' columns for better query performance.
 )
