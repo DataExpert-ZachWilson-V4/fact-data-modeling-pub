@@ -1,4 +1,4 @@
--- INSERT INTO jb19881.host_activity_reduced
+INSERT INTO jb19881.host_activity_reduced
 WITH
   yesterday AS (
     SELECT
