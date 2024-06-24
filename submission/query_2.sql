@@ -1,10 +1,10 @@
-CREATE or REPLACE TABLE user_devices_cumulated (
-    user_id bigint,
-    browser_type varchar,
-    dates_active array(date),
-    date date
+CREATE TABLE malmarzooq80856.user_devices_cumulated (
+    user_id BIGINT,
+    browser_type VARCHAR,
+    dates_active ARRAY(DATE),
+    date DATE
 )
 WITH (
-    format = 'PARQUET',
-    partitioning = array['date']
+    FORMAT = 'PARQUET',
+    PARTITIONING = ARRAY['DATE']
 )
