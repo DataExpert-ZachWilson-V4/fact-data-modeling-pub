@@ -6,8 +6,8 @@ WITH yesterday AS (
 ),
 today AS (
         SELECT 
-            WE.user_id,
-            D.browser_type,
+            we.user_id,
+            d.browser_type,
             CAST(date_trunc('day', we.event_time) AS DATE) AS date
         FROM bootcamp.web_events we
         JOIN bootcamp.devices d ON d.device_id = we.device_id
@@ -15,7 +15,7 @@ today AS (
         GROUP BY 
             user_id, 
             browser_type, 
-            CAST(date_trunc('day', event_time) AS DATE)
+            CAST(date_trunc('day', we.event_time) AS DATE)
 )
 SELECT
     COALESCE(y.user_id, t.user_id) as user_id,
