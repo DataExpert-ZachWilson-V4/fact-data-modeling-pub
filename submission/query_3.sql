@@ -8,8 +8,6 @@ WITH
     WHERE
       DATE = DATE('2023-01-06')
   ),
-  -- select user_id, device_id, referrer, host, url, event_time from bootcamp.web_events limit 100
-  -- select device_id, browser_type, os_type, device_type from bootcamp.devices limit 100
   today AS (
     SELECT
       we.user_id,
@@ -30,6 +28,7 @@ WITH
 SELECT
   COALESCE(y.user_id, t.user_id) AS user_id,
   COALESCE(y.browser_type, t.browser_type) as browser_type,
+  -- Sort dates in descending order
   CASE
     WHEN y.dates_active IS NOT NULL THEN ARRAY[t.event_date] || y.dates_active
     ELSE ARRAY[t.event_date]

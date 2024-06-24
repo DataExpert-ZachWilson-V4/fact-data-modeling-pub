@@ -17,7 +17,7 @@ WITH
       DATE = DATE('2023-08-02')
   )
 SELECT
-  COALESCE(t.host, y.host) AS user_id,
+  COALESCE(t.host, y.host) AS host,
   COALESCE(t.metric_name, y.metric_name) AS metric_name,
   COALESCE(
     y.metric_array,

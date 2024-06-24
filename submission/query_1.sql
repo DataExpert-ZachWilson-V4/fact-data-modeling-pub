@@ -1,3 +1,4 @@
+-- dedup nba game details by game, team, and player
 WITH
     numbered AS (
         SELECT
