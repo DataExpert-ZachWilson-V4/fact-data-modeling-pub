@@ -10,7 +10,7 @@ today AS (
             D.browser_type,
             CAST(date_trunc('day', we.event_time) AS DATE) AS date
         FROM bootcamp.web_events we
-        LEFT JOIN bootcamp.devices d ON d.device_id = we.device_id
+        JOIN bootcamp.devices d ON d.device_id = we.device_id
         WHERE date_trunc('day', event_time) = DATE('2022-12-02')
         GROUP BY 
             user_id, 
