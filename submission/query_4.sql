@@ -39,4 +39,4 @@ SELECT
     browser_type,
     TO_BASE(history_as_int, 2) AS activation_history,
     BIT_COUNT(history_as_int) AS total_active_days
-FROM convert_date_to_int;
+FROM convert_date_to_int
