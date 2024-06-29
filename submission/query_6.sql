@@ -6,7 +6,7 @@ WITH today AS (
         CAST(date_trunc('day', we.event_time) AS DATE) AS event_date
     FROM bootcamp.web_events we
     WHERE DATE_TRUNC('day', we.event_time) = DATE('2023-01-01')
-    GROUP BY host, event_date
+    GROUP BY 1, 2
 ),
 yesterday AS (
 -- Select data from hosts_cumulated for the previous day

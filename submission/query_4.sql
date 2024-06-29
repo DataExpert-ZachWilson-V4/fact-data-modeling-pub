@@ -13,7 +13,7 @@ generating_date_list AS (
     FROM today
     CROSS JOIN 
         UNNEST(SEQUENCE(DATE('2022-12-03'), DATE('2022-12-31'))) 
-        AS sequence_date
+        AS t(sequence_date)
 ),
 convert_date_to_int AS (
     -- Convert dates to integers using powers of 2 and sum them

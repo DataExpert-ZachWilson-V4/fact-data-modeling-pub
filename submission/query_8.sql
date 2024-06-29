@@ -16,7 +16,7 @@ SELECT
   COALESCE(
     y.metric_array, 
     REPEAT(null,
-      CAST(DATE_DIFF('day',t.date,y.date) AS INTEGER)
+      CAST(DATE_DIFF('day',t.date,y.month_start) AS INTEGER)
     )) || ARRAY[t.metric_value] AS metric_array,
   '2022-12-02'AS month_start
 FROM today t
