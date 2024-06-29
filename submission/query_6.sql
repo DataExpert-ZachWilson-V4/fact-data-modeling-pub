@@ -24,4 +24,4 @@ SELECT
     END AS host_activity_datelist,
     COALESCE(DATE_ADD('day', 1, y.date), t.event_date) AS date
 FROM yesterday y
-FULL OUTER JOIN today t ON y.host = t.host;
+FULL OUTER JOIN today t ON y.host = t.host
