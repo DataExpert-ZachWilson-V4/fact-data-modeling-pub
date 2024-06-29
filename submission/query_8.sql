@@ -18,7 +18,7 @@ SELECT
     REPEAT(null,
       CAST(DATE_DIFF('day', CAST(t.date AS DATE), CAST(y.month_start AS DATE)) AS INTEGER)
     )) || ARRAY[t.metric_value] AS metric_array,
-  DATE '2022-12-02' AS month_start
+   '2022-12-02' AS month_start
 FROM today t
 FULL OUTER JOIN yesteday y 
   ON t.host = y.host AND t.metric_name = y.metric_name
