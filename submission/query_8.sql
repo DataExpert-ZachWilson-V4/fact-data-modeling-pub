@@ -3,7 +3,7 @@ INSERT INTO malmarzooq80856.host_activity_reduced
 WITH yesteday AS (
   SELECT *
   FROM malmarzooq80856.host_activity_reduced
-  WHERE month_start = DATE '2022-12-01'
+  WHERE month_start = '2022-12-01'
 ),
 today AS (
   SELECT *
